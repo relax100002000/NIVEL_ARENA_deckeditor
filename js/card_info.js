@@ -49,7 +49,7 @@ const PRODUCT = 13;
 var cardData = [
 	[
 		"ST01-001", //ID
-		"http://nivelarena.jp/data/file/cardlists/5abf82a892f0549c26939bd53be4bda8_cxzS9uth_fae9b13633b0536fd66310f438441d2aebe6f19b.png", //SRC
+		"https://1drv.ms/i/c/28d307b290b8dca0/ET9AY4J88g1LpJ-fCgk6q3wBVmy5QA0YxQqsDOOPp4uutA?e=xlehUb", //SRC
 		"ラピ", //NAME
 		"リーダー", //TYPE
 		"炎", //ELEMENT
