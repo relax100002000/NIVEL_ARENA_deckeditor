@@ -789,7 +789,7 @@ var cardData = [
 		"黒化", //NAME
 		"スキル", //TYPE
 		"嵐", //ELEMENT
-		"5", //COST
+		"2", //COST
 		"C", //RARE
 		"", //POWER
 		"", //HIT
