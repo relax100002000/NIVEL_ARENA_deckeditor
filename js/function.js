@@ -238,9 +238,8 @@ function str_to_img(x)
 	x = x.replace(/어태커/g, "<img class='icon_img' src='img/ico_atc.png'></img>");
 	x = x.replace(/디펜더/g, "<img class='icon_img' src='img/ico_dfd.png'></img>");
 
-
-
 	x = x.replace(/<br><br>覚醒面<br><br>/g, "</tr><tr><td colspan=2>覚醒面<br><br>");
+	x = x.replace(/<br><br>覺醒面<br><br>/g, "</tr><tr><td colspan=2>覺醒面<br><br>");
 
 	return x;
 }
@@ -361,7 +360,14 @@ function showInfotable(data)
 
 		str += "<tr>";
 		str += "	<td colspan=\"2\">";
-		str += str_to_img(data[JP_TEXT]);
+		if($('#selectLang').val() == "TW" && data[TW_TEXT] != "")
+		{
+			str += str_to_img(data[TW_TEXT]);
+		}
+		else
+		{
+			str += str_to_img(data[JP_TEXT]);
+		}
 		str += "	</td>";
 		str += "</tr>";
 	}
@@ -443,16 +449,30 @@ function showInfotable(data)
 		{
 			str += "<tr>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[JP_TEXT]);
+			if($('#selectLang').val() == "TW" && data[TW_TEXT] != "")
+			{
+				str += str_to_img(data[TW_TEXT]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TEXT]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
 
-		if(data[TRIGGER] != "")
+		if(data[JP_TRIGGER] != "")
 		{
 			str += "<tr style='background:#E0E0E0'>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[TRIGGER]);
+			if($('#selectLang').val() == "TW" && data[TW_TRIGGER] != "")
+			{
+				str += str_to_img(data[TW_TRIGGER]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TRIGGER]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
@@ -508,16 +528,30 @@ function showInfotable(data)
 		{
 			str += "<tr>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[JP_TEXT]);
+			if($('#selectLang').val() == "TW" && data[TW_TEXT] != "")
+			{
+				str += str_to_img(data[TW_TEXT]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TEXT]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
 
-		if(data[TRIGGER] != "")
+		if(data[JP_TRIGGER] != "")
 		{
 			str += "<tr style='background:#E0E0E0'>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[TRIGGER]);
+			if($('#selectLang').val() == "TW" && data[TW_TRIGGER] != "")
+			{
+				str += str_to_img(data[TW_TRIGGER]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TRIGGER]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
@@ -564,16 +598,30 @@ function showInfotable(data)
 		{
 			str += "<tr>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[JP_TEXT]);
+			if($('#selectLang').val() == "TW" && data[TW_TEXT] != "")
+			{
+				str += str_to_img(data[TW_TEXT]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TEXT]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
 
-		if(data[TRIGGER] != "")
+		if(data[JP_TRIGGER] != "")
 		{
 			str += "<tr style='background:#E0E0E0'>";
 			str += "	<td colspan=\"2\">";
-			str += str_to_img(data[TRIGGER]);
+			if($('#selectLang').val() == "TW" && data[TW_TRIGGER] != "")
+			{
+				str += str_to_img(data[TW_TRIGGER]);
+			}
+			else
+			{
+				str += str_to_img(data[JP_TRIGGER]);
+			}
 			str += "	</td>";
 			str += "</tr>";
 		}
@@ -911,7 +959,7 @@ function addmaincounter(x)
 		mdeck_item++;
 	}
 
-	if(x[TRIGGER] != "")
+	if(x[JP_TRIGGER] != "")
 	{
 		trigger = $("#trigger_num").val();
 		trigger ++;
@@ -970,7 +1018,7 @@ function delmaincounter(x)
 		mdeck_item--;
 	}
 
-	if(x[TRIGGER] != "")
+	if(x[JP_TRIGGER] != "")
 	{
 		trigger = $("#trigger_num").val();
 		trigger --;
@@ -1500,7 +1548,7 @@ function search()
 			{
 				if(cardData[i][TYPE] != "リーダー")
 				{
-					if(cardData[i][TRIGGER] != "")
+					if(cardData[i][JP_TRIGGER] != "")
 					{
 						continue;
 					}
@@ -1511,7 +1559,7 @@ function search()
 			{
 				if(cardData[i][TYPE] != "リーダー")
 				{
-					if(cardData[i][TRIGGER] == "")
+					if(cardData[i][JP_TRIGGER] == "")
 					{
 						continue;
 					}
@@ -1903,8 +1951,8 @@ function showVersion()
 	str += "Author: ZZZ\n";
 	str += "E-mail: relax100002000@hotmail.com\n";
 	str += "\n";
-	str += "20250723 v1.00\n";
-	str += "1.First release.\n";
+	str += "20250729 v1.01\n";
+	str += "1.更新中文\n";
 	str += "\n";
 	str += "預計更新:\n";
 	str += "-補充關於說明\n";
