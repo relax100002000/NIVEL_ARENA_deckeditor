@@ -102,7 +102,7 @@ var cardData = [
 		"", //JP_TRIGGER
 		"어태커 この攻撃が終わるまでパワー+1000。", //JP_TEXT
 		"", //TW_TRIGGER
-		"【入場】直到此回合結束為止，遭遇單位的戰力 -3000。", //TW_TEXT
+		"【攻擊者】直到本次攻擊結束為止，戰力 +1000。", //TW_TEXT
 		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
 		],
 	[
