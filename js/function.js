@@ -217,30 +217,17 @@ function onmouseShow(x, source)
 function str_to_img(x)
 {
 	x = x.replace(/장착조건 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
-	x = x.replace(/장착 조건: 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
 	x = x.replace(/장착조건 엑시트/g, "<img class='icon_img' src='img/ico_eq_exit.png'></img>");
 	x = x.replace(/장착조건 4코스트이상/g, "<img class='icon_img' src='img/ico_eq_4cost.png'></img>");
-	x = x.replace(/장착 조건: 4코스트 이상인 유닛/g, "<img class='icon_img' src='img/ico_eq_4cost.png'></img>");
 	x = x.replace(/장착조건 4코스트이하/g, "<img class='icon_img' src='img/ico_eq_4cost_dw.png'></img>");
-	x = x.replace(/장착 조건: 3코스트 이하인 유닛/g, "<img class='icon_img' src='img/ico_eq_3cost.png'></img>");
-	x = x.replace(/장착 조건: 베이스를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_base.png'></img>");
-	x = x.replace(/장착 조건: 가디언을 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_gud.png'></img>");
-	x = x.replace(/암드: 유니크/g, "<img class='icon_img' src='img/ico_amd_uq.png'></img>");
-
-	x = x.replace(/장착 조건: 디펜더를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_dfd.png'></img>");
-	x = x.replace(/장착 조건: 암드를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_amd.png'></img>");
 
 	x = x.replace(/화염/g, "<img class='icon_img' src='img/ico_red_m.jpg'></img>");
 	x = x.replace(/대지/g, "<img class='icon_img' src='img/ico_green_m.jpg'></img>");
 	x = x.replace(/폭풍/g, "<img class='icon_img' src='img/ico_violet_m.jpg'></img>");
-	x = x.replace(/파도/g, "<img class='icon_img' src='img/ico_blue.jpg'></img>");
-	x = x.replace(/번개/g, "<img class='icon_img' src='img/ico_yellow.jpg'></img>");
 
 	x = x.replace(/炎/g, "<img class='icon_img' src='img/ico_red_m.jpg'></img>");
 	x = x.replace(/大地/g, "<img class='icon_img' src='img/ico_green_m.jpg'></img>");
 	x = x.replace(/嵐/g, "<img class='icon_img' src='img/ico_violet_m.jpg'></img>");
-	x = x.replace(/波濤/g, "<img class='icon_img' src='img/ico_blue.jpg'></img>");
-	x = x.replace(/稲妻/g, "<img class='icon_img' src='img/ico_yellow.jpg'></img>");
 
 	x = x.replace(/서약/g, "<img class='icon_img' src='img/ico_vow.jpg'></img>");
 	x = x.replace(/각성/g, "<img class='icon_img' src='img/ico_awk.jpg'></img>");
@@ -248,11 +235,8 @@ function str_to_img(x)
 	x = x.replace(/패시브/g, "<img class='icon_img' src='img/ico_psv.png'></img>");
 	x = x.replace(/엔트리/g, "<img class='icon_img' src='img/ico_ent.png'></img>");
 	x = x.replace(/액티브메인/g, "<img class='icon_img' src='img/ico_atv_main.png'></img>");
-	x = x.replace(/액티브: 메인/g, "<img class='icon_img' src='img/ico_atv_main.png'></img>");
 	x = x.replace(/어태커/g, "<img class='icon_img' src='img/ico_atc.png'></img>");
 	x = x.replace(/디펜더/g, "<img class='icon_img' src='img/ico_dfd.png'></img>");
-	x = x.replace(/가디언/g, "<img class='icon_img' src='img/ico_gud.png'></img>");
-	x = x.replace(/암드/g, "<img class='icon_img' src='img/ico_amd.png'></img>");
 
 	x = x.replace(/<br><br>覚醒面<br><br>/g, "</tr><tr><td colspan=2>覚醒面<br><br>");
 	x = x.replace(/<br><br>覺醒面<br><br>/g, "</tr><tr><td colspan=2>覺醒面<br><br>");
@@ -589,15 +573,6 @@ function showInfotable(data)
 		str += "	</td>";
 		str += "	<td>";
 		str += data[NAME];
-		str += "	</td>";
-		str += "</tr>";
-
-		str += "<tr>";
-		str += "	<td>";
-		str += "		属性";
-		str += "	</td>";
-		str += "	<td>";
-		str += str_to_img(data[ELEMENT]);
 		str += "	</td>";
 		str += "</tr>";
 
@@ -1380,7 +1355,7 @@ function search()
 			}
 		}
 
-		if(!$('#red').is(":checked") && !$('#green').is(":checked") && !$('#violet').is(":checked") && !$('#blue').is(":checked") && !$('#yellow').is(":checked"))
+		if(!$('#red').is(":checked") && !$('#green').is(":checked") && !$('#violet').is(":checked"))
 		{
 		}
 		else
@@ -1408,28 +1383,12 @@ function search()
 					continue;
 				}
 			}
-
-			if(!$('#blue').is(":checked"))
-			{
-				if(cardData[i][ELEMENT] == "波濤")
-				{
-					continue;
-				}
-			}
-
-			if(!$('#yellow').is(":checked"))
-			{
-				if(cardData[i][ELEMENT] == "稲妻")
-				{
-					continue;
-				}
-			}
 		}
 
-		if(!$('#entry').is(":checked") && !$('#attack').is(":checked") && !$('#defender').is(":checked") && !$('#exit').is(":checked") && !$('#passive').is(":checked") && !$('#active_main').is(":checked") && !$('#levellink').is(":checked") && !$('#battleline').is(":checked") && !$('#guardian').is(":checked") && !$('#armored').is(":checked"))
+		if(!$('#entry').is(":checked") && !$('#attack').is(":checked") && !$('#defender').is(":checked") && !$('#exit').is(":checked") && !$('#passive').is(":checked") && !$('#active_main').is(":checked") && !$('#levellink').is(":checked") && !$('#battleline').is(":checked"))
 		{
 		}
-		else if($('#entry').is(":checked") && $('#attack').is(":checked") && $('#defender').is(":checked") && $('#exit').is(":checked") && $('#passive').is(":checked") && $('#active_main').is(":checked") && $('#levellink').is(":checked") && $('#battleline').is(":checked") && $('#guardian').is(":checked") && $('#armored').is(":checked"))
+		else if($('#entry').is(":checked") && $('#attack').is(":checked") && $('#defender').is(":checked") && $('#exit').is(":checked") && $('#passive').is(":checked") && $('#active_main').is(":checked") && $('#levellink').is(":checked") && $('#battleline').is(":checked"))
 		{
 		}
 		else
@@ -1493,22 +1452,6 @@ function search()
 			if($('#battleline').is(":checked"))
 			{
 				if(cardData[i][KEYWORD].indexOf("戦線維持") != -1)
-				{
-					trigger_flag = 1;
-				}
-			}
-
-			if($('#guardian').is(":checked"))
-			{
-				if(cardData[i][KEYWORD].indexOf("ガーディアン") != -1)
-				{
-					trigger_flag = 1;
-				}
-			}
-
-			if($('#armored').is(":checked"))
-			{
-				if(cardData[i][KEYWORD].indexOf("アームド") != -1)
 				{
 					trigger_flag = 1;
 				}
@@ -1723,7 +1666,7 @@ function dataInit()
 	mdeck_violet = 0;
 	mdeck_blue = 0;
 	// mdeck_white = 0;
-	mdeck_yellow = 0;
+	// mdeck_yellow = 0;
 	// mdeck_nocolor = 0;
 
 	showAlldeck();
@@ -2008,8 +1951,8 @@ function showVersion()
 	str += "Author: ZZZ\n";
 	str += "E-mail: relax100002000@hotmail.com\n";
 	str += "\n";
-	str += "20251211 v1.02\n";
-	str += "1.更新ST04、ST05、BT02\n";
+	str += "20250729 v1.01\n";
+	str += "1.更新中文\n";
 	str += "\n";
 	str += "預計更新:\n";
 	str += "-補充關於說明\n";
