@@ -1,6 +1,9 @@
 # WIXOSS_deckeditor  
    
 Author: ZZZ  
+
+20251211 v1.02  
+1.更新ST04、ST05、BT02  
   
 20250729 v1.01  
 1.更新中文  
