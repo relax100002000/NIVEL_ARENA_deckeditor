@@ -2429,7 +2429,7 @@ var cardData = [
 		],
 	[
 		"ST04-001", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_8xvbQJuS_b2be88a3e7e288cabce7361fd4b427fe12bd42e4.png", //SRC
+		"img/card/ST04-001.png", //SRC
 		"ドロシー", //NAME
 		"リーダー", //TYPE
 		"波濤", //ELEMENT
@@ -2447,7 +2447,7 @@ var cardData = [
 		],
 	[
 		"ST04-002", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_8zwrZeFv_3cac0780c5fe40d8e78b9f7ca83bf032a913099d.png", //SRC
+		"img/card/ST04-002.png", //SRC
 		"I-DOLL・フラワー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2465,7 +2465,7 @@ var cardData = [
 		],
 	[
 		"ST04-003", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_I9hmyLzw_6fd0ebe2f5d9f799689c07314be32e75c57a0f66.png", //SRC
+		"img/card/ST04-003.png", //SRC
 		"マリアン", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2483,7 +2483,7 @@ var cardData = [
 		],
 	[
 		"ST04-004", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_uWEBAfYG_95ace953a1f6f76a921c20625ee9b66bbd8c5ea5.png", //SRC
+		"img/card/ST04-004.png", //SRC
 		"ライ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2501,7 +2501,7 @@ var cardData = [
 		],
 	[
 		"ST04-005", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_0FNPRHMu_cb72cef147a9b6f43f2da9827d2397c04077be96.png", //SRC
+		"img/card/ST04-005.png", //SRC
 		"メアリー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2519,7 +2519,7 @@ var cardData = [
 		],
 	[
 		"ST04-006", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_uHyCfSBR_084d9822dbd3e1f17f0c132c18fb038e6eb9ffd4.png", //SRC
+		"img/card/ST04-006.png", //SRC
 		"ノア", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2537,7 +2537,7 @@ var cardData = [
 		],
 	[
 		"ST04-007", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_ZLyhafkg_55acf413e40a8ba229cf2b939a1bf267c4f9c8f2.png", //SRC
+		"img/card/ST04-007.png", //SRC
 		"アリス", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2555,7 +2555,7 @@ var cardData = [
 		],
 	[
 		"ST04-008", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_nbVfJkOD_12df25f42e7fab0c9d2ad40bfb96a0338b4d2e84.png", //SRC
+		"img/card/ST04-008.png", //SRC
 		"ルドミラ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2573,7 +2573,7 @@ var cardData = [
 		],
 	[
 		"ST04-009", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_lmR97yCH_b24c6d470dd2bc1ed566fb40bd947a81a5dfdb52.png", //SRC
+		"img/card/ST04-009.png", //SRC
 		"マスト", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2591,7 +2591,7 @@ var cardData = [
 		],
 	[
 		"ST04-010", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_yf2z6vAL_9fdd0c374e5fdd783e06eafe983d7adfc8579abe.png", //SRC
+		"img/card/ST04-010.png", //SRC
 		"ヘルム", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2609,7 +2609,7 @@ var cardData = [
 		],
 	[
 		"ST04-011", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_26Gv9s3c_49bc3d7560e936750d4067cc1add56083703789c.png", //SRC
+		"img/card/ST04-011.png", //SRC
 		"ドロシー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -2627,7 +2627,7 @@ var cardData = [
 		],
 	[
 		"ST04-012", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_Yi1ZwPMA_144e739dd8539fb20c8514f8ae336ea105ea8482.png", //SRC
+		"img/card/ST04-012.png", //SRC
 		"先輩の応援", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -2645,7 +2645,7 @@ var cardData = [
 		],
 	[
 		"ST04-013", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_dE17xOSJ_ce1674b36c20617e5dd24bc6984f01347370aa70.png", //SRC
+		"img/card/ST04-013.png", //SRC
 		"ムカつくでしょう？", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -2663,7 +2663,7 @@ var cardData = [
 		],
 	[
 		"ST04-014", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_Jt8rbjKR_0655acca0e0d76928a4ccd06a2202c639d2f1add.png", //SRC
+		"img/card/ST04-014.png", //SRC
 		"ナーシング", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -2681,7 +2681,7 @@ var cardData = [
 		],
 	[
 		"ST04-015", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_Kvzn6t2B_9ddd3af3a0ba508cfebf7895277003dfa8a91619.png", //SRC
+		"img/card/ST04-015.png", //SRC
 		"失楽園", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -2699,7 +2699,7 @@ var cardData = [
 		],
 	[
 		"ST04-016", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_VL0HXwtJ_9fc96d4f07d177c96ce60bd8cd39bdceed870f5d.png", //SRC
+		"img/card/ST04-016.png", //SRC
 		"ケブラージャケット", //NAME
 		"アイテム", //TYPE
 		"波濤", //ELEMENT
@@ -2717,7 +2717,7 @@ var cardData = [
 		],
 	[
 		"ST04-017", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_PRr76oq5_258f5c4f609daeacbe9814052bb76da1f4b0b9bc.png", //SRC
+		"img/card/ST04-017.png", //SRC
 		"レアメタルグローブ", //NAME
 		"アイテム", //TYPE
 		"波濤", //ELEMENT
@@ -2735,7 +2735,7 @@ var cardData = [
 		],
 	[
 		"ST05-001", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_7Y1Oi4ns_b0d7da22b4bc333f7caf517a95c7c35ba9330c65.png", //SRC
+		"img/card/ST05-001.png", //SRC
 		"プリバティ：アンカインド・メイド", //NAME
 		"リーダー", //TYPE
 		"稲妻", //ELEMENT
@@ -2753,7 +2753,7 @@ var cardData = [
 		],
 	[
 		"ST05-002", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_lAfk1guS_34581b992ae6c4d6f213c1979a178538550c4176.png", //SRC
+		"img/card/ST05-002.png", //SRC
 		"プロダクト08", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2771,7 +2771,7 @@ var cardData = [
 		],
 	[
 		"ST05-003", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_5qQf4XJE_8d33011394e23bf44d578deb516b1d9487009920.png", //SRC
+		"img/card/ST05-003.png", //SRC
 		"シュガー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2789,7 +2789,7 @@ var cardData = [
 		],
 	[
 		"ST05-004", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_P1oJglK0_e07064d660542a4df86b5412d98f8bb3c6569495.png", //SRC
+		"img/card/ST05-004.png", //SRC
 		"プリム", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2807,7 +2807,7 @@ var cardData = [
 		],
 	[
 		"ST05-005", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_b1zihjlM_d92dffa2264d6b3f9aa3b19edb1c4a7ebcd4dc6b.png", //SRC
+		"img/card/ST05-005.png", //SRC
 		"マクスウェル", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2825,7 +2825,7 @@ var cardData = [
 		],
 	[
 		"ST05-006", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_NOKdlegQ_a57ca262828cc294c73212788b23bc514ed6b9df.png", //SRC
+		"img/card/ST05-006.png", //SRC
 		"クラウン", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2843,7 +2843,7 @@ var cardData = [
 		],
 	[
 		"ST05-007", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_F9ImnM3N_d78308abbce7d9658582dddae27dd6d74c409829.png", //SRC
+		"img/card/ST05-007.png", //SRC
 		"ソーダ", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2861,7 +2861,7 @@ var cardData = [
 		],
 	[
 		"ST05-008", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_GScJop4E_8a85e3880a17b1e76864e5b7d5018c3e45fc8e7d.png", //SRC
+		"img/card/ST05-008.png", //SRC
 		"リター", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2879,7 +2879,7 @@ var cardData = [
 		],
 	[
 		"ST05-009", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_hIGsVN0i_d2f9bf01130d4390ccf22faa2b8ab73c6a46c706.png", //SRC
+		"img/card/ST05-009.png", //SRC
 		"ドレイク", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2897,7 +2897,7 @@ var cardData = [
 		],
 	[
 		"ST05-010", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_02Tk8zA4_5df3604cecefe29b798cde14132d4470daaf812d.png", //SRC
+		"img/card/ST05-010.png", //SRC
 		"センチ", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2915,7 +2915,7 @@ var cardData = [
 		],
 	[
 		"ST05-011", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_TvKh1P3U_1917860f65ca42b337e2ac300698d28731d6992f.png", //SRC
+		"img/card/ST05-011.png", //SRC
 		"プリバティ：アンカインド・メイド", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -2933,7 +2933,7 @@ var cardData = [
 		],
 	[
 		"ST05-012", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_V5Ar6cgm_dba0918f48fcbd615ad0ea4800ece070936bc2ad.png", //SRC
+		"img/card/ST05-012.png", //SRC
 		"現場検討", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -2951,7 +2951,7 @@ var cardData = [
 		],
 	[
 		"ST05-013", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_E5bpZl7W_27cc97755f4e882bfbf866fae7c0fe65f54d1183.png", //SRC
+		"img/card/ST05-013.png", //SRC
 		"リターブースト", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -2969,7 +2969,7 @@ var cardData = [
 		],
 	[
 		"ST05-014", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_Kb7Bnv8G_61b48a20b1ae03c0d9619a1a7f3efbd2835594e5.png", //SRC
+		"img/card/ST05-014.png", //SRC
 		"ワンフォーオール", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -2987,7 +2987,7 @@ var cardData = [
 		],
 	[
 		"ST05-015", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_L78H5n6A_f5d3c7a5ffd49913f94b2e7d03639eafc7077406.png", //SRC
+		"img/card/ST05-015.png", //SRC
 		"ケブラーゲイター", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -3005,7 +3005,7 @@ var cardData = [
 		],
 	[
 		"ST05-016", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_g4yzLTd9_8223d3ee0b70199928273df7b082d3800b853b66.png", //SRC
+		"img/card/ST05-016.png", //SRC
 		"レアメタルガントレット", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -3023,7 +3023,7 @@ var cardData = [
 		],
 	[
 		"ST05-017", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_5kYjdXS6_ec8684b4d5aebfffdddbc8d9a5fc402d4fc3aaaa.png", //SRC
+		"img/card/ST05-017.png", //SRC
 		"レアメタルゲイター", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -3041,7 +3041,7 @@ var cardData = [
 		],
 	[
 		"BT02-001", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_WsyVlUJv_a1dc97d1fe083fad46b42511913a73324db19e22.png", //SRC
+		"img/card/BT02-001.png", //SRC
 		"ボリューム‐ビート・ザ・ガン", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3059,7 +3059,7 @@ var cardData = [
 		],
 	[
 		"BT02-002", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_zlYxK6Qv_ecb84064ef0015ddff17eb0f033c2bf30a7de977.png", //SRC
+		"img/card/BT02-002.png", //SRC
 		"エマ‐オフィスセラピー", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3077,7 +3077,7 @@ var cardData = [
 		],
 	[
 		"BT02-003", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_QXSDovg9_eafb1fe51def7ef9b54759a57d30cef102e271c9.png", //SRC
+		"img/card/BT02-003.png", //SRC
 		"レッドフード‐ナンセンスレッド", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3095,7 +3095,7 @@ var cardData = [
 		],
 	[
 		"BT02-004", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_3gaWP6Qy_920de3e61c943e235d891d5051c0f4fd3e629846.png", //SRC
+		"img/card/BT02-004.png", //SRC
 		"ルージュ", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3113,7 +3113,7 @@ var cardData = [
 		],
 	[
 		"BT02-005", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_7Dqyn8s0_a1fea2454e78606d62c00ac55f333a2b26780abe.png", //SRC
+		"img/card/BT02-005.png", //SRC
 		"ラプンツェル：ピュアグレイス", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3131,7 +3131,7 @@ var cardData = [
 		],
 	[
 		"BT02-006", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_o3GXVEUF_333e7788024a5f95ea3d52b453ff8994913675ee.png", //SRC
+		"img/card/BT02-006.png", //SRC
 		"バイパー‐トキシックラビット", //NAME
 		"ユニット", //TYPE
 		"炎", //ELEMENT
@@ -3149,7 +3149,7 @@ var cardData = [
 		],
 	[
 		"BT02-007", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_VMY62jwf_62191c602438b1c6872b3a55598903eb29814e7a.png", //SRC
+		"img/card/BT02-007.png", //SRC
 		"グレアリングアイズ", //NAME
 		"スキル", //TYPE
 		"炎", //ELEMENT
@@ -3167,7 +3167,7 @@ var cardData = [
 		],
 	[
 		"BT02-008", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_5bs2DUrV_e55780ab81cc98672a960f043b647e88a0e71044.png", //SRC
+		"img/card/BT02-008.png", //SRC
 		"ザ・ゲームマスター", //NAME
 		"スキル", //TYPE
 		"炎", //ELEMENT
@@ -3185,7 +3185,7 @@ var cardData = [
 		],
 	[
 		"BT02-009", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_FbPpJh2l_844e0ff05ee06104ae91b7da53279ecaa43d16e0.png", //SRC
+		"img/card/BT02-009.png", //SRC
 		"ガッデシアムゲイター", //NAME
 		"アイテム", //TYPE
 		"炎", //ELEMENT
@@ -3203,7 +3203,7 @@ var cardData = [
 		],
 	[
 		"BT02-010", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_r3OX4lBI_00920801e7aa10eccd8e697dc03427e98f7c02aa.png", //SRC
+		"img/card/BT02-010.png", //SRC
 		"ディーゼル‐ブラックホリデー", //NAME
 		"ユニット", //TYPE
 		"大地", //ELEMENT
@@ -3221,7 +3221,7 @@ var cardData = [
 		],
 	[
 		"BT02-011", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_bW1YVTKI_c76775106485274b616957abeb603b6dd1025a02.png", //SRC
+		"img/card/BT02-011.png", //SRC
 		"マルチャーナ‐スクールデイズ", //NAME
 		"ユニット", //TYPE
 		"大地", //ELEMENT
@@ -3239,7 +3239,7 @@ var cardData = [
 		],
 	[
 		"BT02-012", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_qCQbx28s_5e57b1db673909fafc22ed4580699ddd00d9c63d.png", //SRC
+		"img/card/BT02-012.png", //SRC
 		"ルピー‐ラグジュアリーラビット", //NAME
 		"ユニット", //TYPE
 		"大地", //ELEMENT
@@ -3257,7 +3257,7 @@ var cardData = [
 		],
 	[
 		"BT02-013", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_COY7dusX_fbd20734c47ec4057e5b2f8c7411e0e01679e194.png", //SRC
+		"img/card/BT02-013.png", //SRC
 		"ティア‐ラブリーデート", //NAME
 		"ユニット", //TYPE
 		"大地", //ELEMENT
@@ -3275,7 +3275,7 @@ var cardData = [
 		],
 	[
 		"BT02-014", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_t4qxzCTy_4bb4e8fbb5c96ac1d0a5294c6977c1850f0e92c8.png", //SRC
+		"img/card/BT02-014.png", //SRC
 		"クエンシー：エスケープクイーン", //NAME
 		"ユニット", //TYPE
 		"大地", //ELEMENT
@@ -3293,7 +3293,7 @@ var cardData = [
 		],
 	[
 		"BT02-015", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_lkPNzivs_c5f8465a80617288430da6847aafd5fe0ee76e9f.png", //SRC
+		"img/card/BT02-015.png", //SRC
 		"イチゴの香りの誘惑", //NAME
 		"スキル", //TYPE
 		"大地", //ELEMENT
@@ -3311,7 +3311,7 @@ var cardData = [
 		],
 	[
 		"BT02-016", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_xbde5uOA_842ce88680734697107c5e62df55c4f408fe754e.png", //SRC
+		"img/card/BT02-016.png", //SRC
 		"素晴らしき大泥棒", //NAME
 		"スキル", //TYPE
 		"大地", //ELEMENT
@@ -3329,7 +3329,7 @@ var cardData = [
 		],
 	[
 		"BT02-017", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_OjD5v7iL_08b07984f4583b571d0ccfc96c144da77b5223d5.png", //SRC
+		"img/card/BT02-017.png", //SRC
 		"保健室の先生", //NAME
 		"スキル", //TYPE
 		"大地", //ELEMENT
@@ -3347,7 +3347,7 @@ var cardData = [
 		],
 	[
 		"BT02-018", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_L4a7Kurb_bec951b091eeaca47a9cbf72b49e57ab2fc07bb0.png", //SRC
+		"img/card/BT02-018.png", //SRC
 		"アトラスパターンヘルメット", //NAME
 		"アイテム", //TYPE
 		"大地", //ELEMENT
@@ -3365,7 +3365,7 @@ var cardData = [
 		],
 	[
 		"BT02-019", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_RBeNFtIn_3d634e517075f66f5879372e88b24d891c7a65de.png", //SRC
+		"img/card/BT02-019.png", //SRC
 		"メイデン：アイスローズ", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3383,7 +3383,7 @@ var cardData = [
 		],
 	[
 		"BT02-020", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_xyc9MgGO_aec791c82fe8ae391e43bd1e0192aef1bcaa5965.png", //SRC
+		"img/card/BT02-020.png", //SRC
 		"ギロチン：ウィンタースレイヤー", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3401,7 +3401,7 @@ var cardData = [
 		],
 	[
 		"BT02-021", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_TVsjxcKk_eb5f6caa853f7cb351de8fb0a2c677c0c46716b8.png", //SRC
+		"img/card/BT02-021.png", //SRC
 		"モダニア‐ファースト・アフェクション", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3419,7 +3419,7 @@ var cardData = [
 		],
 	[
 		"BT02-022", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_yKj8VGTd_6efcc647a7cd6adbe791a61e299b8829d4b3d3e1.png", //SRC
+		"img/card/BT02-022.png", //SRC
 		"グレイブ", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3437,7 +3437,7 @@ var cardData = [
 		],
 	[
 		"BT02-023", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_MloIED2s_5c475f9cc4061b79fe1b12b6bcb15d78104e921c.png", //SRC
+		"img/card/BT02-023.png", //SRC
 		"ファントム", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3455,7 +3455,7 @@ var cardData = [
 		],
 	[
 		"BT02-024", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_3acVOrKl_82da8f0768bc9d5035777f69370dfb500d74ac7c.png", //SRC
+		"img/card/BT02-024.png", //SRC
 		"プリバティ‐ガバメントノーマル", //NAME
 		"ユニット", //TYPE
 		"嵐", //ELEMENT
@@ -3473,7 +3473,7 @@ var cardData = [
 		],
 	[
 		"BT02-025", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_sUyalrqX_88e57b3356ac5fe234ae150ce7315762ef62fa69.png", //SRC
+		"img/card/BT02-025.png", //SRC
 		"ライターズ・スポイラー", //NAME
 		"スキル", //TYPE
 		"嵐", //ELEMENT
@@ -3491,7 +3491,7 @@ var cardData = [
 		],
 	[
 		"BT02-026", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_lXFSYG4c_dae49e183caffeecb481c156764eb3984fc51d33.png", //SRC
+		"img/card/BT02-026.png", //SRC
 		"新世界", //NAME
 		"スキル", //TYPE
 		"嵐", //ELEMENT
@@ -3509,7 +3509,7 @@ var cardData = [
 		],
 	[
 		"BT02-027", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_rCx9iPZw_2016cfbde00aa0b7f5cbc1e2df7b67221fb8c77c.png", //SRC
+		"img/card/BT02-027.png", //SRC
 		"マタータイプ：αアームガード", //NAME
 		"アイテム", //TYPE
 		"嵐", //ELEMENT
@@ -3527,7 +3527,7 @@ var cardData = [
 		],
 	[
 		"BT02-028", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_miFpfTzd_9df0d6d256dd303721b9d8cd306cb1716c1bbe90.png", //SRC
+		"img/card/BT02-028.png", //SRC
 		"ヘルム：アクアマリン", //NAME
 		"リーダー", //TYPE
 		"波濤", //ELEMENT
@@ -3545,7 +3545,7 @@ var cardData = [
 		],
 	[
 		"BT02-029", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_nDIBCJu3_39980f1cacbf13e60c2d5d063d3aaba8b40a14e5.png", //SRC
+		"img/card/BT02-029.png", //SRC
 		"ネヴェ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3563,7 +3563,7 @@ var cardData = [
 		],
 	[
 		"BT02-030", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_HcIhb5ER_03caec3e12f7e03ab7bca05da431e71fe7277eb0.png", //SRC
+		"img/card/BT02-030.png", //SRC
 		"キリ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3581,7 +3581,7 @@ var cardData = [
 		],
 	[
 		"BT02-031", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_uoQjv2WD_6300f0c85fbdf257851d43235e7e8d883ee2215f.png", //SRC
+		"img/card/BT02-031.png", //SRC
 		"エピネル", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3599,7 +3599,7 @@ var cardData = [
 		],
 	[
 		"BT02-032", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_hje0oSGv_28d73e8821c2c6f646a36f441af1138b6d5ccdfa.png", //SRC
+		"img/card/BT02-032.png", //SRC
 		"ハラン", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3617,7 +3617,7 @@ var cardData = [
 		],
 	[
 		"BT02-033", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_0cHRoE2C_a1f6b63415717dd460991f0127f82bc8941f3367.png", //SRC
+		"img/card/BT02-033.png", //SRC
 		"フォルクヴァン", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3635,7 +3635,7 @@ var cardData = [
 		],
 	[
 		"BT02-034", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_ipqDTNKe_c9c06d1e86e8cb8203a92d497d41c4f7e4d152f3.png", //SRC
+		"img/card/BT02-034.png", //SRC
 		"アンカー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3653,7 +3653,7 @@ var cardData = [
 		],
 	[
 		"BT02-035", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_ilc1pUXf_023e81721ab58e4594cb92d1cc58fb9ee59fec45.png", //SRC
+		"img/card/BT02-035.png", //SRC
 		"マスト‐パイレーツハート", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3671,7 +3671,7 @@ var cardData = [
 		],
 	[
 		"BT02-036", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_RFJr0DMn_8da6f4db09fa6b0e0ce0da10ed10024ae0475737.png", //SRC
+		"img/card/BT02-036.png", //SRC
 		"アリス：ワンダーランドバニー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3689,7 +3689,7 @@ var cardData = [
 		],
 	[
 		"BT02-037", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_PpaN30Jz_78ce8fce24edd36ed7f9a6d496c35af3e65c946b.png", //SRC
+		"img/card/BT02-037.png", //SRC
 		"ツバイ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3707,7 +3707,7 @@ var cardData = [
 		],
 	[
 		"BT02-038", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_NantRkJI_3f27af3757a769dd1a6efec00d3c772f41b9f007.png", //SRC
+		"img/card/BT02-038.png", //SRC
 		"ポリ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3725,7 +3725,7 @@ var cardData = [
 		],
 	[
 		"BT02-039", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_vmQJaTGV_24de4a26d482b862ed5eb35e5f27fdf4024f67f6.png", //SRC
+		"img/card/BT02-039.png", //SRC
 		"イサベル‐ハネムーンパーティー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3743,7 +3743,7 @@ var cardData = [
 		],
 	[
 		"BT02-040", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_moP6923x_ede9a6a7b05c55d07174ae0f650cd7ca12eb8559.png", //SRC
+		"img/card/BT02-040.png", //SRC
 		"ペッパー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3761,7 +3761,7 @@ var cardData = [
 		],
 	[
 		"BT02-041", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_gJqXV1PA_38ab8a5b4105a723a78ef7d76b7b34b4c62a88fc.png", //SRC
+		"img/card/BT02-041.png", //SRC
 		"ドロシー‐ノスタルジア", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3779,7 +3779,7 @@ var cardData = [
 		],
 	[
 		"BT02-042", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_rAjMoHpv_96f844ca792c959a9bdd0167abfb2bc4ad428ed7.png", //SRC
+		"img/card/BT02-042.png", //SRC
 		"ルドミラ：ウィンターオーナー", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3797,7 +3797,7 @@ var cardData = [
 		],
 	[
 		"BT02-043", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_fcDN8jip_d7cd4ad63f79ca0c8250854376a4582246607a9a.png", //SRC
+		"img/card/BT02-043.png", //SRC
 		"ルマニ", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3815,7 +3815,7 @@ var cardData = [
 		],
 	[
 		"BT02-044", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_LkQsrUdR_f5a2cab1010fc03f364fab1916d21aabc43f60fc.png", //SRC
+		"img/card/BT02-044.png", //SRC
 		"アイン", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3833,7 +3833,7 @@ var cardData = [
 		],
 	[
 		"BT02-045", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_WoPmO3Zg_2f821c787d28d2f98c1e60c89cdc71d58e4c984d.png", //SRC
+		"img/card/BT02-045.png", //SRC
 		"メアリー：ベイゴッデス", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3851,7 +3851,7 @@ var cardData = [
 		],
 	[
 		"BT02-046", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_CGEm365s_c99e09566f26111f39a84b1c46c69519db717ed5.png", //SRC
+		"img/card/BT02-046.png", //SRC
 		"ヘルム：アクアマリン", //NAME
 		"ユニット", //TYPE
 		"波濤", //ELEMENT
@@ -3869,7 +3869,7 @@ var cardData = [
 		],
 	[
 		"BT02-047", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_gqiEUdlF_386f374bb583ea40d1761c2dcfb2fef4e04dc279.png", //SRC
+		"img/card/BT02-047.png", //SRC
 		"ポリスライン", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -3887,7 +3887,7 @@ var cardData = [
 		],
 	[
 		"BT02-048", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_saJz9diL_621ec10ca8f564db76b0ffa80f7df5a5c916def8.png", //SRC
+		"img/card/BT02-048.png", //SRC
 		"私たちは友達！", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -3905,7 +3905,7 @@ var cardData = [
 		],
 	[
 		"BT02-049", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_1ehTzlaX_2b53bbe68228b99bdcefd6d3cd5f69d0aafd7f48.png", //SRC
+		"img/card/BT02-049.png", //SRC
 		"イージスキャノン牽制射撃", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -3923,7 +3923,7 @@ var cardData = [
 		],
 	[
 		"BT02-050", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_e1ZfUkWm_23adda2fef98c07adf8059e9d2c603b5db23bf4d.png", //SRC
+		"img/card/BT02-050.png", //SRC
 		"ニンジンとウサギパーティー", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -3941,7 +3941,7 @@ var cardData = [
 		],
 	[
 		"BT02-051", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_oies7IkJ_f574db43a6bde07bce29a97ec2a0c8cca6c23c48.png", //SRC
+		"img/card/BT02-051.png", //SRC
 		"海賊の眼差し", //NAME
 		"スキル", //TYPE
 		"波濤", //ELEMENT
@@ -3959,7 +3959,7 @@ var cardData = [
 		],
 	[
 		"BT02-052", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_ZotWCSqL_8a00d58f3faf1e520c053813260698f9fdf0b246.png", //SRC
+		"img/card/BT02-052.png", //SRC
 		"セラミックベスト", //NAME
 		"アイテム", //TYPE
 		"波濤", //ELEMENT
@@ -3977,7 +3977,7 @@ var cardData = [
 		],
 	[
 		"BT02-053", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_XfqWDHs6_3fa002053fd9a5598969d4a813cf5a682ad625d3.png", //SRC
+		"img/card/BT02-053.png", //SRC
 		"ガッデシアムジャケット", //NAME
 		"アイテム", //TYPE
 		"波濤", //ELEMENT
@@ -3995,7 +3995,7 @@ var cardData = [
 		],
 	[
 		"BT02-054", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_VpOyLHPh_23ab5291e1b6617423cbc5c66d627bb876d09ac4.png", //SRC
+		"img/card/BT02-054.png", //SRC
 		"ノルンコードグローブ", //NAME
 		"アイテム", //TYPE
 		"波濤", //ELEMENT
@@ -4013,7 +4013,7 @@ var cardData = [
 		],
 	[
 		"BT02-055", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_pgdL4Rz8_f285d505418ae439d861b4fccb93efb8f8aa3952.png", //SRC
+		"img/card/BT02-055.png", //SRC
 		"クラウン‐ネイキッドキング", //NAME
 		"リーダー", //TYPE
 		"稲妻", //ELEMENT
@@ -4031,7 +4031,7 @@ var cardData = [
 		],
 	[
 		"BT02-056", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_QiIoYjnZ_087788be753e2ec4535dffafdde278715ad9f763.png", //SRC
+		"img/card/BT02-056.png", //SRC
 		"トロニー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4049,7 +4049,7 @@ var cardData = [
 		],
 	[
 		"BT02-057", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_uiBth207_360caaad590684f1746f9509305a963c378bcd6e.png", //SRC
+		"img/card/BT02-057.png", //SRC
 		"シュガー‐コールミー・ハードボイルド", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4067,7 +4067,7 @@ var cardData = [
 		],
 	[
 		"BT02-058", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_zf4uvo6I_7748d757e9ef83db5ebb48b2b2f21ceee5935e1b.png", //SRC
+		"img/card/BT02-058.png", //SRC
 		"ミルク", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4085,7 +4085,7 @@ var cardData = [
 		],
 	[
 		"BT02-059", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_bg6QvDFd_bdf514d98201e0645bd400cc92e151569f7e50fb.png", //SRC
+		"img/card/BT02-059.png", //SRC
 		"エード", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4103,7 +4103,7 @@ var cardData = [
 		],
 	[
 		"BT02-060", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_9Mj4sgR8_c4cf9b89b9e709dfa4db6de8befb87a250800ac3.png", //SRC
+		"img/card/BT02-060.png", //SRC
 		"エレグ", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4121,7 +4121,7 @@ var cardData = [
 		],
 	[
 		"BT02-061", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_xjNGTX34_7cd546995f56cc6cd7806fd4b3f2e47842a3aec4.png", //SRC
+		"img/card/BT02-061.png", //SRC
 		"ココア", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4139,7 +4139,7 @@ var cardData = [
 		],
 	[
 		"BT02-062", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_p73QoEnj_198246886b924efbb67dfaaa0363af104a05e98c.png", //SRC
+		"img/card/BT02-062.png", //SRC
 		"プリム‐レイジーサマー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4157,7 +4157,7 @@ var cardData = [
 		],
 	[
 		"BT02-063", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_gA5sUKIk_83cf21b8fded720615ad2a27d6a3c83a5eead79d.png", //SRC
+		"img/card/BT02-063.png", //SRC
 		"レオナ", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4175,7 +4175,7 @@ var cardData = [
 		],
 	[
 		"BT02-064", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_m63XIY7U_ae642a88ae3499ea26f308c5255bf3280f488f46.png", //SRC
+		"img/card/BT02-064.png", //SRC
 		"ビスケット", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4193,7 +4193,7 @@ var cardData = [
 		],
 	[
 		"BT02-065", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_4MSq9ikC_76a0705b31482e3c49cb7add132702cf31a60e46.png", //SRC
+		"img/card/BT02-065.png", //SRC
 		"ラプラス", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4211,7 +4211,7 @@ var cardData = [
 		],
 	[
 		"BT02-066", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_oYdTUWs9_74aabb12da6fa70f419a7542808fe1faf18a412a.png", //SRC
+		"img/card/BT02-066.png", //SRC
 		"ネロ", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4229,7 +4229,7 @@ var cardData = [
 		],
 	[
 		"BT02-067", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_B28d1lEL_9312d0357a53cd76668ef92d5f9d2db2fe1bcb73.png", //SRC
+		"img/card/BT02-067.png", //SRC
 		"クラウン‐ネイキッドキング", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4247,7 +4247,7 @@ var cardData = [
 		],
 	[
 		"BT02-068", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_ak6ZubG5_5a2868febf5cae99b3f9a2bd253718267be1e984.png", //SRC
+		"img/card/BT02-068.png", //SRC
 		"リター‐フィッシュガード", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4265,7 +4265,7 @@ var cardData = [
 		],
 	[
 		"BT02-069", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_TM0U46IW_2d38ba9e766b20f50944965d04d4443739ecb757.png", //SRC
+		"img/card/BT02-069.png", //SRC
 		"ドレイク‐ヴィランレーサー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4283,7 +4283,7 @@ var cardData = [
 		],
 	[
 		"BT02-070", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_RQ0gbJdS_549a3788642798d7ebad3ff575557e925cdb7518.png", //SRC
+		"img/card/BT02-070.png", //SRC
 		"センチ‐マイティホリデー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4301,7 +4301,7 @@ var cardData = [
 		],
 	[
 		"BT02-071", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_VJ48NL5x_a4c467b82e3bfdcd927ad1fde53fb2bf10a649ec.png", //SRC
+		"img/card/BT02-071.png", //SRC
 		"ソーダ：トゥインクルバニー", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4319,7 +4319,7 @@ var cardData = [
 		],
 	[
 		"BT02-072", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_85aQLJMN_bcfdb4eb2d78c4a1725383d8b2c987c0ea1d26cd.png", //SRC
+		"img/card/BT02-072.png", //SRC
 		"マクスウェル‐メカニックホワイト", //NAME
 		"ユニット", //TYPE
 		"稲妻", //ELEMENT
@@ -4337,7 +4337,7 @@ var cardData = [
 		],
 	[
 		"BT02-073", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_4QLdXCs0_da27ae7bd2f0537b5d9a6445a4ed6610e509278f.png", //SRC
+		"img/card/BT02-073.png", //SRC
 		"勇気の眼差し", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -4355,7 +4355,7 @@ var cardData = [
 		],
 	[
 		"BT02-074", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_1VufXQxJ_c39eb28eaff1c2bfaf8ebc361ceec95f98053fcd.png", //SRC
+		"img/card/BT02-074.png", //SRC
 		"お食事のお時間です、ご主人様", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -4373,7 +4373,7 @@ var cardData = [
 		],
 	[
 		"BT02-075", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_wsqVjDUE_16f395be2379c7ba8ea4176f40fc7959eca1897e.png", //SRC
+		"img/card/BT02-075.png", //SRC
 		"ビギナーズベネフィット", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -4391,7 +4391,7 @@ var cardData = [
 		],
 	[
 		"BT02-076", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_o4ds2hBC_093403f22c08398a96aef4f30940fa3132279b8a.png", //SRC
+		"img/card/BT02-076.png", //SRC
 		"ロイヤルアタイア", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -4409,7 +4409,7 @@ var cardData = [
 		],
 	[
 		"BT02-077", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_w8satFoj_738ac94fcd79531ebb06e2a1fdc83ca0e7c36824.png", //SRC
+		"img/card/BT02-077.png", //SRC
 		"ネコの恩返し", //NAME
 		"スキル", //TYPE
 		"稲妻", //ELEMENT
@@ -4427,7 +4427,7 @@ var cardData = [
 		],
 	[
 		"BT02-078", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_A57jdbzT_3a140c91841e67f5e526fa7d5acf8df0a25b635a.png", //SRC
+		"img/card/BT02-078.png", //SRC
 		"セラミックゴーグル", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -4445,7 +4445,7 @@ var cardData = [
 		],
 	[
 		"BT02-079", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_Pcyw8Gj7_6c72def302997896d10e80569cde47314400feab.png", //SRC
+		"img/card/BT02-079.png", //SRC
 		"ガッデシアムブーツ", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -4463,7 +4463,7 @@ var cardData = [
 		],
 	[
 		"BT02-080", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_jhNnJdPY_c4a44901091586ee05a1d19154542858b108f89f.png", //SRC
+		"img/card/BT02-080.png", //SRC
 		"アトラスパターンプロテクター", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
@@ -4481,7 +4481,7 @@ var cardData = [
 		],
 	[
 		"BT02-081", //ID
-		"http://nivelarena.jp/data/file/cardlists/cfbf01727a7e461ec5930f5d552f8bff_UohLrp2b_a6b449d4a5610bd576f48b75aaf1b74890e4c4d6.png", //SRC
+		"img/card/BT02-081.png", //SRC
 		"パターンシリーズ：31ゲイター", //NAME
 		"アイテム", //TYPE
 		"稲妻", //ELEMENT
