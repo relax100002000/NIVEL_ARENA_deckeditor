@@ -146,8 +146,312 @@
     	margin-left: 0px;
     	visibility: hidden;
 	}
+
+	/* === Dark Mode Toggle Button === */
+	#darkModeToggle {
+		cursor: pointer;
+		background: transparent;
+		border: 1px solid #888;
+		border-radius: 6px;
+		padding: 2px 10px;
+		height: 24px;
+		line-height: 18px;
+		font-size: 14px;
+		margin-left: 8px;
+		user-select: none;
+		vertical-align: middle;
+		transition: background 0.2s, color 0.2s, border-color 0.2s;
+	}
+	#darkModeToggle:hover { background: rgba(0,0,0,0.08); }
+
+	/* === big_pic lock indicator (when ALT is held) === */
+	body.bigpic-locked #cardinformation {
+		outline: 3px solid #ffb300;
+		outline-offset: 2px;
+		box-shadow: 0 0 16px rgba(255, 179, 0, 0.65);
+	}
+	body.bigpic-locked #cardinformation::before {
+		content: "🔒 LOCKED — release ALT to unlock";
+		position: absolute;
+		top: -28px; left: 0;
+		background: #ffb300;
+		color: #000;
+		font-weight: 700;
+		font-size: 12px;
+		padding: 3px 8px;
+		border-radius: 4px;
+		z-index: 1000;
+		pointer-events: none;
+		white-space: nowrap;
+	}
+
+	/* Persistent usage hint shown on the preview popup */
+	#bigPicHint {
+		display: inline-block;
+		font-size: 11px;
+		color: #555;
+		background: #fff8e1;
+		border: 1px solid #ffd54f;
+		border-radius: 4px;
+		padding: 2px 6px;
+		margin: 4px 0 4px 8px;
+		vertical-align: middle;
+		user-select: none;
+	}
+	body.dark-mode #bigPicHint {
+		color: #ffd54f;
+		background: #3a2e00;
+		border-color: #c79100;
+	}
+
+	/* Inline ALT-lock tip near the language bar */
+	.alt-lock-tip {
+		display: inline-block;
+		font-size: 12px;
+		color: #b26a00;
+		background: #fff8e1;
+		border: 1px dashed #ffb300;
+		border-radius: 4px;
+		padding: 1px 6px;
+		margin: 0 6px;
+		vertical-align: middle;
+	}
+	body.dark-mode .alt-lock-tip {
+		color: #ffd54f;
+		background: #3a2e00;
+		border-color: #c79100;
+	}
+
+	/* === Dark Mode 過場動畫 === */
+	body, button, .custom-file-upload, select, input[type="text"], textarea,
+	#window-pop, #window-pop-list, #window-pop-code, #cardinformation,
+	#lbBackground {
+		transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+	}
+	/* 使用者若偏好減少動畫,關掉過場 */
+	@media (prefers-reduced-motion: reduce) {
+		body, button, .custom-file-upload, select, input[type="text"], textarea,
+		#window-pop, #window-pop-list, #window-pop-code, #cardinformation,
+		#lbBackground { transition: none; }
+	}
+
+	/* === Dark Mode Theme === */
+	body.dark-mode {
+		background-color: #1a1a1a;
+		color: #e6e6e6;
+	}
+	body.dark-mode,
+	body.dark-mode * { color: #e6e6e6; }
+	body.dark-mode a { color: #4da3ff; }
+	body.dark-mode a:visited { color: #b48bff; }
+
+	body.dark-mode button,
+	body.dark-mode .custom-file-upload {
+		background-color: #2f2f2f;
+		color: #e6e6e6;
+		border-color: #555;
+	}
+	body.dark-mode button:hover,
+	body.dark-mode .custom-file-upload:hover {
+		background-color: #3d3d3d;
+	}
+	body.dark-mode select,
+	body.dark-mode input[type="text"],
+	body.dark-mode textarea {
+		background-color: #2a2a2a;
+		color: #e6e6e6;
+		border: 1px solid #555;
+	}
+
+	body.dark-mode #window-container,
+	body.dark-mode #window-container-list,
+	body.dark-mode #window-container-code {
+		background-color: rgba(0,0,0,0.75);
+	}
+	body.dark-mode #window-pop,
+	body.dark-mode #window-pop-list,
+	body.dark-mode #window-pop-code {
+		background: #242424;
+		color: #e6e6e6;
+	}
+
+	body.dark-mode #cardinformation {
+		background-color: #242424 !important;
+		border-color: #555 !important;
+	}
+	body.dark-mode #cardinformation table,
+	body.dark-mode #cardinformation td {
+		border-color: #555 !important;
+	}
+
+	body.dark-mode img { border-color: #555; }
+	body.dark-mode #lbBackground { background: rgba(70,70,70,1.0); }
+
+	body.dark-mode #darkModeToggle {
+		border-color: #888;
+		color: #e6e6e6;
+	}
+	body.dark-mode #darkModeToggle:hover { background: rgba(255,255,255,0.1); }
+
+	/* 背景若為 #E0E0E0 / #FFD9E6 (或同等淺色),即便在黑暗模式下也強制黑字 */
+	body.dark-mode [style*="background:#E0E0E0" i],
+	body.dark-mode [style*="background: #E0E0E0" i],
+	body.dark-mode [style*="background-color:#E0E0E0" i],
+	body.dark-mode [style*="background-color: #E0E0E0" i],
+	body.dark-mode [style*="background:#FFD9E6" i],
+	body.dark-mode [style*="background: #FFD9E6" i],
+	body.dark-mode [style*="background-color:#FFD9E6" i],
+	body.dark-mode [style*="background-color: #FFD9E6" i] {
+		color: #000 !important;
+	}
+	body.dark-mode [style*="background:#E0E0E0" i] *,
+	body.dark-mode [style*="background: #E0E0E0" i] *,
+	body.dark-mode [style*="background-color:#E0E0E0" i] *,
+	body.dark-mode [style*="background-color: #E0E0E0" i] *,
+	body.dark-mode [style*="background:#FFD9E6" i] *,
+	body.dark-mode [style*="background: #FFD9E6" i] *,
+	body.dark-mode [style*="background-color:#FFD9E6" i] *,
+	body.dark-mode [style*="background-color: #FFD9E6" i] * {
+		color: #000 !important;
+	}
 	</style>
 	<body>
+		<script>
+			// === Dark Mode: 早期套用,避免畫面閃爍 ===
+			// 優先順序: localStorage 有存 > 跟隨系統 prefers-color-scheme > 亮色預設
+			try {
+				var saved = localStorage.getItem('na_dark_mode');
+				var wantDark = false;
+				if (saved === '1') wantDark = true;
+				else if (saved === null && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) wantDark = true;
+				if (wantDark) document.body.classList.add('dark-mode');
+			} catch(e) {}
+
+			// 系統主題變化時,若使用者沒手動切過就自動跟隨
+			try {
+				var mql = window.matchMedia('(prefers-color-scheme: dark)');
+				if (mql && mql.addEventListener) {
+					mql.addEventListener('change', function(e){
+						if (localStorage.getItem('na_dark_mode') !== null) return; // 使用者已有偏好,尊重之
+						document.body.classList.toggle('dark-mode', e.matches);
+						if (typeof updateDarkModeButton === 'function') updateDarkModeButton();
+						if (typeof updateChartsTheme === 'function') updateChartsTheme();
+						if (typeof applyDarkModeImages === 'function') applyDarkModeImages();
+					});
+				}
+			} catch(e) {}
+
+			function getLegendColor() {
+				return document.body.classList.contains('dark-mode') ? '#e6e6e6' : 'rgb(0, 0, 0)';
+			}
+
+			function updateChartsTheme() {
+				var color = getLegendColor();
+				[typeof levelobj!=='undefined'?levelobj:null,
+				 typeof typeobj !=='undefined'?typeobj :null].forEach(function(obj){
+					if (!obj || !obj.options) return;
+					if (obj.options.plugins && obj.options.plugins.legend && obj.options.plugins.legend.labels) {
+						obj.options.plugins.legend.labels.color = color;
+					}
+					if (obj.options.plugins && obj.options.plugins.datalabels) {
+						obj.options.plugins.datalabels.color = color;
+					}
+					if (obj.options.scales && obj.options.scales.x && obj.options.scales.x.ticks) {
+						obj.options.scales.x.ticks.color = color;
+					}
+					try { obj.update(); } catch(e) {}
+				});
+			}
+
+			function updateDarkModeButton() {
+				var btn = document.getElementById('darkModeToggle');
+				if (!btn) return;
+				btn.textContent = document.body.classList.contains('dark-mode') ? '☀ Light' : '🌙 Dark';
+			}
+
+			// === Dark Mode: 自動切換圖片 (empty.jpg / cancel_icon.png / larrow.png / rarrow.png) ===
+			function swapImageForDarkMode(img, isDark) {
+				if (!img || !img.getAttribute) return;
+				var src = img.getAttribute('src');
+				if (!src) return;
+				if (isDark) {
+					if (/(^|\/)empty\.jpg(\?|$)/.test(src)) {
+						img.setAttribute('src', src.replace(/empty\.jpg/, 'empty_black.jpg'));
+					} else if (/(^|\/)cancel_icon\.png(\?|$)/.test(src)) {
+						img.setAttribute('src', src.replace(/cancel_icon\.png/, 'cancel_icon_black.png'));
+					} else if (/(^|\/)larrow\.png(\?|$)/.test(src)) {
+						img.setAttribute('src', src.replace(/larrow\.png/, 'larrow_black.png'));
+					} else if (/(^|\/)rarrow\.png(\?|$)/.test(src)) {
+						img.setAttribute('src', src.replace(/rarrow\.png/, 'rarrow_black.png'));
+					}
+				} else {
+					if (/empty_black\.jpg/.test(src)) {
+						img.setAttribute('src', src.replace(/empty_black\.jpg/, 'empty.jpg'));
+					} else if (/cancel_icon_black\.png/.test(src)) {
+						img.setAttribute('src', src.replace(/cancel_icon_black\.png/, 'cancel_icon.png'));
+					} else if (/larrow_black\.png/.test(src)) {
+						img.setAttribute('src', src.replace(/larrow_black\.png/, 'larrow.png'));
+					} else if (/rarrow_black\.png/.test(src)) {
+						img.setAttribute('src', src.replace(/rarrow_black\.png/, 'rarrow.png'));
+					}
+				}
+			}
+			function applyDarkModeImages() {
+				var isDark = document.body.classList.contains('dark-mode');
+				var imgs = document.getElementsByTagName('img');
+				for (var i = 0; i < imgs.length; i++) swapImageForDarkMode(imgs[i], isDark);
+			}
+
+			// === 圖片效能: 批次套用 loading=lazy 與 decoding=async ===
+			function enhanceImage(img) {
+				if (!img || !img.setAttribute) return;
+				if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+				if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+			}
+			function applyImageLazyLoading() {
+				var imgs = document.getElementsByTagName('img');
+				for (var i = 0; i < imgs.length; i++) enhanceImage(imgs[i]);
+			}
+
+			// 監聽動態 src 變化與新增 img 節點
+			(function(){
+				if (!window.MutationObserver) return;
+				var obs = new MutationObserver(function(muts){
+					var isDark = document.body.classList.contains('dark-mode');
+					muts.forEach(function(m){
+						if (m.type === 'attributes' && m.attributeName === 'src' && m.target && m.target.tagName === 'IMG') {
+							swapImageForDarkMode(m.target, isDark);
+							enhanceImage(m.target);
+						} else if (m.type === 'childList') {
+							m.addedNodes.forEach(function(n){
+								if (n.nodeType !== 1) return;
+								if (n.tagName === 'IMG') { swapImageForDarkMode(n, isDark); enhanceImage(n); }
+								else if (n.querySelectorAll) {
+									var sub = n.querySelectorAll('img');
+									for (var i = 0; i < sub.length; i++) { swapImageForDarkMode(sub[i], isDark); enhanceImage(sub[i]); }
+								}
+							});
+						}
+					});
+				});
+				function startObserving() {
+					obs.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['src'] });
+					applyDarkModeImages();
+					applyImageLazyLoading();
+				}
+				if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', startObserving);
+				else startObserving();
+			})();
+
+			function toggleDarkMode() {
+				document.body.classList.toggle('dark-mode');
+				var isDark = document.body.classList.contains('dark-mode');
+				try { localStorage.setItem('na_dark_mode', isDark ? '1' : '0'); } catch(e) {}
+				updateDarkModeButton();
+				updateChartsTheme();
+				applyDarkModeImages();
+			}
+		</script>
 		<script>
 			var page = 0;
 			var deckNamelist = [];
@@ -171,6 +475,9 @@
 			$( document ).ready(function() {
 				onLoading();
 				showrdeck();
+				updateDarkModeButton();
+				updateChartsTheme();
+				applyDarkModeImages();
 			});
 
 			function customizeWindowEvent(x) {
@@ -256,7 +563,8 @@
 	        }
 		</script>
 		<div id='cardinformation' style='border: solid; border-width: 2px;position: absolute;z-index: 999; background-color:white; visibility: hidden;margin: 150px 0px 0px 40px;'>
-			<img id="cross" width="30px" height="30px" style='border-style: none;margin-left: 700px;' src="img/cancel_icon.png" onclick="$('#cardinformation').css('visibility', 'hidden');" onmouseover="$('#cardinformation').css('visibility', 'hidden');">
+			<span id="bigPicHint" title="Hold ALT to keep this preview open and frozen on the current card.">💡 Hold <b>ALT</b> to lock this preview · release to unlock</span>
+			<img id="cross" width="30px" height="30px" style='border-style: none;margin-left: 413px;' src="img/cancel_icon.png" onclick="if(!window.bigPicLocked) $('#cardinformation').css('visibility', 'hidden');" onmouseover="if(!window.bigPicLocked) $('#cardinformation').css('visibility', 'hidden');">
 			<table>
 				<tr>
 					<td>
@@ -274,7 +582,9 @@
 				<option value="JP">日本語</option>
 				<option value="TW">繁體中文</option>
 		    </select>
-		    ※Right-click in the deck can add existing card. 
+		    <button id="darkModeToggle" type="button" onclick="toggleDarkMode()" title="切換黑暗模式">🌙 Dark</button>
+		    <span class="alt-lock-tip" title="Hold ALT to lock the card preview window — it won't close or change card while ALT is held.">🔒 Hold <b>ALT</b> = lock card preview</span>
+		    ※Right-click in the deck can add existing card.
 		    <br>Deck List
 		    <select id="selectDeck" onchange="selectDeck();">
 		    	<option value="">--Select Deck--</option>
@@ -431,6 +741,7 @@
 					商品檢索
 					<select id="selectProduct">
 						<option value="0">--All Product--</option>
+						<option value="BT03">勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉</option>
 						<option value="BT02">勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉</option>
 						<option value="ST04">勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉</option>
 						<option value="ST05">勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉</option>

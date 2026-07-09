@@ -1,3 +1,40 @@
+// === big_pic lock (hold ALT to freeze the preview) ===
+// Robust against browsers that hijack ALT for the menu bar:
+//   1. preventDefault() on plain ALT keydown so the browser menu does not steal focus.
+//   2. Sync lock state from EVERY mouse / keyboard event's e.altKey, not just keyup.
+//      This way a missed keyup (e.g. window switched while ALT was down) self-heals
+//      on the next mouse move.
+var bigPicLocked = false;
+(function setupBigPicAltLock(){
+	function setLocked(v){
+		if(v === bigPicLocked) return;
+		bigPicLocked = v;
+		document.body.classList.toggle('bigpic-locked', v);
+	}
+	function sync(e){ setLocked(!!e.altKey); }
+
+	// Capture-phase so we beat other handlers and can preventDefault before
+	// the browser routes ALT to the menu bar.
+	window.addEventListener('keydown', function(e){
+		// Only swallow plain ALT (no other modifier keys, no other key together)
+		if((e.key === 'Alt' || e.keyCode === 18) && !e.ctrlKey && !e.shiftKey && !e.metaKey){
+			e.preventDefault();
+		}
+		sync(e);
+	}, true);
+	window.addEventListener('keyup',   sync, true);
+
+	// Mouse events always carry a fresh altKey — use them to self-heal a stuck lock.
+	window.addEventListener('mousemove', sync, true);
+	window.addEventListener('mouseover', sync, true);
+	window.addEventListener('mousedown', sync, true);
+
+	// If the page loses keyboard input entirely (alt-tab, etc.), release the lock
+	// so it doesn't stay frozen forever. (Mouse events that follow will re-lock
+	// instantly if ALT is somehow still down.)
+	window.addEventListener('blur', function(){ setLocked(false); });
+})();
+
 function autoResize() {
 	this.style.height = '12px';
 	this.style.height = this.scrollHeight + 'px';
@@ -155,6 +192,9 @@ function showrdeck()
 function onmouseShow(x, source)
 {
 	var i = 0;
+
+	// Locked (ALT held): keep current big_pic content and visibility frozen.
+	if(bigPicLocked) { return; }
 
 	if($('#cardinformation').css('visibility') == 'visible')
 	{
