@@ -718,7 +718,9 @@
 					<br><br>
 					<input type="checkbox" id="entry" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_ent.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="attack" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_atc.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="defender" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_dfd.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="exit" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_exit.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="passive" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_psv.png'></img> </span>
 					<br><br>
-					<input type="checkbox" id="active_main" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_atv_main.png'></img></span>&emsp;&emsp;<input type="checkbox" id="levellink" checked><span onclick="clickSpan(this)">レベルリンク </span>&emsp;&emsp;<input type="checkbox" id="battleline" checked><span onclick="clickSpan(this)">戦線維持 </span>&emsp;&emsp;<input type="checkbox" id="guardian" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_gud.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="armored" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_amd.png'></img> </span>
+					<input type="checkbox" id="active_main" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_active.png'></img></span>&emsp;&emsp;<input type="checkbox" id="levellink" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_link.gif'></img> </span>&emsp;&emsp;<input type="checkbox" id="battleline" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_line.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="guardian" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_gud.png'></img> </span>&emsp;&emsp;<input type="checkbox" id="armored" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_amd.png'></img> </span>
+					<br><br>
+					<input type="checkbox" id="credit" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_credit.gif'></img> </span>&emsp;&emsp;<input type="checkbox" id="escape" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_escape.gif'></img> </span>&emsp;&emsp;<input type="checkbox" id="mix" checked><span onclick="clickSpan(this)"><img class='icon_img' src='img/ico_mix.gif'></img> </span>
 					<br><br>
 					所屬
 					<select id="selectType">
@@ -730,10 +732,62 @@
 				    /
 					<select id="selectBelong">
 						<option value="0">--All Belong--</option>
-						<option value="エリシオン">エリシオン</option>
-						<option value="テトラ">テトラ</option>
-						<option value="ミシリス">ミシリス</option>
-						<option value="ピルグリム">ピルグリム</option>
+						<optgroup label="勝利の女神：NIKKE">
+							<option value="エリシオン">エリシオン</option>
+							<option value="テトラ">テトラ</option>
+							<option value="ミシリス">ミシリス</option>
+							<option value="ピルグリム">ピルグリム</option>
+						</optgroup>
+						<optgroup label="エピックセブン">
+							<option value="継承者">継承者</option>
+							<option value="聖約">聖約</option>
+							<option value="過去または未来">過去または未来</option>
+							<option value="伝承者">伝承者</option>
+							<option value="精霊王">精霊王</option>
+							<option value="ダン・ブライア">ダン・ブライア</option>
+							<option value="ホムンクルス">ホムンクルス</option>
+							<option value="あらゆる者の敵">あらゆる者の敵</option>
+							<option value="他の宇宙からの訪問者">他の宇宙からの訪問者</option>
+							<option value="スクッギヘイム">スクッギヘイム</option>
+							<option value="ランウェイファイター">ランウェイファイター</option>
+							<option value="ナタロン学園">ナタロン学園</option>
+							<option value="サマースペシャル">サマースペシャル</option>
+							<option value="王室">王室</option>
+							<option value="レインガル">レインガル</option>
+							<option value="ポリティア">ポリティア</option>
+							<option value="未知の世界">未知の世界</option>
+							<option value="レファンドス">レファンドス</option>
+							<option value="酷寒の日々">酷寒の日々</option>
+							<option value="大洋の征服者">大洋の征服者</option>
+							<option value="造られた者たち">造られた者たち</option>
+							<option value="サンジェラット">サンジェラット</option>
+							<option value="龍の谷">龍の谷</option>
+							<option value="ウィンテンベルク">ウィンテンベルク</option>
+							<option value="秘密の花園">秘密の花園</option>
+							<option value="無欠点都市">無欠点都市</option>
+							<option value="特殊部隊ファントム">特殊部隊ファントム</option>
+							<option value="没落の大地">没落の大地</option>
+							<option value="ファーランド">ファーランド</option>
+						</optgroup>
+						<optgroup label="エターナルリターン">
+							<option value="実験体">実験体</option>
+							<option value="アカデミー">アカデミー</option>
+							<option value="学校">学校</option>
+							<option value="祭り">祭り</option>
+							<option value="バレンタイン">バレンタイン</option>
+							<option value="レギオン">レギオン</option>
+							<option value="Anniversary">Anniversary</option>
+							<option value="チェンジ">チェンジ</option>
+							<option value="ゴーストハンター">ゴーストハンター</option>
+							<option value="スプラッシュ">スプラッシュ</option>
+							<option value="夕焼け">夕焼け</option>
+							<option value="プリズン">プリズン</option>
+							<option value="着ぐるみパジャマ">着ぐるみパジャマ</option>
+							<option value="ラッキー">ラッキー</option>
+							<option value="雪の花">雪の花</option>
+							<option value="サマー">サマー</option>
+							<option value="士官候補生">士官候補生</option>
+						</optgroup>
 				    </select>
 				    <br><br>
 					キーワード検索 <input type="text" id="textsearch" size="51">
@@ -741,6 +795,18 @@
 					商品檢索
 					<select id="selectProduct">
 						<option value="0">--All Product--</option>
+						<optgroup label="エターナルリターン">
+							<option value="BT05">エターナルリターン NivelArenaブースターパックBT05〈祭り〉</option>
+							<option value="ST09">エターナルリターン NivelArenaスターターデッキST09〈トロピカル〉</option>
+							<option value="ST08">エターナルリターン NivelArenaスターターデッキST08〈Anniversary〉</option>
+						</optgroup>
+						<optgroup label="エピックセブン">
+							<option value="BT04">エピックセブン NivelArenaブースターパックBT04〈酷寒の日々〉</option>
+							<option value="ST07">エピックセブン NivelArenaスターターデッキST07〈ホムンクルス〉</option>
+							<option value="ST06">エピックセブン NivelArenaスターターデッキST06〈継承者〉</option>
+						</optgroup>
+						<optgroup label="勝利の女神：NIKKE">
+						<option value="SB01">勝利の女神：NIKKE NivelArenaスペシャルブースターパックSB01</option>
 						<option value="BT03">勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉</option>
 						<option value="BT02">勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉</option>
 						<option value="ST04">勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉</option>
@@ -749,6 +815,7 @@
 						<option value="ST01">勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉</option>
 						<option value="ST02">勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉</option>
 						<option value="ST03">勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉</option>
+						</optgroup>
 				   </select>
 				   <br><br>
 				   <button onclick="search();">Search</button>&emsp;&emsp;<button onclick="checkall();">Select All</button>&emsp;&emsp;<button onclick="uncheckall();">Clear All</button>

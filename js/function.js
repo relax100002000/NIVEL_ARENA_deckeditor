@@ -254,8 +254,69 @@ function onmouseShow(x, source)
 	}
 }
 
+var JP_ICON_MAP = {
+	"アタッカー": "ico_atc.png", "エントリー": "ico_ent.png", "アクティブ：メイン": "ico_atv_main.png",
+	"アクティブ：アタック": "ico_atv_atc.gif", "アクティブ": "ico_active.png", "パッシブ": "ico_psv.png",
+	"エグジット": "ico_exit.png", "ミックス": "ico_mix.gif", "エスケープ": "ico_escape.gif",
+	"クレジット1": "ico_credit_1.gif", "クレジット2": "ico_credit_2.gif", "トリガー": "ico_trigger.png",
+	"戦線構築": "ico_line.png", "誓約": "ico_vow.jpg", "覚醒": "ico_awk.jpg", "アームド": "ico_amd.png",
+	"アームド：ユニーク": "ico_amd_uq.png", "ガーディアン": "ico_gud.png", "ディフェンダー": "ico_dfd.png"
+};
+
+var JP_LV_ICON = { "4": "gif", "6": "png", "7": "gif", "8": "gif", "9": "gif", "10": "png" };
+
+function jp_icon_tag(file)
+{
+	return "<img class='icon_img' src='img/" + file + "'></img>";
+}
+
+function jp_eq_icon(cond)
+{
+	var m;
+	if(cond == "なし") return "ico_eq_none.png";
+	if(cond == "エグジット") return "ico_eq_exit.png";
+	if(m = cond.match(/^コスト(\d+)以上/))
+	{
+		if(m[1] == "3") return "ico_eq_3cost_more.png";
+		if(m[1] == "4") return "ico_eq_4cost.png";
+		if(m[1] == "5") return "ico_eq_5cost_more.png";
+	}
+	if(m = cond.match(/^コスト(\d+)以下/))
+	{
+		if(m[1] == "3") return "ico_eq_3cost.png";
+		if(m[1] == "4") return "ico_eq_4cost_dw.png";
+		if(m[1] == "6") return "ico_eq_6cost_dw.png";
+	}
+	if(/^ベース/.test(cond)) return "ico_eq_base.png";
+	if(/^ガーディアン/.test(cond)) return "ico_eq_gud.png";
+	if(/^ディフェンダー/.test(cond)) return "ico_eq_dfd.png";
+	if(/^アームド/.test(cond)) return "ico_eq_amd.png";
+	if(/^アタッカー/.test(cond)) return "ico_eq_att.png";
+	if(/^ナタロン学園/.test(cond)) return "ico_eq_natal.png";
+	if(/^夏スペシャル/.test(cond)) return "ico_eq_spsum.png";
+	if(/아이템/.test(cond) || /^アイテム/.test(cond)) return "ico_eq_item.png";
+	return "";
+}
+
+function jp_str_to_img(x)
+{
+	x = x.replace(/【装備条件：([^】]*)】(<br><br>)?/g, function(all, cond, br){
+		var f = jp_eq_icon(cond);
+		return f ? jp_icon_tag(f) + "<br><br>" : all;
+	});
+	x = x.replace(/【レベルリンク：(\d+)】/g, function(all, n){
+		return JP_LV_ICON[n] ? jp_icon_tag("ico_lv" + n + "_link." + JP_LV_ICON[n]) : all;
+	});
+	x = x.replace(/【([^】]+)】/g, function(all, k){
+		return JP_ICON_MAP[k] ? jp_icon_tag(JP_ICON_MAP[k]) : all;
+	});
+	return x;
+}
+
 function str_to_img(x)
 {
+	x = jp_str_to_img(x);
+	x = x.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
 	x = x.replace(/장착조건 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
 	x = x.replace(/장착 조건: 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
 	x = x.replace(/장착조건 엑시트/g, "<img class='icon_img' src='img/ico_eq_exit.png'></img>");
@@ -293,6 +354,9 @@ function str_to_img(x)
 	x = x.replace(/디펜더/g, "<img class='icon_img' src='img/ico_dfd.png'></img>");
 	x = x.replace(/가디언/g, "<img class='icon_img' src='img/ico_gud.png'></img>");
 	x = x.replace(/암드/g, "<img class='icon_img' src='img/ico_amd.png'></img>");
+
+	// 以關鍵字圖示起頭的效果,與前一句空一行
+	x = x.replace(/([。！!」）)])(?:\s*<br>)*\s*(<img class='icon_img' src='img\/ico_(?:atc|ent|atv_main|atv_atc|active|psv|exit|mix|escape|credit_\d|line|vow|awk|amd|amd_uq|gud|dfd|lv\d+_link)\.[a-z]+'><\/img>)/g, "$1<br><br>$2");
 
 	x = x.replace(/<br><br>覚醒面<br><br>/g, "</tr><tr><td colspan=2>覚醒面<br><br>");
 	x = x.replace(/<br><br>覺醒面<br><br>/g, "</tr><tr><td colspan=2>覺醒面<br><br>");
@@ -1466,10 +1530,10 @@ function search()
 			}
 		}
 
-		if(!$('#entry').is(":checked") && !$('#attack').is(":checked") && !$('#defender').is(":checked") && !$('#exit').is(":checked") && !$('#passive').is(":checked") && !$('#active_main').is(":checked") && !$('#levellink').is(":checked") && !$('#battleline').is(":checked") && !$('#guardian').is(":checked") && !$('#armored').is(":checked"))
+		if(!$('#entry').is(":checked") && !$('#attack').is(":checked") && !$('#defender').is(":checked") && !$('#exit').is(":checked") && !$('#passive').is(":checked") && !$('#active_main').is(":checked") && !$('#levellink').is(":checked") && !$('#battleline').is(":checked") && !$('#guardian').is(":checked") && !$('#armored').is(":checked") && !$('#credit').is(":checked") && !$('#escape').is(":checked") && !$('#mix').is(":checked"))
 		{
 		}
-		else if($('#entry').is(":checked") && $('#attack').is(":checked") && $('#defender').is(":checked") && $('#exit').is(":checked") && $('#passive').is(":checked") && $('#active_main').is(":checked") && $('#levellink').is(":checked") && $('#battleline').is(":checked") && $('#guardian').is(":checked") && $('#armored').is(":checked"))
+		else if($('#entry').is(":checked") && $('#attack').is(":checked") && $('#defender').is(":checked") && $('#exit').is(":checked") && $('#passive').is(":checked") && $('#active_main').is(":checked") && $('#levellink').is(":checked") && $('#battleline').is(":checked") && $('#guardian').is(":checked") && $('#armored').is(":checked") && $('#credit').is(":checked") && $('#escape').is(":checked") && $('#mix').is(":checked"))
 		{
 		}
 		else
@@ -1549,6 +1613,30 @@ function search()
 			if($('#armored').is(":checked"))
 			{
 				if(cardData[i][KEYWORD].indexOf("アームド") != -1)
+				{
+					trigger_flag = 1;
+				}
+			}
+
+			if($('#credit').is(":checked"))
+			{
+				if(cardData[i][KEYWORD].indexOf("クレジット") != -1)
+				{
+					trigger_flag = 1;
+				}
+			}
+
+			if($('#escape').is(":checked"))
+			{
+				if(cardData[i][KEYWORD].indexOf("エスケープ") != -1)
+				{
+					trigger_flag = 1;
+				}
+			}
+
+			if($('#mix').is(":checked"))
+			{
+				if(cardData[i][KEYWORD].indexOf("ミックス") != -1)
 				{
 					trigger_flag = 1;
 				}
@@ -1680,7 +1768,7 @@ function search()
 		if($('#selectBelong').val() != 0)
 		{
 			dataStr = cardData[i][BELONG];
-			if(dataStr.indexOf($('#selectBelong').val()) != -1)
+			if(dataStr.split('/').map(function(s){return s.trim();}).indexOf($('#selectBelong').val()) != -1)
 			{
 				type_flag++;
 			}

@@ -1,0 +1,6030 @@
+/*
+	,
+	[
+		"", //ID
+		"", //SRC
+		"", //NAME
+		"", //TYPE
+		"", //ELEMENT
+		"", //COST
+		"", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		""  //PRODUCT
+		]
+*/
+
+/*
+全形改半形
+0~9
+a~z
+A~Z
++-=
+" "(space)
+!?&~:
+消費］ -> ]
+()
+①②③
+*/
+
+const ID = 0;
+const SRC = 1;
+const NAME = 2;
+const TYPE = 3;
+const ELEMENT = 4;
+const COST = 5;
+const RARE = 6;
+const POWER = 7;
+const HIT = 8;
+const BELONG = 9;
+const KEYWORD = 10;
+const JP_TRIGGER = 11;
+const JP_TEXT = 12;
+const TW_TRIGGER = 13;
+const TW_TEXT = 14;
+const PRODUCT = 15;
+
+var cardData = [
+	[
+		"ST01-001", //ID
+		"img/card/ST01-001.png", //SRC
+		"ラピ", //NAME
+		"リーダー", //TYPE
+		"炎", //ELEMENT
+		"", //COST
+		"SPL", //RARE
+		"", //POWER
+		"", //HIT
+		"エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br><br>서약自分は화염のカードのみをデッキに入れることができる。<br><br>각성自分のリーダーレベルが5以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브フィールドにある自分のユニット全ては自分のターンの間、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟥屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】我方回合期間，場上所有我方單位戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-002", //ID
+		"img/card/ST01-002.png", //SRC
+		"ネオン", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-003", //ID
+		"img/card/ST01-003.png", //SRC
+		"ベスティー", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-004", //ID
+		"img/card/ST01-004.png", //SRC
+		"ウンファ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-005", //ID
+		"img/card/ST01-005.png", //SRC
+		"ノイズ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-006", //ID
+		"img/card/ST01-006.png", //SRC
+		"ノワール", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 このターンが終わるまで対向ユニットのパワー-3000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，遭遇單位的戰力 -3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-007", //ID
+		"img/card/ST01-007.png", //SRC
+		"バイパー", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，力量 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-008", //ID
+		"img/card/ST01-008.png", //SRC
+		"ブラン", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある 어태커 を持つ自分のユニット全ては自分のターンの間、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】我方回合期間，場上所有具有【攻擊者】的我方單位，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-009", //ID
+		"img/card/ST01-009.png", //SRC
+		"エマ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-010", //ID
+		"img/card/ST01-010.png", //SRC
+		"アニス", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"6", //COST
+		"SR", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アクティブ", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-5000。", //JP_TRIGGER
+		"액티브메인 自分の手札を1枚選んでデッキに戻し、シャッフルする。その後、このターンが終わるまで対向ユニットのパワー-3000。", //JP_TEXT
+		"【Trigger】／將此卡棄置，選擇場上 1 個敵方單位，直到此回合結束為止，戰力 -5000。", //TW_TRIGGER
+		"【主動：主階段】選擇自己的 1 張手牌，放回牌堆並洗牌。直到此回合結束為止，對手的 1 個單位戰力 -3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-011", //ID
+		"img/card/ST01-011.png", //SRC
+		"ラピ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"7500", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"어태커 貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)。", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【攻擊者】貫通〔1〕（當此單位攻擊並將對手單位戰鬥棄置時，對對手造成 1 點傷害。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-012", //ID
+		"img/card/ST01-012.png", //SRC
+		"弱点の見極め", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 名敵方單位，直到此回合結束為止，該單位戰力 -2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-013", //ID
+		"img/card/ST01-013.png", //SRC
+		"戦力補強", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンからコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TRIGGER
+		"自分のトラッシュゾーンからコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TEXT
+		"【Trigger】／將此卡棄置，從自己的棄置區中選擇 1 張費用為 2 或以下的單位卡，加入自己的手牌。", //TW_TRIGGER
+		"從自己的棄置區中選擇 1 張費用為 2 或以下的單位卡，加入自己的手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-014", //ID
+		"img/card/ST01-014.png", //SRC
+		"火力が全て！", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある自分のユニット全てはこのターンが終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"場上的所有我方單位，直到此回合結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-015", //ID
+		"img/card/ST01-015.png", //SRC
+		"ミサイル", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-5000。", //JP_TRIGGER
+		"フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-5000。", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上 1 個敵方單位，直到此回合結束為止，該單位戰力 -5000。", //TW_TRIGGER
+		"選擇場上 1 個敵方單位，直到此回合結束為止，該單位戰力 -5000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-016", //ID
+		"img/card/ST01-016.png", //SRC
+		"レアメタルブーツ", //NAME
+		"アイテム", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 없음<br><br>어태커 この攻撃が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【攻擊者】直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST01-017", //ID
+		"img/card/ST01-017.png", //SRC
+		"ケブラーグローブ", //NAME
+		"アイテム", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 없음<br><br>어태커 略奪[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、1枚ドローする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【攻擊者】掠奪〔1〕（當此單位攻擊並透過戰鬥使敵方單位棄置時，抽 1 張牌。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST01〈カウンターズ〉"  //PRODUCT
+		],
+	[
+		"ST02-001", //ID
+		"img/card/ST02-001.png", //SRC
+		"ギルティ", //NAME
+		"リーダー", //TYPE
+		"大地", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ミシリス", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br><br>서약 自分は대지のカードのみをデッキに入れることができる。<br><br>각성 自分のリーダーレベルが6以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브 自分のサイズ+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟩屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 6 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】自己的容量（Size） +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-002", //ID
+		"img/card/ST02-002.png", //SRC
+		"N102", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-003", //ID
+		"img/card/ST02-003.png", //SRC
+		"ミカ", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 自分のリーダーレベル+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-004", //ID
+		"img/card/ST02-004.png", //SRC
+		"ジュリア", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-005", //ID
+		"img/card/ST02-005.png", //SRC
+		"ヤン", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 自分のリーダーレベル+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】自己的領袖等級 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-006", //ID
+		"img/card/ST02-006.png", //SRC
+		"ドラー", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"5500", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-007", //ID
+		"img/card/ST02-007.png", //SRC
+		"ブリッド", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アクティブ", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のリーダーレベル+1。", //JP_TRIGGER
+		"액티브메인 自分の手札を1枚選んでトラッシュする。その後、フィールドにある《ベース》を持つ自分のユニット全てはこのターンが終わるまでヒット+1。", //JP_TEXT
+		"【Trigger】／將此卡棄置。自己的領袖等級 +1。", //TW_TRIGGER
+		"【主動：主階段】選擇自己的 1 張手牌棄置。直到此回合結束為止，場上所有屬於《基礎型》的我方單位，命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-008", //ID
+		"img/card/ST02-008.png", //SRC
+		"マルチャーナ", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-009", //ID
+		"img/card/ST02-009.png", //SRC
+		"ギルティ", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"5", //COST
+		"SR", //RARE
+		"8500", //POWER
+		"2", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにあるコスト3以下の相手のユニットを1枚選んでトラッシュする。", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上一張費用為 3 或以下的敵方單位，將其棄置。", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-010", //ID
+		"img/card/ST02-010.png", //SRC
+		"スノーホワイト", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"6", //COST
+		"SR", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"어태커 突破[コスト2以下](コスト2以下の相手のユニットはこのユニットの攻撃を防御できない)。", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【攻擊者】突破〔費用2以下〕（費用為2或以下的敵方單位無法防禦此單位的攻擊。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-011", //ID
+		"img/card/ST02-011.png", //SRC
+		"ディーゼル", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"7", //COST
+		"C", //RARE
+		"3000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 自分のリーダーレベル1につき、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】此單位的戰力提升自身領袖等級 × 1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-012", //ID
+		"img/card/ST02-012.png", //SRC
+		"クレッシェンド", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある自分のユニットを1枚選んでこのターンが終わるまでパワー+3000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上的 1 個我方單位，直到此回合結束前，該單位戰力 +3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-013", //ID
+		"img/card/ST02-013.png", //SRC
+		"わが師の恩", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のリーダーレベル+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"我方的領袖等級 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-014", //ID
+		"img/card/ST02-014.png", //SRC
+		"プライズ", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のデッキの上からカードを3枚公開し、その中の1枚を選んで手札に加える。残りの2枚はデッキに戻し、シャッフルする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"從自己的牌堆頂翻開 3 張卡，從中選擇 1 張加入手牌，其餘 2 張放回牌堆並重新洗牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-015", //ID
+		"img/card/ST02-015.png", //SRC
+		"アクセラレーション", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにあるコスト3以下の相手のユニットを1枚選んでトラッシュする。", //JP_TRIGGER
+		"自分のユニットと相手のユニットが両方あるレーンを一つ選び、そのレーンでパワーが一番低いユニットをトラッシュする。パワーが同じなら、全てトラッシュする。", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上 1 個費用為 3 或以下的敵方單位，將其棄置。", //TW_TRIGGER
+		"選擇 1 條雙方皆有單位的路徑。該路徑中戰力最低的單位棄置。若戰力相同，則全部棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-016", //ID
+		"img/card/ST02-016.png", //SRC
+		"ケブラープロテクター", //NAME
+		"アイテム", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 없음<br><br>パワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST02-017", //ID
+		"img/card/ST02-017.png", //SRC
+		"レアメタルヘルメット", //NAME
+		"アイテム", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 4코스트이상<br><br>ヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：費用 4 以上單位】<br><br>命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST02〈リアルカインドネス〉"  //PRODUCT
+		],
+	[
+		"ST03-001", //ID
+		"img/card/ST03-001.png", //SRC
+		"モダニア", //NAME
+		"リーダー", //TYPE
+		"嵐", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"서약 自分は폭풍のカードのみをデッキに入れることができる。<br><br>각성 自分のリーダーレベルが4以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브 フィールドにある 엑시트 を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟪屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 4 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】場上所有擁有【離場】的我方單位戰力  +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-002", //ID
+		"img/card/ST03-002.png", //SRC
+		"デルタ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-003", //ID
+		"img/card/ST03-003.png", //SRC
+		"プリバティ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"SR", //RARE
+		"500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エグジット", //KEYWORD
+		"トリガー / このカードをトラッシュする。相手の手札が3枚以上ある場合、相手は手札を1枚選んでトラッシュする。", //JP_TRIGGER
+		"엑시트 相手は手札を1枚選んでトラッシュする。", //JP_TEXT
+		"【Trigger】／將此卡棄置。若對手的手牌數為 3 張或以上，則對手選擇 1 張手牌棄置。", //TW_TRIGGER
+		"【離場】對手選擇自己的 1 張手牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-004", //ID
+		"img/card/ST03-004.png", //SRC
+		"ユニ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-005", //ID
+		"img/card/ST03-005.png", //SRC
+		"ノベル", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 対向ユニットがコスト1以下なら、そのユニットをトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】若遭遇單位費用為 1 或以下，則將該單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-006", //ID
+		"img/card/ST03-006.png", //SRC
+		"サクラ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-007", //ID
+		"img/card/ST03-007.png", //SRC
+		"D", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 道連れ(このユニットを戦闘でトラッシュした相手のユニットのコストがこのカードのコスト以下の場合、そのユニットをトラッシュする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】共滅（當此單位因戰鬥遭敵方單位棄置時，若該敵方單位的費用小於或等於此單位，則該單位也一併棄置。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-008", //ID
+		"img/card/ST03-008.png", //SRC
+		"エクシア", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある엑시트を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】場上所有具有【離場】的我方單位戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-009", //ID
+		"img/card/ST03-009.png", //SRC
+		"メイデン", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-010", //ID
+		"img/card/ST03-010.png", //SRC
+		"ロザンナ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"6", //COST
+		"R", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"トリガー / このカードをトラッシュする。相手の手札が3枚以上ある場合、相手は手札を1枚選んでトラッシュする。", //JP_TRIGGER
+		"엑시트 自分のトラッシュゾーンから 엑시트 を持つコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TEXT
+		"【Trigger】／將此卡棄置。若對手的手牌為 3 張或以上，則對手選擇 1 張手牌棄置。", //TW_TRIGGER
+		"【離場】從自己的棄置區中，選擇 1 張具有【離場】且費用為 2 或以下的單位卡，加入自己的手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-011", //ID
+		"img/card/ST03-011.png", //SRC
+		"モダニア", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"6500", //POWER
+		"3", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"엔트리 自分の手札を全てトラッシュできる。2枚以上トラッシュしたなら、対向ユニットをトラッシュする。", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【入場】可以將自己的所有手牌棄置。若以此效果棄置了 2 張以上手牌，則棄置遭遇單位。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-012", //ID
+		"img/card/ST03-012.png", //SRC
+		"奇襲", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分の手札を1枚選んでトラッシュする。その後、相手は手札を1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇自己的 1 張手牌棄置，然後對手選擇 1 張手牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-013", //ID
+		"img/card/ST03-013.png", //SRC
+		"黒化", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分の手札からユニットカードを1枚選んでトラッシュする。そのユニットカードのコストより低いコストを持つ、フィールドにあるユニットを1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"從自己的手牌中選擇 1 張單位卡棄置。接著，選擇場上 1 個費用低於該單位卡的單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-014", //ID
+		"img/card/ST03-014.png", //SRC
+		"センスシェアリング", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある自分のユニットを1枚選んでトラッシュする。その後、2枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個我方單位棄置，抽 2 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-015", //ID
+		"img/card/ST03-015.png", //SRC
+		"かかって来い！", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンから 엑시트 を持つユニットカードを1枚選んで手札に加える。", //JP_TRIGGER
+		"フィールドにある自分のユニットを1枚選んでそのユニットと対向ユニットを全てトラッシュする。", //JP_TEXT
+		"【Trigger】／將此卡棄置。從自己的棄置區中選擇 1 張具有【離場】的單位卡，加入手牌。", //TW_TRIGGER
+		"選擇場上 1 個我方單位棄置。將該單位與其遭遇單位一併棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-016", //ID
+		"img/card/ST03-016.png", //SRC
+		"ケブラーベスト", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 없음<br><br>パワー+3000。<br><br>디펜더 自壊(このユニットが相手の攻撃を防御したなら、その攻撃を終了させ、このユニットをトラッシュする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>戰力 +3000。<br><br>【防禦者】終結（當此單位進行防禦宣言時，立即終止本次攻擊，並將此單位棄置。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"ST03-017", //ID
+		"img/card/ST03-017.png", //SRC
+		"レアメタルアームガード", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 없음<br><br>道連れ(このユニットを戦闘でトラッシュした相手のユニットのコストがこのカードのコスト以下の場合、そのユニットをトラッシュする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【離場】共滅（當此單位因戰鬥遭敵方單位棄置時，若該敵方單位的費用小於或等於此單位，則該單位也一併棄置。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST03〈ヘレティック〉"  //PRODUCT
+		],
+	[
+		"BT01-001", //ID
+		"img/card/BT01-001.png", //SRC
+		"レッドフード", //NAME
+		"リーダー", //TYPE
+		"炎", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br><br>서약 自分は화염のカードのみをデッキに入れることができる。<br><br>각성 自分のリーダーレベルが6以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브 フィールドにある 어태커 を持つ自分のユニット全ては自分のターンの間、パワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟥屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 6 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】我方回合期間，場上所有擁有【攻擊者】的我方單位戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-002", //ID
+		"img/card/BT01-002.png", //SRC
+		"ネオン‐ブリングバレット", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-003", //ID
+		"img/card/BT01-003.png", //SRC
+		"クロウ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-004", //ID
+		"img/card/BT01-004.png", //SRC
+		"ノイズ‐クラシックディーバ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"R", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】貫通〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 1 點傷害。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-005", //ID
+		"img/card/BT01-005.png", //SRC
+		"ラピ‐クラシックバカンス", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"5000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"バーサーカー(このユニットは攻撃可能な状態であれば必ず攻撃しなければならない)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】狂戰士（此單位若可攻擊，則必須攻擊。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-006", //ID
+		"img/card/BT01-006.png", //SRC
+		"アニス：スパークリングサマー", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"SR", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-5000。", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+2000。<br><br>어태커 略奪[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、1枚ドローする)。", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上1個敵方單位，直到此回合結束為止，該單位力量 -5000。", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +2000。<br><br>【攻擊者】掠奪〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，抽 1 張牌。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-007", //ID
+		"img/card/BT01-007.png", //SRC
+		"クレイ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-008", //ID
+		"img/card/BT01-008.png", //SRC
+		"ボリューム", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある 어태커 貫通を持つ自分のユニット全てのパワー+1500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】場上所有具有「 【攻擊者】貫通 」的我方單位戰力 +1500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-009", //ID
+		"img/card/BT01-009.png", //SRC
+		"ベイ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-010", //ID
+		"img/card/BT01-010.png", //SRC
+		"アリア", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"5000", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-011", //ID
+		"img/card/BT01-011.png", //SRC
+		"ネオン：ブルーオーシャン", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"액티브메인 フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-1500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【主動：主階段】選擇場上 1 個敵方單位，直到此回合結束為止，該單位戰力 -1500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-012", //ID
+		"img/card/BT01-012.png", //SRC
+		"エマ‐ダーリンレッド", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 フィールドにある自分のユニット全てはこのターンが終わるまで「 어태커 この攻撃が終わるまでパワー+1000」を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，我方場上所有單位獲得「 【攻擊者】直到本次攻擊結束為止，戰力 +1000 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-013", //ID
+		"img/card/BT01-013.png", //SRC
+		"ジャッカル", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-014", //ID
+		"img/card/BT01-014.png", //SRC
+		"紅蓮：ブラックシャドウ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"SR", //RARE
+		"7500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンからコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TRIGGER
+		"バーサーカー(このユニットは攻撃可能な状態であれば必ず攻撃しなければならない)。", //JP_TEXT
+		"【Trigger】／將此卡棄置。從自己的棄置區中選擇 1 張費用為 2 或以下的單位卡，加入自己的手牌。", //TW_TRIGGER
+		"【被動】狂戰士（此單位若可攻擊，則必須攻擊。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-015", //ID
+		"img/card/BT01-015.png", //SRC
+		"ノワール‐ブラックラビット", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"5", //COST
+		"R", //RARE
+		"4500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 このターンが終わるまで対向ユニットのパワー-4000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，遭遇單位的戰力 -4000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-016", //ID
+		"img/card/BT01-016.png", //SRC
+		"スノーホワイト：イノセントデイズ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-017", //ID
+		"img/card/BT01-017.png", //SRC
+		"バイパー‐シャイン・オブ・ラブ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"6", //COST
+		"SR", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 対向ユニットのパワーはこのターンが終わるまで1000になる。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，遭遇單位的戰力變為 1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-018", //ID
+		"img/card/BT01-018.png", //SRC
+		"ブラン‐ホワイトラビット", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"7", //COST
+		"R", //RARE
+		"7000", //POWER
+		"3", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある 어태커 を持つ自分のユニット全てのパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】場上所有具有【攻擊者】的我方單位戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-019", //ID
+		"img/card/BT01-019.png", //SRC
+		"レッドフード", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"8", //COST
+		"UR", //RARE
+		"7000", //POWER
+		"3", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"엔트리 フィールドにある自分のユニット全てはこのターンが終わるまで 어태커 貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)を得る。", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【入場】直到此回合結束為止，場上所有我方單位獲得「 【攻擊者】貫通〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 1 點傷害） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-020", //ID
+		"img/card/BT01-020.png", //SRC
+		"ワイルドトゥース", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある 어태커 を持つ自分のユニットを1枚選ぶ。そのユニットはこのターンが終わるまで 어태커 貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個擁有【攻擊者】的我方單位。直到此回合結束為止，該單位獲得「【攻擊者】貫通〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 1 點傷害。）」", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-021", //ID  
+		"img/card/BT01-021.png", //SRC
+		"フォーメーションF.F", //NAME  
+		"スキル", //TYPE  
+		"炎", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある相手のユニット全てはこのターンが終わるまでパワー-1000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"直到此回合結束為止，場上所有敵方單位的戰力 -1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-022", //ID  
+		"img/card/BT01-022.png", //SRC
+		"圧倒", //NAME  
+		"スキル", //TYPE  
+		"炎", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある相手のユニットを2枚まで選んでこのターンが終わるまでパワー-2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇最多 2 個場上的敵方單位。直到此回合結束為止，這些單位的戰力 -2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-023", //ID  
+		"img/card/BT01-023.png", //SRC
+		"チアアップトゥギャザー", //NAME  
+		"スキル", //TYPE  
+		"炎", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある 어태커 を持つ自分のユニット全てはこのターンが終わるまでパワー+2500。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"場上所有具有【攻擊者】的我方單位，直到此回合結束為止，戰力 +2500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-024", //ID  
+		"img/card/BT01-024.png", //SRC
+		"フィナーレ", //NAME  
+		"スキル", //TYPE  
+		"炎", //ELEMENT  
+		"3", //COST  
+		"R", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-3000。この効果でそのユニットをトラッシュしたなら、1枚ドローする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇場上 1 個敵方單位。直到此回合結束為止，戰力 -3000。若該單位因此效果而遭棄置，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-025", //ID  
+		"img/card/BT01-025.png", //SRC
+		"合流", //NAME  
+		"スキル", //TYPE  
+		"炎", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"自分のトラッシュゾーンから 어태커 を持つユニットカードを1枚選んで手札に加える。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"從自己的棄置區中選擇 1 個擁有【攻擊者】的單位卡，加入自己的手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-026", //ID  
+		"img/card/BT01-026.png", //SRC
+		"ガッデシアムグローブ", //NAME  
+		"アイテム", //TYPE  
+		"炎", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"アタッカー", //KEYWORD  
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER  
+		"장착조건 없음<br><br>어태커 貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)。", //JP_TEXT  
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【攻擊者】貫通〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 1 點傷害。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-027", //ID  
+		"img/card/BT01-027.png", //SRC
+		"ノルンコードゴーグル", //NAME  
+		"アイテム", //TYPE  
+		"炎", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"アタッカー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"장착조건 없음<br><br>어태커 この攻撃が終わるまでパワー+2000。<br><br>어태커 略奪[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、1枚ドローする)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【攻擊者】直到本次攻擊結束為止，戰力 +2000。<br><br>【攻擊者】掠奪〔1〕（當此單位攻擊並以戰鬥使敵方單位棄置時，抽 1 張牌。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-028", //ID
+		"img/card/BT01-028.png", //SRC
+		"紅蓮", //NAME
+		"リーダー", //TYPE
+		"大地", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br><br>서약 自分は대지のカードのみをデッキに入れることができる。<br><br>각성 自分のリーダーレベルが5以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브 フィールドにある《ベース》を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟩屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】場上所有屬於《基礎型》的我方單位戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-029", //ID  
+		"img/card/BT01-029.png", //SRC
+		"ベロータ", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"3000", //POWER  
+		"1", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 相手のターンが終わるまでパワー+1000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】直到對手回合結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-030", //ID  
+		"img/card/BT01-030.png", //SRC
+		"ミカ：スノーバディ", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"2000", //POWER  
+		"1", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"戦線維持", //KEYWORD  
+		"", //JP_TRIGGER  
+		"戦線維持[パワー+3000](自分の全てのユニットゾーンにユニットがある場合、パワー+3000)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】戰線構築〔戰力+3000〕（若自己所有的單位區皆有單位存在時，戰力 +3000。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-031", //ID  
+		"img/card/BT01-031.png", //SRC
+		"エヌ：ミラクルフェアリー", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"3500", //POWER  
+		"1", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-032", //ID  
+		"img/card/BT01-032.png", //SRC
+		"シン", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"4000", //POWER  
+		"1", //HIT  
+		"エフェクト / ミシリス", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 フィールドにある《ベース》を持つ自分のユニット1枚につき、パワー+500。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】此單位的戰力提升值等同於我方場上屬於《基礎型》的單位數 ×500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-033", //ID  
+		"img/card/BT01-033.png", //SRC
+		"ドラー‐ダークローズ", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"2", //COST  
+		"R", //RARE  
+		"2500", //POWER  
+		"1", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 このターンが終わるまでヒット+1。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-034", //ID  
+		"img/card/BT01-034.png", //SRC
+		"ギルティ‐ディスビリーフウェーブ", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"2", //COST  
+		"SR", //RARE  
+		"5500", //POWER  
+		"1", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-035", //ID  
+		"img/card/BT01-035.png", //SRC
+		"ソリン", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"4500", //POWER  
+		"1", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"アタッカー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"어태커 突破[コスト1以下](コスト1以下の相手のユニットはこのユニットの攻撃を防御できない)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【攻擊者】突破〔費用 1 以下〕（費用為 1 或以下的敵方單位不能防禦此單位的攻擊。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-036", //ID  
+		"img/card/BT01-036.png", //SRC
+		"クエンシー", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"3500", //POWER  
+		"1", //HIT  
+		"エフェクト / ミシリス", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 フィールドにある《ベース》を持つ自分のユニット全てのパワー+2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】場上所有屬於《基礎型》的我方單位戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-037", //ID  
+		"img/card/BT01-037.png", //SRC
+		"ディーゼル‐ミッドナイト・ストロベリー", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"R", //RARE  
+		"4500", //POWER  
+		"1", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"戦線維持", //KEYWORD  
+		"", //JP_TRIGGER  
+		"戦線維持[ヒット+1](自分の全てのユニットゾーンにユニットがある場合、ヒット+1)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】戰線構築〔命中 +1〕（若自己所有的單位區皆有單位存在時，命中 +1。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-038", //ID  
+		"img/card/BT01-038.png", //SRC
+		"ルピー", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"4000", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"アクティブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"액티브메인 自分の手札を1枚選んでトラッシュする。その後、フィールドにある自分のユニットを1枚選び、このターンが終わるまでパワー+4000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【主動：主階段】選擇自己的 1 張手牌棄置。接著，選擇場上 1 個我方單位，直到此回合結束為止，戰力 +4000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-039", //ID  
+		"img/card/BT01-039.png", //SRC
+		"スノーホワイト‐ホワイトナイト", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"4", //COST  
+		"R", //RARE  
+		"5000", //POWER  
+		"2", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 相手のターンが終わるまでパワー+3000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】直到對手回合結束為止，戰力 +3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-040", //ID  
+		"img/card/BT01-040.png", //SRC
+		"ルピー：ウィンターショッパー", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"4", //COST  
+		"SR", //RARE  
+		"4000", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"パッシブ, レベルリンク", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 自分のリーダーレベル1につき、パワー+500。<br><br>レベルリンク[10: ヒット+1](自分のリーダーレベルが10以上の場合、ヒット+1)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】此單位的戰力提升值等同於自身領袖等級 ×500 。<br><br>【被動】等級連結〔10：命中 +1〕（若我方領袖等級達10以上，則此單位命中+1。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-041", //ID  
+		"img/card/BT01-041.png", //SRC
+		"ヤン‐サンライズマーケット", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"5", //COST  
+		"C", //RARE  
+		"6500", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 フィールドにある自分のユニットを1枚選んでこのターンが終わるまでパワー+2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】選擇場上 1 個我方單位，直到此回合結束為止，該單位戰力 +2000", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-042", //ID  
+		"img/card/BT01-042.png", //SRC
+		"ナガ", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"5", //COST  
+		"R", //RARE  
+		"7500", //POWER  
+		"2", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-043", //ID  
+		"img/card/BT01-043.png", //SRC
+		"ティア", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"6", //COST  
+		"R", //RARE  
+		"8500", //POWER  
+		"2", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-044", //ID  
+		"img/card/BT01-044.png", //SRC
+		"ラプンツェル", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"6", //COST  
+		"SR", //RARE  
+		"8000", //POWER  
+		"2", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"エントリー", //KEYWORD  
+		"トリガー / このカードをトラッシュする。自分のリーダーレベル+1。", //JP_TRIGGER  
+		"엔트리 自分のデッキの上から3枚を公開し、その中の《ベース》を持つユニットカード1枚を手札に加える。残りはデッキに戻し、シャッフルする。", //JP_TEXT  
+		"【Trigger】／將此卡棄置。自己的領袖等級 +1。", //TW_TRIGGER
+		"【入場】從自己的牌堆頂部翻開 3 張卡，從中選擇 1 張屬於《基礎型》的單位卡加入手牌，其餘 2 張放回牌堆並重新洗牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-045", //ID  
+		"img/card/BT01-045.png", //SRC
+		"ブリッド‐ブラックムーン", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"7", //COST  
+		"C", //RARE  
+		"7500", //POWER  
+		"3", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 フィールドにあるコスト1の自分のユニット全てのパワー+2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】場上所有費用為 1 的我方單位戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-046", //ID  
+		"img/card/BT01-046.png", //SRC
+		"紅蓮", //NAME  
+		"ユニット", //TYPE  
+		"大地", //ELEMENT  
+		"8", //COST  
+		"UR", //RARE  
+		"8000", //POWER  
+		"3", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"エントリー", //KEYWORD  
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER  
+		"엔트리 フィールドにある《ベース》を持つ自分のユニットを1枚選ぶ。そのユニットはこのターンが終わるまで 어태커突破[コスト3以下](コスト3以下の相手のユニットはこのユニットの攻撃を防御できない)を得る。", //JP_TEXT  
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【入場】選擇場上 1 個屬於《基礎型》的我方單位。直到此回合結束為止，該單位獲得「 【攻擊者】突破〔費用 3 以下〕（費用為 3 或以下的敵方單位不能防禦此單位的攻擊）」", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-047", //ID  
+		"img/card/BT01-047.png", //SRC
+		"純白の意志", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある《ベース》を持つコスト1の自分のユニットを1枚選ぶ。そのユニットのヒットはこのターンが終わるまで2になる。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇場上 1 個費用為 1 且屬於《基礎型》的我方單位。直到此回合結束為止，該單位的命中變為 2 。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-048", //ID  
+		"img/card/BT01-048.png", //SRC
+		"青い蝶の夢", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある自分のユニット全ては相手のターンが終わるまでパワー+500。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"當前場上的所有我方單位，直到對手回合結束為止，戰力 +500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-049", //ID  
+		"img/card/BT01-049.png", //SRC
+		"デザートタイム", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある《ベース》を持つ自分のユニットの枚数分ドローする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"抽取與場上屬於《基礎型》的我方單位數量相同的卡片數量。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-050", //ID  
+		"img/card/BT01-050.png", //SRC
+		"雪見温泉祭り", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"自分の全てのユニットゾーンにユニットがある場合、フィールドにある自分のユニット全ては相手のターンが終わるまでパワー+1500。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"若我方所有的單位區皆有單位存在，則當前場上的所有我方單位，直到對手回合結束為止，戰力 +1500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-051", //ID  
+		"img/card/BT01-051.png", //SRC
+		"VIPギフト", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"3", //COST  
+		"R", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"トリガー / このカードをトラッシュする。フィールドにあるコスト3以下の相手のユニットを1枚選んでトラッシュする。", //JP_TRIGGER  
+		"自分のデッキの上から3枚を公開し、その中のコスト3以下のカードを全て手札に加える。残りはデッキに戻し、シャッフルする。", //JP_TEXT  
+		"【Trigger】／將此卡棄置。選擇場上 1 個費用為 3 或以下的敵方單位，將其棄置。", //TW_TRIGGER
+		"從自己的牌堆頂部翻開 3 張卡，將其中所有費用為 3 或以下的卡加入手牌。其餘的卡放回牌堆並洗牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-052", //ID  
+		"img/card/BT01-052.png", //SRC
+		"身剣合一", //NAME  
+		"スキル", //TYPE  
+		"大地", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある《ベース》を持つ自分のユニット全てはこのターンが終わるまでヒット+1。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"當前場上所有屬於《基礎型》的我方單位，直到此回合結束為止，命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-053", //ID  
+		"img/card/BT01-053.png", //SRC
+		"ガッデシアムプロテクター", //NAME  
+		"アイテム", //TYPE  
+		"大地", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"アタッカー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"장착조건 4코스트이하<br><br>어태커 突破[コスト2以下](コスト2以下の相手のユニットはこのユニットの攻撃を防御できない)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【裝備條件：費用 4 以下單位】<br><br>【攻擊者】突破〔費用 2 以下〕（費用為 2 或以下的敵方單位不能防禦此單位的攻擊。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-054", //ID  
+		"img/card/BT01-054.png", //SRC
+		"アトラスパターンガントレット", //NAME  
+		"アイテム", //TYPE  
+		"大地", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"장착조건 없음<br><br>パワー+5000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>戰力 +5000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-055", //ID
+		"img/card/BT01-055.png", //SRC
+		"シンデレラ", //NAME
+		"リーダー", //TYPE
+		"嵐", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br><br>서약 自分は폭풍のカードのみをデッキに入れることができる。<br><br>각성 自分のリーダーレベルが5以上の場合、このカードを裏返す。<br><br>覚醒面<br><br>패시브 自分と相手のターンに1回ずつ、フィールドにあるコスト5以上の自分のユニットがトラッシュされたなら、1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"基本面<br><br>【誓約】自己的牌組只能放入🟪屬性的卡片。<br><br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>覺醒面<br><br>【被動】雙方的回合各 1 次，每當場上費用為 5 或以上的我方單位被棄置，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉"  //PRODUCT
+		],
+	[
+		"BT01-056", //ID  
+		"img/card/BT01-056.png", //SRC
+		"エーテル", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"1500", //POWER  
+		"1", //HIT  
+		"エフェクト / ミシリス", //BELONG  
+		"エグジット", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엑시트 フィールドにある相手のユニットを1枚選んでこのターンが終わるまでパワー-2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【離場】選擇場上 1 個敵方單位，直到此回合結束為止，戰力  -2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-057", //ID  
+		"img/card/BT01-057.png", //SRC
+		"ミハラ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"1", //COST  
+		"C", //RARE  
+		"2500", //POWER  
+		"1", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-058", //ID  
+		"img/card/BT01-058.png", //SRC
+		"メイデン‐シークレットナース", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"1", //COST  
+		"R", //RARE  
+		"3500", //POWER  
+		"1", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"ディフェンダー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"디펜더 自壊(このユニットが相手の攻撃を防御したなら、その攻撃を終了させ、このユニットをトラッシュする)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【防禦者】終結（當此單位進行防禦宣告時，立即終止本次攻擊，並將此單位棄置）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-059", //ID  
+		"img/card/BT01-059.png", //SRC
+		"シグナル", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"3500", //POWER  
+		"1", //HIT  
+		"ベース / エリシオン", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-060", //ID  
+		"img/card/BT01-060.png", //SRC
+		"アドミ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"4500", //POWER  
+		"1", //HIT  
+		"エフェクト / ミシリス", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 このユニットは自分の手札を1枚選んでトラッシュしないと攻撃できない。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】此單位若要進行攻擊，必須選擇自己手牌中的 1 張牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-061", //ID  
+		"img/card/BT01-061.png", //SRC
+		"サクラ：ブルーム・イン・サマー", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"SR", //RARE  
+		"2000", //POWER  
+		"1", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"アクティブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"액티브메인 フィールドにある自分のユニットを2枚選び、その中の1枚をトラッシュする。他の1枚はこのターンが終わるまでパワー+2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【主動：主階段】選擇場上的 2 名我方單位，棄置其中 1 名單位。另一個單位直到回合結束為止戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-062", //ID  
+		"img/card/BT01-062.png", //SRC
+		"ユニ‐ラブリーピンク", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"4500", //POWER  
+		"1", //HIT  
+		"ベース / ミシリス", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"", //JP_TEXT  
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"BT01-063", //ID  
+		"img/card/BT01-063.png", //SRC
+		"エクシア‐ゲーマーズ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"3000", //POWER  
+		"1", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 フィールドにある 엑시트 道連れを持つ自分のユニット全てのパワー+2000。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】場上所有具有「 【離場】共滅 」的我方單位，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-064", //ID  
+		"img/card/BT01-064.png", //SRC
+		"プリバティ‐バンケット・プリンセス", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"3", //COST  
+		"R", //RARE  
+		"3500", //POWER  
+		"1", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 自分の手札を2枚選んでトラッシュできる。トラッシュしたなら、対向ユニットをトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】可以選擇棄置自己的 2 張手牌。若這麼做，將遭遇單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-065", //ID  
+		"img/card/BT01-065.png", //SRC
+		"ユルハ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"6500", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 このユニットは自分の手札を1枚選んでトラッシュしないと攻撃できない。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】此單位若要進行攻擊，必須棄置自己手牌中的 1 張卡。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-066", //ID  
+		"img/card/BT01-066.png", //SRC
+		"ノベル‐ペンギンホームズ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"4000", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エグジット", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엑시트 相手の手札が3枚以上ある場合、相手は手札を1枚選んでトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【離場】若對手的手牌數為 3 張或以上，則對手選擇 1 張手牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT 
+		],
+	[
+		"BT01-067", //ID  
+		"img/card/BT01-067.png", //SRC
+		"モラン", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"4", //COST  
+		"R", //RARE  
+		"5000", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エグジット", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엑시트 道連れ(このユニットを戦闘でトラッシュした相手のユニットのコストがこのカードのコスト以下の場合、そのユニットをトラッシュする)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【離場】共滅（當此單位因戰鬥遭敵方單位棄置時，若該敵方單位的費用小於或等於此單位，則該單位也一併棄置。）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-068", //ID  
+		"img/card/BT01-068.png", //SRC
+		"D：キラーワイフ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"5", //COST  
+		"R", //RARE  
+		"5000", //POWER  
+		"2", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"エグジット", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엑시트 2枚ドローし、その中の1枚を選んでトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【離場】抽 2 張牌，接著從中選擇 1 張棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-069", //ID  
+		"img/card/BT01-069.png", //SRC
+		"ニヒリスター", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"5", //COST  
+		"SR", //RARE  
+		"4500", //POWER  
+		"2", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"エントリー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"엔트리 対向ユニットがコスト2以下なら、そのユニットをトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【入場】若遭遇單位的費用為 2 或以下，則將其棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-070", //ID  
+		"img/card/BT01-070.png", //SRC
+		"ギロチン", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"6", //COST  
+		"C", //RARE  
+		"8500", //POWER  
+		"2", //HIT  
+		"エフェクト / エリシオン", //BELONG  
+		"ディフェンダー", //KEYWORD  
+		"", //JP_TRIGGER  
+		"디펜더 自壊(このユニットが相手の攻撃を防御したなら、その攻撃を終了させ、このユニットをトラッシュする)。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【防禦者】終結（當此單位進行防禦宣告時，立即終止本次攻擊，並將此單位棄置）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT 
+		],
+	[
+		"BT01-071", //ID  
+		"img/card/BT01-071.png", //SRC
+		"ロザンナ：シックオーシャン", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"6", //COST  
+		"SR", //RARE  
+		"7000", //POWER  
+		"2", //HIT  
+		"エフェクト / テトラ", //BELONG  
+		"エントリー", //KEYWORD  
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER  
+		"엔트리 フィールドにある自分のユニットを1枚選んでトラッシュする。その後、1枚ドローする。", //JP_TEXT  
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【入場】選擇場上一個我方單位棄置。抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-072", //ID  
+		"img/card/BT01-072.png", //SRC
+		"モダニア‐セカンド・アフェクション", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"7", //COST  
+		"R", //RARE  
+		"7000", //POWER  
+		"3", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"パッシブ", //KEYWORD  
+		"", //JP_TRIGGER  
+		"패시브 フィールドにある他の自分のユニット全ては「 엑시트 1枚ドローする」を得る。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【被動】我方場上的其他單位獲得「 【離場】抽 1 張牌 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-073", //ID  
+		"img/card/BT01-073.png", //SRC
+		"シンデレラ", //NAME  
+		"ユニット", //TYPE  
+		"嵐", //ELEMENT  
+		"8", //COST  
+		"UR", //RARE  
+		"7500", //POWER  
+		"3", //HIT  
+		"エフェクト / ピルグリム", //BELONG  
+		"エントリー", //KEYWORD  
+		"トリガー / このカードをトラッシュする。相手の手札が3枚以上ある場合、相手は手札を1枚選んでトラッシュする。", //JP_TRIGGER  
+		"엔트리 自分の手札から対向ユニットのコストより高いコストを持つユニットカードを1枚選んでトラッシュできる。トラッシュしたなら、対向ユニットをトラッシュする。", //JP_TEXT  
+		"【Trigger】／將此卡棄置。若對手的手牌數為 3 張或以上，則對手選擇 1 張手牌棄置。", //TW_TRIGGER
+		"【入場】可以從自己的手牌中選擇 1 張費用高於遭遇單位的單位卡棄置。若這麼做，則將遭遇單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-074", //ID  
+		"img/card/BT01-074.png", //SRC
+		"シークレットコード", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER  
+		"フィールドにある自分のユニットを1枚選んでトラッシュする。そのユニットのヒット分ドローする。", //JP_TEXT  
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"選擇自己場上的 1 個單位棄置。抽取與該單位命中相同張數的卡牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-075", //ID  
+		"img/card/BT01-075.png", //SRC
+		"バーニングショット", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"自分の手札を1枚選んでトラッシュする。そのカードと同じコストを持つ、フィールドにあるユニットを1枚選んでトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇自己 1 張手牌棄置。選擇場上 1 個費用與該卡相同的單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-076", //ID  
+		"img/card/BT01-076.png", //SRC
+		"魔界黒龍波", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにある 엑시트 道連れを持つ自分のユニットを1枚選んでこのターンが終わるまでパワー+4500。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇場上 1 個具有的「【離場】共滅」的我方單位，直到回合結束為止，該單位戰力 +4500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-077", //ID  
+		"img/card/BT01-077.png", //SRC
+		"ここは俺に任せろ！", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"3", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"フィールドにあるユニットを1枚選び、選んだユニットのヒット分自分の手札をトラッシュする。その後、そのユニットをトラッシュする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"選擇場上 1 個單位。將與該單位命中數相同張數的手牌棄置，接著將該單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-078", //ID  
+		"img/card/BT01-078.png", //SRC
+		"ビューティーフルショット", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"4", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンから 엑시트 を持つユニットカードを1枚選んで手札に加える。", //JP_TRIGGER  
+		"コストの合計が4以下になるように、フィールドにある相手のユニットを2枚まで選んでそのユニットを全てトラッシュする。", //JP_TEXT  
+		"【Trigger】／將此卡棄置。從自己的棄置區中，選擇 1 張具有【離場】的單位加入手牌。", //TW_TRIGGER
+		"選擇場上最多2個敵方單位棄置，所選單位的費用合計不能超過4。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-079", //ID  
+		"img/card/BT01-079.png", //SRC
+		"EXマガジン", //NAME  
+		"スキル", //TYPE  
+		"嵐", //ELEMENT  
+		"5", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"", //KEYWORD  
+		"", //JP_TRIGGER  
+		"自分のトラッシュゾーンから 엑시트 を持つコスト2以下のユニットカードを2枚まで選んで手札に加える。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"從自己的棄置區中，選擇最多2張費用為2或以下且擁有【離場】的單位卡，加入手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-080", //ID  
+		"img/card/BT01-080.png", //SRC
+		"ガッデシアムバイザー", //NAME  
+		"アイテム", //TYPE  
+		"嵐", //ELEMENT  
+		"2", //COST  
+		"C", //RARE  
+		"", //POWER  
+		"", //HIT  
+		"", //BELONG  
+		"エグジット", //KEYWORD  
+		"", //JP_TRIGGER  
+		"장착조건 없음<br><br>엑시트 2枚ドローする。", //JP_TEXT  
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【離場】抽 2 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT  
+		],
+	[
+		"BT01-081", //ID
+		"img/card/BT01-081.png", //SRC
+		"チタンマターブーツ", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"장착조건 엑시트<br><br>엑시트 帰還(このターンの終了時、このユニットカードを自分のトラッシュゾーンから手札に加える)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：具有【離場】的單位】<br><br>【離場】返還（此回合結束時，該單位從自己的棄置區回到手牌）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT01〈エンカウンター〉" //PRODUCT
+		],
+	[
+		"ST04-001", //ID
+		"img/card/ST04-001.png", //SRC
+		"ドロシー", //NAME
+		"リーダー", //TYPE
+		"波濤", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"【基本面】<br>서약 自分は 파도 のカードのみをデッキに入れることができる。<br>각성 自分のリーダーレベルが4以上の場合、このカードを裏返す。<br><br>【覚醒面】<br>패시브 フィールドにある自分のユニット全ては相手のターンの間、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-002", //ID
+		"img/card/ST04-002.png", //SRC
+		"I-DOLL・フラワー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-003", //ID
+		"img/card/ST04-003.png", //SRC
+		"マリアン", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[1](隣のレーンの相手のユニットが攻撃する場合、自分の手札を1枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-004", //ID
+		"img/card/ST04-004.png", //SRC
+		"ライ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-005", //ID
+		"img/card/ST04-005.png", //SRC
+		"メアリー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-006", //ID
+		"img/card/ST04-006.png", //SRC
+		"ノア", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"디펜더 この防御が終わるまでパワー+3000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-007", //ID
+		"img/card/ST04-007.png", //SRC
+		"アリス", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"SR", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"어태커 突破[コスト4以上](コスト4以上の相手のユニットはこのユニットの攻撃を防御できない)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-008", //ID
+		"img/card/ST04-008.png", //SRC
+		"ルドミラ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[2](隣のレーンの相手のユニットが攻撃する場合、自分の手札を2枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-009", //ID
+		"img/card/ST04-009.png", //SRC
+		"マスト", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-010", //ID
+		"img/card/ST04-010.png", //SRC
+		"ヘルム", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"6", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある가디언を持つ自分のユニット全てのパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-011", //ID
+		"img/card/ST04-011.png", //SRC
+		"ドロシー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"7000", //POWER
+		"3", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"ディフェンダー、 ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[3](隣のレーンの相手のユニットが攻撃する場合、自分の手札を3枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。<br>디펜더 この防御が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-012", //ID
+		"img/card/ST04-012.png", //SRC
+		"先輩の応援", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある가디언を持つ自分のユニットを1枚選び、相手のターンが終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-013", //ID
+		"img/card/ST04-013.png", //SRC
+		"ムカつくでしょう？", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。1枚ドローする。", //JP_TRIGGER
+		"フィールドにある가디언を持つ自分のユニットを1枚選び、このターンが終わるまでヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-014", //ID
+		"img/card/ST04-014.png", //SRC
+		"ナーシング", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"2枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-015", //ID
+		"img/card/ST04-015.png", //SRC
+		"失楽園", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある一番低いコストを持つ相手のユニットを1枚選んで、そのユニットと装備しているアイテム全てを持ち主の手札に戻す。", //JP_TRIGGER
+		"フィールドにある가디언を持つ自分のユニットを1枚選ぶ。選んだユニットはこのターンが終わるまで어태커 突破(相手のユニットはこのユニットの攻撃を防御できない)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-016", //ID
+		"img/card/ST04-016.png", //SRC
+		"ケブラージャケット", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br>디펜더 この防御が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST04-017", //ID
+		"img/card/ST04-017.png", //SRC
+		"レアメタルグローブ", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アクティブ", //KEYWORD
+		"トリガー / このカードをトラッシュする。1枚ドローする。", //JP_TRIGGER
+		"장착 조건: 디펜더를 가진 유닛<br>액티브: 메인 1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST04〈インヘルト〉" //PRODUCT
+		],
+	[
+		"ST05-001", //ID
+		"img/card/ST05-001.png", //SRC
+		"プリバティ：アンカインド・メイド", //NAME
+		"リーダー", //TYPE
+		"稲妻", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"【基本面】<br>서약 自分は 번개 のカードのみをデッキに入れることができる。<br>각성 自分のリーダーレベルが5以上の場合、このカードを裏返す。<br><br>【覚醒面】<br>패시브 フィールドにある 암드 を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-002", //ID
+		"img/card/ST05-002.png", //SRC
+		"プロダクト08", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-003", //ID
+		"img/card/ST05-003.png", //SRC
+		"シュガー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 1枚ドローする。その後、自分の手札を1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-004", //ID
+		"img/card/ST05-004.png", //SRC
+		"プリム", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-005", //ID
+		"img/card/ST05-005.png", //SRC
+		"マクスウェル", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 アイテムを装備している場合、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-006", //ID
+		"img/card/ST05-006.png", //SRC
+		"クラウン", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"SR", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のデッキからコスト1以下のアイテムカードを1枚選んで手札に加える。デッキをシャッフルする。", //JP_TRIGGER
+		"엔트리 自分のデッキからコスト2のアイテムカードを1枚選んで手札に加える。デッキをシャッフルする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-007", //ID
+		"img/card/ST05-007.png", //SRC
+		"ソーダ", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 装備しているアイテム1枚につき、パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-008", //ID
+		"img/card/ST05-008.png", //SRC
+		"リター", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある 암드 を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-009", //ID
+		"img/card/ST05-009.png", //SRC
+		"ドレイク", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-010", //ID
+		"img/card/ST05-010.png", //SRC
+		"センチ", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"6", //COST
+		"R", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 アイテムを装備している場合、パワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-011", //ID
+		"img/card/ST05-011.png", //SRC
+		"プリバティ：アンカインド・メイド", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"9000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー、 アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드어태커 アイテムを装備している場合、相手は手札を1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-012", //ID
+		"img/card/ST05-012.png", //SRC
+		"現場検討", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のデッキからコスト1以下のアイテムカードを1枚選んで手札に加える。デッキをシャッフルする。", //JP_TRIGGER
+		"自分のトラッシュゾーンからアイテムカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-013", //ID
+		"img/card/ST05-013.png", //SRC
+		"リターブースト", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある自分のユニットを1枚選び、そのユニットが装備しているコスト1以上のアイテムの枚数分ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-014", //ID
+		"img/card/ST05-014.png", //SRC
+		"ワンフォーオール", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。2枚ドローする。その後、自分の手札を2枚選んでトラッシュする。", //JP_TRIGGER
+		"フィールドにあるアイテムを2枚以上装備している自分のユニットを1枚選んでトラッシュする。その後、フィールドにある相手のユニットを1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-015", //ID
+		"img/card/ST05-015.png", //SRC
+		"ケブラーゲイター", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br><br>パワー+1500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-016", //ID
+		"img/card/ST05-016.png", //SRC
+		"レアメタルガントレット", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"ユニーク", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 암드를 가진 유닛<br><br>ヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"ST05-017", //ID
+		"img/card/ST05-017.png", //SRC
+		"レアメタルゲイター", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br><br>パワー+2500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaスターターデッキST05〈メイド・フォー・ユー〉" //PRODUCT
+		],
+	[
+		"BT02-001", //ID
+		"img/card/BT02-001.png", //SRC
+		"ボリューム‐ビート・ザ・ガン", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 このターンが終わるまで「어태커 この攻撃が終わるまでパワー+1500」を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-002", //ID
+		"img/card/BT02-002.png", //SRC
+		"エマ‐オフィスセラピー", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 フィールドにある自分のユニット全てはこのターンが終わるまで「어태커 この攻撃が終わるまでパワー+500」を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-003", //ID
+		"img/card/BT02-003.png", //SRC
+		"レッドフード‐ナンセンスレッド", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"UR", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"어태커 デュエリスト(対向ユニットは防御可能な状態であれば必ず防御しなければならない)。<br>어태커 この攻撃が終わるまでパワー+4000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-004", //ID
+		"img/card/BT02-004.png", //SRC
+		"ルージュ", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-005", //ID
+		"img/card/BT02-005.png", //SRC
+		"ラプンツェル：ピュアグレイス", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"5", //COST
+		"R", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 この攻撃が終わるまでパワー+3000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-006", //ID
+		"img/card/BT02-006.png", //SRC
+		"バイパー‐トキシックラビット", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"5500", //POWER
+		"3", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 自分のトラッシュゾーンからコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-007", //ID
+		"img/card/BT02-007.png", //SRC
+		"グレアリングアイズ", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある自分のユニット全てはこのターンが終わるまで 어태커 略奪[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、1枚ドローする)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-008", //ID
+		"img/card/BT02-008.png", //SRC
+		"ザ・ゲームマスター", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のトラッシュゾーンからコスト7以上のユニットカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-009", //ID
+		"img/card/BT02-009.png", //SRC
+		"ガッデシアムゲイター", //NAME
+		"アイテム", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンからコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TRIGGER
+		"장착 조건: 3코스트 이하인 유닛<br>パワー+4000。<br>バーサーカー(このユニットは攻撃可能な状態であれば必ず攻撃しなければならない)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-010", //ID
+		"img/card/BT02-010.png", //SRC
+		"ディーゼル‐ブラックホリデー", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 自分のデッキの上から1枚を公開し、その中の《ベース》を持つユニットカードを1枚手札に加える。残りはデッキに戻し、シャッフルする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-011", //ID
+		"img/card/BT02-011.png", //SRC
+		"マルチャーナ‐スクールデイズ", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"6500", //POWER
+		"1", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のリーダーレベル+1。", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-012", //ID
+		"img/card/BT02-012.png", //SRC
+		"ルピー‐ラグジュアリーラビット", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"UR", //RARE
+		"5500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"패시브 フィールドにある《ベース》を持つ自分のユニット1枚につき、ヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-013", //ID
+		"img/card/BT02-013.png", //SRC
+		"ティア‐ラブリーデート", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 フィールドにある自分のユニットを1枚選び、このターンが終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-014", //ID
+		"img/card/BT02-014.png", //SRC
+		"クエンシー：エスケープクイーン", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"7", //COST
+		"SR", //RARE
+		"9500", //POWER
+		"3", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-015", //ID
+		"img/card/BT02-015.png", //SRC
+		"イチゴの香りの誘惑", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分の全てのユニットゾーンにユニットがある場合、自分のリーダーレベル+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-016", //ID
+		"img/card/BT02-016.png", //SRC
+		"素晴らしき大泥棒", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにあるアイテムを1枚選んでトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-017", //ID
+		"img/card/BT02-017.png", //SRC
+		"保健室の先生", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある《ベース》を持つ自分のユニット全ては相手のターンが終わるまでパワー+1500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-018", //ID
+		"img/card/BT02-018.png", //SRC
+		"アトラスパターンヘルメット", //NAME
+		"アイテム", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 베이스를 가진 유닛<br>ヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-019", //ID
+		"img/card/BT02-019.png", //SRC
+		"メイデン：アイスローズ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"R", //RARE
+		"1000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 フィールドにある自分のユニットを1枚選び、このターンが終わるまでヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-020", //ID
+		"img/card/BT02-020.png", //SRC
+		"ギロチン：ウィンタースレイヤー", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある他のユニットが1枚以上効果でトラッシュされるたびに、このターンが終わるまでパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-021", //ID
+		"img/card/BT02-021.png", //SRC
+		"モダニア‐ファースト・アフェクション", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"4", //COST
+		"SR", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"디펜더 自壊(このユニットが相手の攻撃を防御したなら、その攻撃を終了させ、このユニットをトラッシュする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-022", //ID
+		"img/card/BT02-022.png", //SRC
+		"グレイブ", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"5", //COST
+		"SPR", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アクティブ", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"액티브: 메인 このターンの間、フィールドにて効果でトラッシュされた自分のユニットが2枚以上なら、相手に1ダメージを与える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-023", //ID
+		"img/card/BT02-023.png", //SRC
+		"ファントム", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"7500", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-024", //ID
+		"img/card/BT02-024.png", //SRC
+		"プリバティ‐ガバメントノーマル", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"7", //COST
+		"C", //RARE
+		"7000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 道連れ(このユニットを戦闘でトラッシュした相手のユニットのコストがこのカードのコスト以下の場合、そのユニットをトラッシュする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-025", //ID
+		"img/card/BT02-025.png", //SRC
+		"ライターズ・スポイラー", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"トリガー / このカードをトラッシュする。自分のトラッシュゾーンから 엑시트 を持つユニットカードを1枚選び、手札に加える。", //JP_TRIGGER
+		"自分のトラッシュゾーンから 엑시트 を持つコスト2以下のユニットカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-026", //ID
+		"img/card/BT02-026.png", //SRC
+		"新世界", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分の手札からユニットカードを1枚選んでトラッシュする。そのカードのヒット分ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-027", //ID
+		"img/card/BT02-027.png", //SRC
+		"マタータイプ：αアームガード", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br>パワー+4000。<br>패시브 相手のターンの終了時、このユニットをトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-028", //ID
+		"img/card/BT02-028.png", //SRC
+		"ヘルム：アクアマリン", //NAME
+		"リーダー", //TYPE
+		"波濤", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"【基本面】<br>서약 自分は 파도 のカードのみをデッキに入れることができる。<br>각성 自分のリーダーレベルが5以上の場合、このカードを裏返す。<br><br>【覚醒面】<br>패시브 フィールドにある 가디언 を持つ自分のユニット全てのパワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-029", //ID
+		"img/card/BT02-029.png", //SRC
+		"ネヴェ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"디펜더 この防御が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-030", //ID
+		"img/card/BT02-030.png", //SRC
+		"キリ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[1](隣のレーンの相手のユニットが攻撃する場合、自分の手札を1枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-031", //ID
+		"img/card/BT02-031.png", //SRC
+		"エピネル", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"디펜더 この防御が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-032", //ID
+		"img/card/BT02-032.png", //SRC
+		"ハラン", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 突破[コスト6以上](コスト6以上の相手のユニットはこのユニットの攻撃を防御できない)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-033", //ID
+		"img/card/BT02-033.png", //SRC
+		"フォルクヴァン", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-034", //ID
+		"img/card/BT02-034.png", //SRC
+		"アンカー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[1](隣のレーンの相手のユニットが攻撃する場合、自分の手札を1枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-035", //ID
+		"img/card/BT02-035.png", //SRC
+		"マスト‐パイレーツハート", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"어태커 潜入[1](このユニットの攻撃を相手のユニットに防御されなかった場合、1枚ドローする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-036", //ID
+		"img/card/BT02-036.png", //SRC
+		"アリス：ワンダーランドバニー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある一番低いコストを持つ相手のユニットを1枚選んで、そのユニットと装備しているアイテム全てを持ち主の手札に戻す。", //JP_TRIGGER
+		"엔트리 フィールドにある 가디언 を持つ自分のユニットを1枚選び、このターンが終わるまでヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-037", //ID
+		"img/card/BT02-037.png", //SRC
+		"ツバイ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"ベース / エリシオン", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-038", //ID
+		"img/card/BT02-038.png", //SRC
+		"ポリ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにある 디펜더 を持つ自分のユニット全てのパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-039", //ID
+		"img/card/BT02-039.png", //SRC
+		"イサベル‐ハネムーンパーティー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"SR", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー、 ガーディアン", //KEYWORD
+		"", //JP_TRIGGER
+		"가디언 防壁[2](隣のレーンの相手のユニットが攻撃する場合、自分の手札を2枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。<br>엔트리 相手のターンが終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-040", //ID
+		"img/card/BT02-040.png", //SRC
+		"ペッパー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-041", //ID
+		"img/card/BT02-041.png", //SRC
+		"ドロシー‐ノスタルジア", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"SR", //RARE
+		"3500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"トリガー / このカードをトラッシュする。1枚ドローする。", //JP_TRIGGER
+		"어태커 自分の手札が5枚以上ある場合、この攻撃が終わるまで突破[コスト6以上](コスト6以上の相手のユニットはこのユニットの攻撃を防御できない)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-042", //ID
+		"img/card/BT02-042.png", //SRC
+		"ルドミラ：ウィンターオーナー", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"SR", //RARE
+		"1500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"엔트리 自分のトラッシュゾーンから 트리거 を持たないスキルカードを1枚選び、デッキの上に裏向きで置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-043", //ID
+		"img/card/BT02-043.png", //SRC
+		"ルマニ", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"ディフェンダー", //KEYWORD
+		"トリガー / このカードをトラッシュする。フィールドにある一番低いコストを持つ相手のユニットを1枚選んで、そのユニットと装備しているアイテム全てを持ち主の手札に戻す。", //JP_TRIGGER
+		"디펜더 この防御が終わるまでパワー+4000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-044", //ID
+		"img/card/BT02-044.png", //SRC
+		"アイン", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"7500", //POWER
+		"2", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-045", //ID
+		"img/card/BT02-045.png", //SRC
+		"メアリー：ベイゴッデス", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"7", //COST
+		"R", //RARE
+		"7500", //POWER
+		"3", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 自分と相手のターンに1回ずつ、効果で自分の手札を1枚以上トラッシュした場合、1枚ドローする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-046", //ID
+		"img/card/BT02-046.png", //SRC
+		"ヘルム：アクアマリン", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"8", //COST
+		"UR", //RARE
+		"9000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"パッシブ、 ガーディアン", //KEYWORD
+		"トリガー / このカードを自分の手札に加える", //JP_TRIGGER
+		"가디언 防壁[3](隣のレーンの相手のユニットが攻撃する場合、自分の手札を3枚選んでトラッシュしたなら、このユニットでその攻撃を防御する)。<br>패시브 フィールドにあるコスト3以上の相手のユニット全てはバーサーカー(このユニットは攻撃可能な状態であれば必ず攻撃しなければならない)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉" //PRODUCT
+		],
+	[
+		"BT02-047", //ID
+		"img/card/BT02-047.png", //SRC
+		"ポリスライン", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある디펜더を持つ自分のユニットを1枚選び、このターンが終わるまでパワー+3500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-048", //ID
+		"img/card/BT02-048.png", //SRC
+		"私たちは友達！", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある가디언を持つ自分のユニット1枚と가디언を持たない自分のユニット1枚を選ぶ。このターンが終わるまで、その中の가디언を持たないユニットのパワーが가디언を持つユニットの今のパワー分上がる。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-049", //ID
+		"img/card/BT02-049.png", //SRC
+		"イージスキャノン牽制射撃", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある디펜더を持つ自分のユニットを2枚選ぶ。その後、相手に1ダメージを与える。選んだ2枚はこのターンが終わるまで攻撃できない。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-050", //ID
+		"img/card/BT02-050.png", //SRC
+		"ニンジンとウサギパーティー", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにある가디언を持つ自分のユニットを1枚選び、このターンが終わるまでパワー+2000。自分の手札が5枚以上ある場合、更にこのターンが終わるまでヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-051", //ID
+		"img/card/BT02-051.png", //SRC
+		"海賊の眼差し", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分の手札を2枚選んでトラッシュする。その後、相手に1ダメージを与える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-052", //ID
+		"img/card/BT02-052.png", //SRC
+		"セラミックベスト", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"0", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 3코스트 이하인 유닛<br>パワー+1000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-053", //ID
+		"img/card/BT02-053.png", //SRC
+		"ガッデシアムジャケット", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 가디언을 가진 유닛<br>パワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-054", //ID
+		"img/card/BT02-054.png", //SRC
+		"ノルンコードグローブ", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 4코스트 이상인 유닛<br>어태커 潜入[1](このユニットの攻撃を相手のユニットに防御されなかった場合、1枚ドローする)。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-055", //ID
+		"img/card/BT02-055.png", //SRC
+		"クラウン‐ネイキッドキング", //NAME
+		"リーダー", //TYPE
+		"稲妻", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"基本面<br>서약 自分は 번개 のカードのみをデッキに入れることができる。<br>각성 自分のリーダーレベルが6以上の場合、このカードを裏返す。<br><br>覚醒面<br>패시브  フィールドにあるアイテムを装備している自分のユニット全てのパワー+1500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-056", //ID
+		"img/card/BT02-056.png", //SRC
+		"トロニー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"1000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 自分のトラッシュゾーンからコスト1のアイテムカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-057", //ID
+		"img/card/BT02-057.png", //SRC
+		"シュガー‐コールミー・ハードボイルド", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"SR", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アームド", //KEYWORD
+		"トリガー / このカードをトラッシュする。2枚ドローする。その後、自分の手札を2枚選んでトラッシュする。", //JP_TRIGGER
+		"암드 装備しているアイテム1枚につき、パワー+2000。3枚以上なら更に「어태커 1枚ドローする」を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-058", //ID
+		"img/card/BT02-058.png", //SRC
+		"ミルク", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"엑시트 自分のダメージゾーンからアイテムカードを1枚選んで手札に加える。その後、自分の手札を1枚選んでダメージゾーンに置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-059", //ID
+		"img/card/BT02-059.png", //SRC
+		"エード", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 フィールドにある自分のユニットが装備しているアイテムを1枚選び、持ち主の手札に戻すことができる。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-060", //ID
+		"img/card/BT02-060.png", //SRC
+		"エレグ", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"SR", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"패시브 フィールドにあるアイテムを装備している自分のユニット1枚につき、パワー+2000。3枚以上なら更にヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-061", //ID
+		"img/card/BT02-061.png", //SRC
+		"ココア", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"5000", //POWER
+		"1", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-062", //ID
+		"img/card/BT02-062.png", //SRC
+		"プリム‐レイジーサマー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー、 アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드어태커 アイテムを装備している場合、この攻撃が終わるまで貫通[1](このユニットが攻撃した戦闘で相手のユニットをトラッシュしたなら、相手に1ダメージを与える)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-063", //ID
+		"img/card/BT02-063.png", //SRC
+		"レオナ", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"このカードをトラッシュする。自分のデッキからコスト1以下のアイテムカードを1枚選んで手札に加える。デッキをシャッフルする。", //JP_TRIGGER
+		"엔트리 対向ユニットのヒット分自分の手札からアイテムカードを選んでトラッシュできる。その後、対向ユニットをトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-064", //ID
+		"img/card/BT02-064.png", //SRC
+		"ビスケット", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"ベース / テトラ", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-065", //ID
+		"img/card/BT02-065.png", //SRC
+		"ラプラス", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드: 유니크《ユニーク》を持つアイテムを装備している場合、パワー+2500。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-066", //ID
+		"img/card/BT02-066.png", //SRC
+		"ネロ", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 アイテムを装備しているなら戦闘/効果でトラッシュされる時、このユニットが装備しているアイテムを1枚選んで持ち主の手札に戻すことができる。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-067", //ID
+		"img/card/BT02-067.png", //SRC
+		"クラウン‐ネイキッドキング", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"UR", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アームド", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"암드: 유니크《ユニーク》を持つアイテムを装備している場合、このユニットが装備しているアイテムの枚数が対向ユニットのヒット分以上なら、어태커 突破(相手のユニットはこのユニットの攻撃を防御できない)を得る。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-068", //ID
+		"img/card/BT02-068.png", //SRC
+		"リター‐フィッシュガード", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"6500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"엔트리 自分のデッキの上から2枚を公開し、その中のアイテムカードを1枚手札に加える。残りは好きな順番でデッキの下に置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-069", //ID
+		"img/card/BT02-069.png", //SRC
+		"ドレイク‐ヴィランレーサー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"5", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 アイテムを装備しているなら戦闘/効果でトラッシュされる時、このユニットが装備しているアイテムを1枚選んでトラッシュできる。その後、トラッシュされない。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-070", //ID
+		"img/card/BT02-070.png", //SRC
+		"センチ‐マイティホリデー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"8000", //POWER
+		"2", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-071", //ID
+		"img/card/BT02-071.png", //SRC
+		"ソーダ：トゥインクルバニー", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"6", //COST
+		"SR", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"トリガー / このカードを自分の手札に加える。", //JP_TRIGGER
+		"엔트리 自分のトラッシュゾーンからアイテムカードを3枚選んで好きな順番でデッキの下に置くことができる。その後、対向ユニットをトラッシュする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-072", //ID
+		"img/card/BT02-072.png", //SRC
+		"マクスウェル‐メカニックホワイト", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"7", //COST
+		"R", //RARE
+		"8000", //POWER
+		"3", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"암드 アイテムを装備している場合、ヒット+1。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-073", //ID
+		"img/card/BT02-073.png", //SRC
+		"勇気の眼差し", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のダメージゾーンからアイテムカードを1枚選んで手札に加える。その後、自分の手札を1枚選んでダメージゾーンに置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-074", //ID
+		"img/card/BT02-074.png", //SRC
+		"お食事のお時間です、ご主人様", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"自分のデッキから《ユニーク》を持つアイテムカードを1枚手札に加える。デッキをシャッフルする。", //JP_TRIGGER
+		"トリガー / このカードをトラッシュする。自分のデッキからコスト1以下のアイテムカードを1枚選んで手札に加える。デッキをシャッフルする。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-075", //ID
+		"img/card/BT02-075.png", //SRC
+		"ビギナーズベネフィット", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"フィールドにあるアイテムを1枚選んで持ち主のデッキの下に置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-076", //ID
+		"img/card/BT02-076.png", //SRC
+		"ロイヤルアタイア", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のトラッシュゾーンからコスト1以下のアイテムカードを1枚選んで手札に加える。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-077", //ID
+		"img/card/BT02-077.png", //SRC
+		"ネコの恩返し", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"自分のデッキの上から5枚を公開し、その中のアイテムカードを2枚まで選んで手札に加える。残りは好きな順番でデッキの下に置く。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-078", //ID
+		"img/card/BT02-078.png", //SRC
+		"セラミックゴーグル", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"0", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"ユニーク", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-079", //ID
+		"img/card/BT02-079.png", //SRC
+		"ガッデシアムブーツ", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br>어태커 この攻撃が終わるまでパワー+2000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-080", //ID
+		"img/card/BT02-080.png", //SRC
+		"アトラスパターンプロテクター", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 암드를 가진 유닛<br>パワー+3000。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT02-081", //ID
+		"img/card/BT02-081.png", //SRC
+		"パターンシリーズ：31ゲイター", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"ユニーク", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"장착 조건: 없음<br>패시브 自分と相手のターンに1回ずつ、このユニットが戦闘/効果でトラッシュされる時、自分の手札をこのユニットのヒット分選んでトラッシュできる。その後、トラッシュされない。", //JP_TEXT
+		"", //TW_TRIGGER
+		"", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT02〈ザ・キングダム〉"  //PRODUCT
+		],
+	[
+		"BT03-001", //ID
+		"img/card/BT03-001.png", //SRC
+		"拉毗：小紅帽", //NAME
+		"リーダー", //TYPE
+		"炎", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"エリシオン", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－ 基本面<br><br>【誓約】自己的牌組只能放入🟥屬性的卡片。<br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>－ 覺醒面<br><br>【主動：主階段】若自己的技能區中有至少 1 張的技能卡，選擇場上 1 個敵方單位，直到此回合結束為止，戰力 -2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-002", //ID
+		"img/card/BT03-002.png", //SRC
+		"毒蛇－愛情光芒", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"1500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，遭遇單位的戰力 -1500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-003", //ID
+		"img/card/BT03-003.png", //SRC
+		"紅蓮：暗影", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，遭遇單位的戰力 -2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-004", //ID
+		"img/card/BT03-004.png", //SRC
+		"阿妮斯：閃耀夏日", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】選擇場上 1 個具有「 【攻擊者】貫通〔1〕 」的我方單位，直到此回合結束為止，獲得「 【攻擊者】貫通〔2〕（當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 2 點傷害） 」，且該單位戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-005", //ID
+		"img/card/BT03-005.png", //SRC
+		"拉毗－白色諾言", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】直到本次攻擊結束為止，戰力 +3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-006", //ID
+		"img/card/BT03-006.png", //SRC
+		"紅蓮：暗影－蓮花", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"3", //COST
+		"SR", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】可以從自己技能區中的選擇 1 張技能卡棄置，若這麼做，則抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-007", //ID
+		"img/card/BT03-007.png", //SRC
+		"貝斯蒂－方舟法師", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【攻擊者】 若自己的手牌數為 3 張或以下，可以從自己的棄置區中選擇 1 張費用不超過 3 的技能卡加入手牌。若這麼做，直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-008", //ID
+		"img/card/BT03-008.png", //SRC
+		"諾伊斯－櫻花舞台", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【主動：主階段】可以從自己技能區中的選擇 1 個費用為 2 或以下的技能棄置，若這麼做，直到此回合結束為止，獲得「 【攻擊者】貫通〔1〕(當此單位攻擊並以戰鬥使敵方單位棄置時，對對手造成 1 點傷害） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-009", //ID
+		"img/card/BT03-009.png", //SRC
+		"布蕾德", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"5", //COST
+		"SR", //RARE
+		"2500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上 1 個敵方單位，直到此回合結束為止，戰力 -5000。", //TW_TRIGGER
+		"【攻擊者】從自己的手牌中選擇任意數量的卡片棄置。直到此回合結束為止，遭遇單位的戰力減少值，等同於遭棄置的卡片數量 ×2500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-010", //ID
+		"img/card/BT03-010.png", //SRC
+		"克勞斯特", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"6", //COST
+		"R", //RARE
+		"4500", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到此回合結束為止，遭遇單位戰力 -4000。若該單位因此效果而棄置，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-011", //ID
+		"img/card/BT03-011.png", //SRC
+		"拉毗：小紅帽", //NAME
+		"ユニット", //TYPE
+		"炎", //ELEMENT
+		"7", //COST
+		"UR", //RARE
+		"6000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アクティブ, アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【主動：主階段】可以從自己技能區中的選擇 1 個技能棄置，接著，從自己的棄置區中選擇 1 張費用低於該技能的卡牌，加入自己的手牌。<br><br>【攻擊者】直到本次攻擊結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-012", //ID
+		"img/card/BT03-012.png", //SRC
+		"何不一同賞花", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。從自己的棄置區中選擇 1 張費用為 2 或以下的單位卡加入手牌。", //TW_TRIGGER
+		"從自己的手牌中選擇最多 2 張保留，其餘全部棄置。抽牌直到手牌變為 3 張為止。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-013", //ID
+		"img/card/BT03-013.png", //SRC
+		"New Flavor", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個敵方單位。若自己與對手的手牌張數不同，直到此回合結束為止，該單位的戰力減少值等同於手牌張數差 × 1000 。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-014", //ID
+		"img/card/BT03-014.png", //SRC
+		"藝術就是爆炸", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個費用  4 或以下且具有【攻擊者】的我方單位。直到此回合結束為止，獲得「 【攻擊者】決鬥者（遭遇單位若能防禦，則必須防禦） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-015", //ID
+		"img/card/BT03-015.png", //SRC
+		"繼承的力量", //NAME
+		"スキル", //TYPE
+		"炎", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個敵方單位。若從自己的手牌中選擇 1 張單位卡棄置，直到此回合結束為止，該單位的戰力減少值等同於所棄置的單位卡戰力。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-016", //ID
+		"img/card/BT03-016.png", //SRC
+		"鈦金屬面罩", //NAME
+		"アイテム", //TYPE
+		"炎", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【攻擊者】直到本次攻擊結束為止，遭遇單位的戰力 -1000。若該單位因此效果而遭棄置，可以選擇將此單位裝備的 1 個**〈鈦金屬面罩〉**棄置，若這麼做，抽 2 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-017", //ID
+		"img/card/BT03-017.png", //SRC
+		"鈦金屬背心", //NAME
+		"アイテム", //TYPE
+		"炎", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：費用 3 以上單位】<br><br>【主動：主階段】可以選擇自己的 1 張手牌棄置。若這麼做，選擇場上 1 個敵方單位，直到此回合結束為止，戰力變為 3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-018", //ID
+		"img/card/BT03-018.png", //SRC
+		"娜嘉－最後的少女時代", //NAME
+		"リーダー", //TYPE
+		"大地", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ミシリス", //BELONG
+		"戦線維持", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－ 基本面<br><br>【誓約】自己的牌組只能放入🟩屬性的卡片。<br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>－ 覺醒面<br><br>【戰線構築】若自己所有的單位區皆有單位存在，所有我方單位戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-019", //ID
+		"img/card/BT03-019.png", //SRC
+		"露菲：冬季購物狂", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"1", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"レベルリンク", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【等級連結：6】若自己的領袖等級為 6 或以上，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-020", //ID
+		"img/card/BT03-020.png", //SRC
+		"特蕾娜", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"2", //COST
+		"SR", //RARE
+		"3500", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"戦線維持, レベルリンク", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。選擇場上 1 個費用為 3 或以下的敵方單位，將其棄置。", //TW_TRIGGER
+		"【等級連結：6】 【戰線構築】若自己的領袖等級為 6 或以上，且自己所有的單位區皆有單位存在，戰力 +3000、命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-021", //ID
+		"img/card/BT03-021.png", //SRC
+		"蒂亞", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"4000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー, 戦線維持", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【戰線構築】 【入場】若自己所有的單位區皆有單位存在，自己的領袖等級 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-022", //ID
+		"img/card/BT03-022.png", //SRC
+		"芙蘿拉", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"戦線維持, レベルリンク", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【等級連結：6】 【戰線構築】 若自己的領袖等級為 6 或以上，且自己所有的單位區皆有單位存在，則場上所有費用為 3 或以下的其他我方單位戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-023", //ID
+		"img/card/BT03-023.png", //SRC
+		"布麗德－古典工作服", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"4500", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】 公開自己牌堆頂部的 2 張卡，從中選擇 1 張費用為 4 或以下的單位卡加入手牌，將其餘的卡棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-024", //ID
+		"img/card/BT03-024.png", //SRC
+		"紅蓮", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】場上其他的所有我方單位，每有 1 命中，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-025", //ID
+		"img/card/BT03-025.png", //SRC
+		"迪塞爾－草莓花朵", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"5", //COST
+		"R", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】若自己的領袖等級為 10 或以上，抽 1 張牌。若非，則領袖等級 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-026", //ID
+		"img/card/BT03-026.png", //SRC
+		"尤莉亞－溫柔夜曲", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"8500", //POWER
+		"2", //HIT
+		"ベース / ミシリス", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-027", //ID
+		"img/card/BT03-027.png", //SRC
+		"森－後街的夢想", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"6", //COST
+		"SR", //RARE
+		"7000", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【主動：主階段】若此單位的戰力高出遭遇單位 3500 或以上，直到此回合結束為止，獲得「 【攻擊者】貫通〔1〕（當此單位攻擊並將對手單位戰鬥棄置時，對對手造成 1 點傷害） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-028", //ID
+		"img/card/BT03-028.png", //SRC
+		"娜嘉－最後的少女時代", //NAME
+		"ユニット", //TYPE
+		"大地", //ELEMENT
+		"9", //COST
+		"UR", //RARE
+		"10000", //POWER
+		"3", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アタッカー, レベルリンク", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【等級連結：10】 【攻擊者】若自己的領袖等級為 10 或以上，獲得「 突破〔費用 4 以下〕（費用為 4 或以下的敵方單位無法防禦此單位的攻擊） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-029", //ID
+		"img/card/BT03-029.png", //SRC
+		"Brand New Year", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個費用為 5 或以上的我方單位，直到此回合結束為止，命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-030", //ID
+		"img/card/BT03-030.png", //SRC
+		"最佳路線", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"直到此回合結束為止，場上所有費用為 3 或以下的我方單位命中 +1。若費用為 3 或以下的我方單位有 3 個以上，則額外抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-031", //ID
+		"img/card/BT03-031.png", //SRC
+		"祭典的尾聲", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個費用為 3 或以下的我方單位。若該單位的戰力高於遭遇單位，則將遭遇單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-032", //ID
+		"img/card/BT03-032.png", //SRC
+		"祕密花園", //NAME
+		"スキル", //TYPE
+		"大地", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。自己的領袖等級 +1。", //TW_TRIGGER
+		"直到此回合結束為止，場上所有費用為 3 或以下的我方單位戰力 +5000。若費用為 3 或以下的我方單位有 3 個以上，則額外使命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-033", //ID
+		"img/card/BT03-033.png", //SRC
+		"稀土金屬夾克", //NAME
+		"アイテム", //TYPE
+		"大地", //ELEMENT
+		"0", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：費用 5 以上單位】<br><br>【被動】自己的容量 +1", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-034", //ID
+		"img/card/BT03-034.png", //SRC
+		"稀土護目鏡", //NAME
+		"アイテム", //TYPE
+		"大地", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：費用 3 以下單位】<br><br>戰力 +2500，命中 +1", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-035", //ID
+		"img/card/BT03-035.png", //SRC
+		"小美人魚-深淵之花", //NAME
+		"リーダー", //TYPE
+		"嵐", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－ 基本面<br><br>【誓約】自己的牌組只能放入🟪屬性的卡片。<br>【覺醒】當自己的領袖等級達 5 以上時，翻轉此卡。<br><br>－ 覺醒面<br><br>【主動：主階段】若對手的手牌數為 3 張或以上，可以選擇自己的 1 張手牌棄置，接著，對手選擇 1 張手牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-036", //ID
+		"img/card/BT03-036.png", //SRC
+		"羅珊娜：高雅海洋", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"1000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】場上每有 1 個具有【離場】的我方單位，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-037", //ID
+		"img/card/BT03-037.png", //SRC
+		"尼希利斯塔", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】選擇場上 1 個敵方單位，直到此回合結束為止，場上每有 1 個具有【離場】的我方單位，該單位的戰力 -2500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-038", //ID
+		"img/card/BT03-038.png", //SRC
+		"神罰－初次的愛戀", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】若對手的手牌數為 3 張或以上，可以選擇自己的 1 張手牌棄置。若這麼做，對手選擇 1 張手牌棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-039", //ID
+		"img/card/BT03-039.png", //SRC
+		"灰姑娘－水晶公主", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"SR", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】從自己的棄置區中選擇 1 張費用為 4 的單位卡，加入手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-040", //ID
+		"img/card/BT03-040.png", //SRC
+		"櫻花－黑夜潛行", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】 若對手透過 【Trigger】 以外的效果抽牌，則對手僅能保留 4 張手牌，其餘全部棄置。<br><br>（譯註：抽牌階段與加入手牌等效果不會觸發此效果，例如 BT01-051**〈VIP禮物〉**）", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-041", //ID
+		"img/card/BT03-041.png", //SRC
+		"米哈拉：羈絆鎖鏈", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"4", //COST
+		"SR", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"ガーディアン, エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【守護者】犧牲〔1〕（當相鄰路徑上的敵方單位發動攻擊時，可以選擇場上 1 個其他的我方單位棄置，來防禦該單位的攻擊）<br><br>【離場】若為對手的回合，可以從自己的手牌中選擇 1 張具有【離場】的單位卡，或是具有【離場】的道具卡棄置。若這麼做，將此卡部署至我方空置的單位區，並且直到自己的回合結束為止，戰力 +2500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-042", //ID
+		"img/card/BT03-042.png", //SRC
+		"瑪娜", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】 此回合期間，若對手棄置了 1 張或以上的手牌，戰力 +2500。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-043", //ID
+		"img/card/BT03-043.png", //SRC
+		"梅登－豔陽之下", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"4500", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】若遭遇單位為費用 4 或以下，則該遭遇單位直到此回合結束為止，獲得「 【防禦者】終結（當此單位進行防禦宣告時，立即終止本次攻擊，並將此單位棄置） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-044", //ID
+		"img/card/BT03-044.png", //SRC
+		"小美人魚－深淵之花", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"6", //COST
+		"UR", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アクティブ, エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。從自己的棄置區中選擇 1 張具有【離場】的單位卡加入手牌。", //TW_TRIGGER
+		"【入場】若對手的手牌為 1 張或更少，將遭遇單位棄置。<br><br>【主動：主階段】若對手的手牌為 2 張或更少，直到此回合結束為止，戰力 +3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-045", //ID
+		"img/card/BT03-045.png", //SRC
+		"D：殺手妻子－秘密派對清潔工", //NAME
+		"ユニット", //TYPE
+		"嵐", //ELEMENT
+		"7", //COST
+		"R", //RARE
+		"7000", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】選擇場上 1 個我方單位棄置。接著，場上所有我方單位直到此回合結束為止，獲得「 【離場】返還（此回合結束時，該單位從自己的棄置區回到手牌） 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-046", //ID
+		"img/card/BT03-046.png", //SRC
+		"Kill the Lord", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個費用為 2 或以下的我方單位棄置，接著，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-047", //ID
+		"img/card/BT03-047.png", //SRC
+		"M.M.R.研究所", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"場上所有具有【離場】的我方單位，直到此回合結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-048", //ID
+		"img/card/BT03-048.png", //SRC
+		"軌道電梯", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。若對手的手牌數為 3 張或以上，則對手選擇 1 張手牌棄置。", //TW_TRIGGER
+		"從自己的棄置區中選擇 1 張費用為 4 以上且 6 以下的單位卡，加入手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-049", //ID
+		"img/card/BT03-049.png", //SRC
+		"痛苦羈絆", //NAME
+		"スキル", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個我方單位，直到此回合結束為止，場上所有其他我方單位的戰力增加值等同於該單位的戰力。接著，將該單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-050", //ID
+		"img/card/BT03-050.png", //SRC
+		"神鎘背心", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【離場】若對手的手牌數為 3 張或以下，選擇場上 1 個費用為 3 或以下的敵方單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-051", //ID
+		"img/card/BT03-051.png", //SRC
+		"神鎘護臂", //NAME
+		"アイテム", //TYPE
+		"嵐", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【主動：主階段】選擇場上 1 個其他具有【離場】的我方單位，直到對手的回合結束為止，選擇並獲得該單位持有的其中 1 個【離場】效果。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-052", //ID
+		"img/card/BT03-052.png", //SRC
+		"馬斯特：浪漫女僕", //NAME
+		"リーダー", //TYPE
+		"波濤", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"エリシオン", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－ 基本面<br><br>【誓約】自己的牌組只能放入🟦屬性的卡片。<br>【覺醒】當自己的領袖等級達 6 以上時，翻轉此卡。<br><br>－ 覺醒面<br><br>【主動：主階段】從自己的技能區選擇 1 張消費為 3 的技能卡棄置。接著，選擇場上一個具有【入場】的我方單位，選擇並發動該單位的其中 1 個【入場】效果。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-053", //ID
+		"img/card/BT03-053.png", //SRC
+		"魯德米拉：冬日之主", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】抽 1 張牌，接著，對手也抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-054", //ID
+		"img/card/BT03-054.png", //SRC
+		"愛麗絲：仙境兔女郎", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】將自己牌堆頂部的 1 張卡棄置。若該卡為技能卡，則可以發動該卡效果；若非，則自己與對手各抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-055", //ID
+		"img/card/BT03-055.png", //SRC
+		"梅里：海灣女神", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"R", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】 公開自己牌堆頂部的 3 張卡，從中選擇 1 張技能卡加入手牌。將其餘的卡棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-056", //ID
+		"img/card/BT03-056.png", //SRC
+		"哈蘭－宴會魔女", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー, ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】直到對手的回合結束為止，遭遇單位無法進行攻擊。<br><br>【防禦者】直到本次防禦結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-057", //ID
+		"img/card/BT03-057.png", //SRC
+		"富克旺－濕潤兔", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"SR", //RARE
+		"2500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。抽 1 張牌。", //TW_TRIGGER
+		"【主動：主階段】對手抽 1 張牌。從自己的手牌中選擇 1 張單位卡棄置。對手可以從自己的手牌中選擇 1 張費用與該卡相同的卡片棄置。若未這麼做，對手受到等同於所棄置的單位卡命中值的傷害。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-058", //ID
+		"img/card/BT03-058.png", //SRC
+		"佩珀－海洋維生素", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【被動】每當場上的敵方單位進行攻擊時，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-059", //ID
+		"img/card/BT03-059.png", //SRC
+		"安克：天真女僕", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"4", //COST
+		"R", //RARE
+		"3000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー, ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】可以選擇自己的 2 張手牌棄置。若這麼做，直到對手的回合結束為止，對手不能從手牌中部署費用為 5 或以上的單位卡。<br><br>【防禦者】直到本次防禦結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-060", //ID
+		"img/card/BT03-060.png", //SRC
+		"海倫－浴後", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"SR", //RARE
+		"4000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー, ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】此單位直到本回合結束為止無法進行攻擊。若對手的手牌超過 5 張，則給對手造成等同於張數差的傷害。<br><br>【防禦者】直到本次防禦結束為止，戰力 +1000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-061", //ID
+		"img/card/BT03-061.png", //SRC
+		"馬斯特：浪漫女僕", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"6", //COST
+		"UR", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"ガーディアン, ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【守護者】屏障〔2〕（當相鄰路徑上的敵方單位發動攻擊時，可以棄置 2 張手牌來防禦該單位的攻擊）<br><br>【防禦者】直到本次防禦結束為止，戰力 +4000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-062", //ID
+		"img/card/BT03-062.png", //SRC
+		"梅里－醫療兔", //NAME
+		"ユニット", //TYPE
+		"波濤", //ELEMENT
+		"7", //COST
+		"R", //RARE
+		"5500", //POWER
+		"3", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"エントリー, ディフェンダー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】選擇自己的 1 張手牌棄置。若這麼做，從自己的技能區中選擇 1 個技能並發動該效果。<br><br>【防禦者】直到本次防禦結束為止，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-063", //ID
+		"img/card/BT03-063.png", //SRC
+		"重來就好！", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個敵方單位，直到對手的回合結束為止，無法進行攻擊。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-064", //ID
+		"img/card/BT03-064.png", //SRC
+		"浪漫情人節", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。抽 1 張牌。", //TW_TRIGGER
+		"選擇場上 1 個具有【防禦者】的我方單位，可以從自己的手牌中選擇與該單位命中數相同張數的卡片棄置。若這麼做，將遭遇單位返回其擁有者的手牌中。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-065", //ID
+		"img/card/BT03-065.png", //SRC
+		"溫水浴", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"場上每有 1 個具有 【入場】 的我方單位，抽 1 張牌。直到對手的回合結束為止，對手的 【入場】 效果不能發動。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-066", //ID
+		"img/card/BT03-066.png", //SRC
+		"Blue Water Island", //NAME
+		"スキル", //TYPE
+		"波濤", //ELEMENT
+		"5", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"若自己的手牌數為 7 張或以上，選擇並棄置手牌直到變為 6 張。接著，每棄置 1 張牌，對對手造成 1 點傷害。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-067", //ID
+		"img/card/BT03-067.png", //SRC
+		"神鎘臂鎧", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【離場】可以選擇自己的 1 張手牌棄置，若這麼做，將此單位部署至我方空置的單位區。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-068", //ID
+		"img/card/BT03-068.png", //SRC
+		"神鎘護目鏡", //NAME
+		"アイテム", //TYPE
+		"波濤", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：具有【防禦者】的單位】<br><br>戰力 +3000", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-069", //ID
+		"img/card/BT03-069.png", //SRC
+		"利維坦", //NAME
+		"リーダー", //TYPE
+		"稲妻", //ELEMENT
+		"", //COST
+		"L", //RARE
+		"", //POWER
+		"", //HIT
+		"ピルグリム", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"－ 基本面<br><br>【誓約】自己的牌組只能放入🟨屬性的卡片。<br>【覺醒】當自己的領袖等級達 6 以上時，翻轉此卡。<br><br>－ 覺醒面<br><br>【主動：主階段】從自己的牌堆頂部抽取 3 張牌棄置，若因此效果而棄置的道具卡為 1 張或以上，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-070", //ID
+		"img/card/BT03-070.png", //SRC
+		"普麗瓦蒂：不友善女僕", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / エリシオン", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【武裝】若裝備道具，戰力 +2000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-071", //ID
+		"img/card/BT03-071.png", //SRC
+		"德雷克－反派專屬女僕", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】若場上有裝備道具的我方單位，公開自己牌堆頂部的 3 張卡，從中選擇 1 張道具卡加入手牌。將其餘的卡棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-072", //ID
+		"img/card/BT03-072.png", //SRC
+		"皇冠", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"2000", //POWER
+		"1", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】從自己的棄置區中選擇 1 張費用為 2 的道具卡，加入手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-073", //ID
+		"img/card/BT03-073.png", //SRC
+		"索達：閃亮兔女郎", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"4500", //POWER
+		"1", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アクティブ, アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。抽 2 張牌，接著，從自己的手牌中選擇 2 張卡棄置。", //TW_TRIGGER
+		"【武裝】 【主動：主階段】此單位每裝備 1 個道具，將自己牌堆頂部的 3 張卡棄置。直到此回合結束為止，每有 1 張道具卡因此效果而遭棄置，命中 +1。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-074", //ID
+		"img/card/BT03-074.png", //SRC
+		"特羅尼－甜蜜舞步", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"R", //RARE
+		"3000", //POWER
+		"1", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【武裝】此單位每裝備 1 件道具，戰力 +1000。若裝備 2 件或以上道具，則額外獲得「 【離場】 可以選擇場上 1 個未裝備道具的單位棄置 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-075", //ID
+		"img/card/BT03-075.png", //SRC
+		"舒恩", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"C", //RARE
+		"3500", //POWER
+		"2", //HIT
+		"エフェクト / ミシリス", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】可以從自己的棄置區中選擇最多 3 張道具卡，以任意順序放回牌堆底部。若選擇的卡片費用總和不低於遭遇單位的費用，則遭遇單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-076", //ID
+		"img/card/BT03-076.png", //SRC
+		"萊昂納－動物飼養員", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"4", //COST
+		"SR", //RARE
+		"5000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"エグジット", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【離場】從自己的傷害區中選擇 1 張**〈萊昂納－動物飼養員〉**以外的單位卡，加入自己的手牌。接著，將此單位卡放置於自己的傷害區。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-077", //ID
+		"img/card/BT03-077.png", //SRC
+		"利維坦", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"5", //COST
+		"UR", //RARE
+		"5500", //POWER
+		"2", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"アクティブ, パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡加入自己的手牌。", //TW_TRIGGER
+		"【被動】 此單位不能以我方效果以外的方式裝備道具，且不能裝備 2 個或以上的同名道具。<br><br>【主動：主階段】 可以從自己的棄置區中選擇最多 2 件道具，無視容量並裝備。此單位裝備的所有道具，直到此回合結束為止，費用變為 0 。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-078", //ID
+		"img/card/BT03-078.png", //SRC
+		"舒格－狂野後花園", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"6", //COST
+		"C", //RARE
+		"6000", //POWER
+		"2", //HIT
+		"エフェクト / テトラ", //BELONG
+		"アームド", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【武裝】若裝備道具，當此單位因戰鬥或效果而將被棄置，可以從自己的棄置區中選擇 1 張道具卡，將其放回牌堆底部。若這麼做，此單位與其裝備的道具一併返回其擁有者手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-079", //ID
+		"img/card/BT03-079.png", //SRC
+		"貝西摩斯", //NAME
+		"ユニット", //TYPE
+		"稲妻", //ELEMENT
+		"8", //COST
+		"SR", //RARE
+		"6500", //POWER
+		"3", //HIT
+		"エフェクト / ピルグリム", //BELONG
+		"エントリー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【入場】可以從自己的棄置區與手牌中選擇 8 張道具卡，以任意順序放回牌堆底部。若這麼做，選擇場上費用總和不超過 8 且任意數量的敵方單位棄置。每有 1 個因此效果而遭棄置的單位，抽 1 張牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-080", //ID
+		"img/card/BT03-080.png", //SRC
+		"你不能死", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"1", //COST
+		"R", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個我方單位，直到此回合結束為止，獲得「 【被動】每當此單位裝備 1 或以上的道具時，抽 1 張牌 」。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-081", //ID
+		"img/card/BT03-081.png", //SRC
+		"巨鉗", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"【Trigger】／將此卡棄置。從自己的牌堆中選擇 1 張費用為 1 或以下的道具卡加入手牌，接著洗牌。", //TW_TRIGGER
+		"將自己牌堆頂部的 5 張卡棄置。從自己的棄置區中選擇 1 張單位卡加入手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-082", //ID
+		"img/card/BT03-082.png", //SRC
+		"快點過來啊!!!!!", //NAME
+		"スキル", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"選擇場上 1 個我方單位與其裝備的 1 個道具。場上其他的所有我方單位，直到此回合結束為止，獲得該道具效果。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-083", //ID
+		"img/card/BT03-083.png", //SRC
+		"代碼：IX護目鏡", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"ユニーク", //BELONG
+		"パッシブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：裝備道具的單位】<br><br>【被動】當此單位因戰鬥或效果而將被棄置，可以選擇並棄置 1 個裝備的**〈代碼：IX護目鏡〉**。若這麼做，此單位與其裝備的道具一併返回其擁有者手牌。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-084", //ID
+		"img/card/BT03-084.png", //SRC
+		"代碼：IX鞋", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"2", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"", //BELONG
+		"アクティブ", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：無】<br><br>【主動：主階段】將自己牌堆頂部的 3 張卡棄置。若因此效果棄置了 1 張或以上的道具卡，直到對手的回合結束為止，戰力 +3000。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		],
+	[
+		"BT03-085", //ID
+		"img/card/BT03-085.png", //SRC
+		"代碼：IX夾克", //NAME
+		"アイテム", //TYPE
+		"稲妻", //ELEMENT
+		"3", //COST
+		"C", //RARE
+		"", //POWER
+		"", //HIT
+		"ユニーク", //BELONG
+		"アタッカー", //KEYWORD
+		"", //JP_TRIGGER
+		"", //JP_TEXT
+		"", //TW_TRIGGER
+		"【裝備條件：費用 3 以上單位】<br><br>【攻擊者】可以選擇自己的 1 張手牌棄置。接著，對手可以選擇與此單位命中值相同數量的手牌棄置。若對手未這麼做，則將遭遇單位棄置。", //TW_TEXT
+		"勝利の女神：NIKKE NivelArenaブースターパックBT03〈アンブレイカブル〉" //PRODUCT
+		]
+	]
