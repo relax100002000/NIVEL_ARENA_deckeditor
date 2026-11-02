@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>NIVEL ARENA 練牌模擬器</title>
+<script src="js/card_info.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<style>
+:root{ --bg:#0b1112; --zoneb:#3a8f87; --accent:#7fe0d2; --txt:#dcefec; --muted:#86a5a1; --p2:#ff9a8a; --p2b:#a85a4a; }
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--txt);font-family:"Segoe UI","Meiryo","Microsoft JhengHei",sans-serif;font-size:13px;overflow:hidden;user-select:none}
+button{background:#17403c;color:var(--txt);border:1px solid #3a8f87;border-radius:4px;padding:2px 7px;cursor:pointer;font-size:12px}
+button:hover{background:#1f5a54}
+select,textarea,input{background:#0f2624;color:var(--txt);border:1px solid #3a8f87;border-radius:4px;font-size:12px}
+#topbar{height:40px;display:flex;align-items:center;gap:6px;padding:0 10px;background:#0f1a1b;border-bottom:1px solid #1f3b39;white-space:nowrap}
+#topbar .title{font-weight:bold;color:var(--accent);margin-right:4px;letter-spacing:1px}
+#topbar a{color:var(--accent)}
+.ptag{font-weight:bold;padding:0 5px;border-radius:4px;font-size:11px}
+.ptag.p0{background:#1d6a8f;color:#fff}.ptag.p1{background:#8c3c34;color:#fff}
+#codeBox,#netBox{position:fixed;top:44px;z-index:3000;background:#0f1a1b;border:1px solid #3a8f87;border-radius:6px;padding:8px;display:none}
+#codeBox{left:10px}
+#codeBox textarea{width:520px;height:120px;display:block;margin-bottom:6px;user-select:text}
+#netBox{right:10px;width:330px;line-height:1.7;padding:10px}
+#netBox input{width:110px;text-transform:uppercase;font-size:14px;letter-spacing:2px;padding:2px 6px}
+#netCode{font-size:22px;font-weight:bold;letter-spacing:4px;color:#ffd75e;user-select:text}
+#netStat{font-size:12px}
+#netStat.ok{color:#7be07b}#netStat.ng{color:#ff8a8a}
+#main{display:flex;height:calc(100% - 40px)}
+#boardWrap{position:relative;flex:none;margin:6px}
+#board{position:absolute;left:0;top:0;width:1240px;height:930px;transform-origin:0 0;border-radius:10px}
+.half{position:absolute;left:0;width:1240px;height:460px;border:1px solid #1f3b39;border-radius:10px}
+.half.p0{background:linear-gradient(160deg,#122a2c 0%,#0d1c1e 55%,#122a2c 100%)}
+.half.p1{background:linear-gradient(160deg,#2c1716 0%,#1c0f0f 55%,#2c1716 100%)}
+.half.turn{box-shadow:0 0 0 2px #ffd75e}
+.zone{position:absolute;border:1px solid var(--zoneb);border-radius:8px;background:rgba(20,60,58,.6)}
+.zone.p1{border-color:var(--p2b);background:rgba(70,30,26,.6)}
+.zone.hl{box-shadow:0 0 0 3px var(--accent) inset;background:rgba(40,120,110,.7)}
+.zlabel{position:absolute;left:6px;top:3px;font-size:11px;font-weight:bold;color:var(--accent);letter-spacing:1px;pointer-events:none;white-space:normal;word-break:keep-all;overflow-wrap:anywhere;line-height:13px;max-width:calc(100% - 40px)}
+.zone.p1 .zlabel{color:var(--p2)}
+.zone.narrow .zlabel{max-width:calc(100% - 10px);letter-spacing:0}
+.zone.narrow .zcount{top:auto;bottom:3px}
+.zcount{position:absolute;right:6px;top:3px;font-size:11px;color:#fff;background:#1d5f5a;border-radius:8px;padding:0 6px;pointer-events:none}
+.zone.p1 .zcount{background:#7a352e}
+.lvrow{position:absolute;left:0;right:0;height:20px;border-top:1px solid rgba(127,224,210,.18);font-size:11px;color:var(--muted);padding:2px 6px;text-align:right;pointer-events:none}
+.lvrow.on{color:#ffd75e;font-weight:bold;background:rgba(255,215,94,.08)}
+.zone.p1 .lvrow{border-top-color:rgba(255,154,138,.18)}
+.dmgnum{position:absolute;top:18px;font-size:10px;color:var(--muted);pointer-events:none}
+.zbtn{position:absolute;top:2px;z-index:950;padding:0 5px;font-size:11px;line-height:15px}
+.card{position:absolute;width:80px;height:112px;border-radius:5px;cursor:grab;transition:transform .12s;background:#222 center/cover;box-shadow:0 1px 3px rgba(0,0,0,.6)}
+.card img{width:100%;height:100%;border-radius:5px;display:block;pointer-events:none;object-fit:cover}
+.card.down{transform:rotate(90deg)}
+.card.awake::before{content:"覚醒";position:absolute;left:0;right:0;top:36px;text-align:center;background:rgba(255,200,60,.85);color:#300;font-weight:bold;font-size:12px;z-index:2;pointer-events:none}
+.card .mod{position:absolute;left:2px;bottom:2px;background:#d9534f;color:#fff;font-size:11px;font-weight:bold;border-radius:4px;padding:0 3px;z-index:3;pointer-events:none}
+.card .mod.plus{background:#2e9d5b}
+.card.noimg{background:#2a3d3b;border:1px solid #6db5aa}
+.card.noimg::after{content:attr(data-name);position:absolute;inset:4px;font-size:10px;color:#fff;overflow:hidden}
+.card.noimg img{visibility:hidden}
+.card.back.noimg::after{content:""}
+.card.dragsrc{opacity:.3}
+.card:hover{box-shadow:0 0 0 2px var(--accent)}
+.card.foreign{outline:2px solid #ffb347}
+.sbadge{position:absolute;font-size:11px;background:#d9534f;color:#fff;border-radius:8px;padding:0 5px;z-index:900;pointer-events:none}
+#ghost{position:fixed;z-index:5000;pointer-events:none;transform-origin:0 0;opacity:.9}
+#ghost .card{position:relative;left:0!important;top:0!important}
+#side{flex:none;width:300px;margin:6px 6px 6px 0;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+#panel{background:#0f1a1b;border:1px solid #1f3b39;border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:5px}
+#panel h3{margin:0;font-size:13px;color:#ffd75e}
+.phases{display:flex;flex-wrap:wrap;gap:2px}
+.phase{padding:1px 6px;border-radius:4px;cursor:pointer;color:var(--muted);font-size:11px;border:1px solid #1f3b39}
+.phase.on{background:#2a9d8f;color:#fff;font-weight:bold}
+.prow{display:flex;gap:3px;flex-wrap:wrap;align-items:center;padding:4px;border-radius:6px;background:#10302d}
+.prow.p1{background:#2e1614}
+.prow .cnt{font-size:11px;color:var(--muted);width:100%}
+.big{color:#ffd75e;font-weight:bold;font-size:14px;min-width:16px;text-align:center}
+#pvCol{flex:1;min-width:260px;max-width:400px;margin:6px 6px 6px 0;display:flex;flex-direction:column}
+#preview{background:#0f1a1b;border:1px solid #1f3b39;border-radius:8px;padding:8px;flex:1;overflow:auto;user-select:text;min-height:120px}
+#preview > img{width:100%;max-width:260px;border-radius:10px;display:block;margin:0 auto 6px}
+#pvName{font-weight:bold;font-size:14px;color:#fff}
+#pvMeta{color:var(--muted);font-size:11px;margin:3px 0 6px}
+#pvText{font-size:12px;line-height:1.55}
+#pvText img,.icon_img{width:auto;height:16px;display:inline;border-radius:0;margin:0;vertical-align:middle}
+#log{background:#0f1a1b;border:1px solid #1f3b39;border-radius:8px;padding:6px;flex:1;min-height:120px;overflow:auto;font-size:11px;color:var(--muted);user-select:text}
+#log .l1{color:#e7b0a7}#log .l0{color:#a7d8e7}
+#ctx{position:fixed;z-index:6000;background:#10302d;border:1px solid #3a8f87;border-radius:6px;padding:4px 0;min-width:170px;display:none;box-shadow:0 4px 14px rgba(0,0,0,.6)}
+#ctx div.i{padding:4px 14px;cursor:pointer;white-space:nowrap}
+#ctx div.i:hover{background:#2a9d8f}
+#ctx div.h{padding:3px 12px;color:var(--accent);font-weight:bold;font-size:12px;border-bottom:1px solid #24504c;margin-bottom:2px;max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#ctx div.s{border-top:1px solid #24504c;margin:3px 0}
+#ctx div.sub{position:relative}
+#ctx div.sub::after{content:"▶";position:absolute;right:6px;font-size:9px;top:6px}
+#ctx div.sub > .menu{display:none;position:absolute;left:100%;top:-4px;background:#10302d;border:1px solid #3a8f87;border-radius:6px;padding:4px 0;min-width:150px}
+#ctx div.sub:hover > .menu{display:block}
+.viewer{position:fixed;z-index:4000;background:#0f1a1b;border:1px solid #7fe0d2;border-radius:8px;box-shadow:0 6px 24px rgba(0,0,0,.7);width:620px;max-height:70vh;display:flex;flex-direction:column}
+.viewer .vh{padding:6px 10px;background:#1d5f5a;border-radius:8px 8px 0 0;cursor:move;display:flex;justify-content:space-between;align-items:center;font-weight:bold}
+.viewer.p1 .vh{background:#6a2a24}
+.viewer .vb{padding:8px;overflow:auto;display:flex;flex-wrap:wrap;gap:6px;min-height:110px}
+.viewer .card{position:relative}
+.viewer .card.back{outline:2px dashed #e0a030}
+.viewer .vnote{font-size:11px;color:var(--muted);padding:0 10px 6px}
+#hoverZoom{position:fixed;z-index:5500;pointer-events:none;display:none;border-radius:12px;box-shadow:0 8px 28px rgba(0,0,0,.8);border:2px solid #7fe0d2;background:#111;width:250px;height:349px}
+#hoverZoom img{display:block;width:100%;height:100%;border-radius:10px;object-fit:cover}
+#help{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:7000;display:none;align-items:center;justify-content:center}
+#help > div{background:#0f1a1b;border:1px solid #7fe0d2;border-radius:10px;padding:16px 22px;max-width:680px;line-height:1.7;user-select:text}
+#help h2{margin:0 0 8px;color:var(--accent);font-size:16px}
+kbd{background:#1f3b39;border-radius:3px;padding:0 5px;font-size:11px}
+</style>
+</head>
+<body>
+<div id="topbar">
+	<span class="title">NIVEL ARENA 練牌模擬器</span>
+	<span class="ptag p0">P1</span><select id="deckSelect0" style="max-width:200px"></select>
+	<span class="ptag p1">P2</span><select id="deckSelect1" style="max-width:200px"></select>
+	<button onclick="toggleCode()">貼上コード</button>
+	<button onclick="prepareGame()" title="雙方：リーダーをレベルゾーン(Lv1)へ、シャッフルして5枚ドロー">① 準備</button>
+	<button onclick="startGame()" title="先攻からゲーム開始">② ゲーム開始</button>
+	<button onclick="undo()" title="Ctrl+Z">↶ 元に戻す</button>
+	<button id="restoreBtn" onclick="restoreSaved()" style="display:none">前回を復元</button>
+	<span style="flex:1"></span>
+	<span id="netBadge" style="font-size:12px;color:var(--muted)"></span>
+	<button onclick="toggleNet()">🌐 連線對戰</button>
+	<label style="font-size:12px" title="滑鼠移到卡片上時在旁邊顯示放大圖"><input type="checkbox" id="zoomToggle" checked> Hover放大</label>
+	<button onclick="showHelp(true)">操作說明</button>
+	<a href="index.html">Deck Editor</a>
+</div>
+<div id="netBox">
+	<b style="color:var(--accent)">連線對戰（WebRTC 點對點）</b><br>
+	<div id="netIdle">
+		<button onclick="hostRoom()">建立房間（我是 P1）</button><br>
+		或輸入對方的房間代碼：<input id="joinCode" maxlength="6"> <button onclick="joinRoom()">加入（我是 P2）</button>
+	</div>
+	<div id="netActive" style="display:none">
+		<div id="netCodeRow">房間代碼：<span id="netCode"></span> <button onclick="copyCode()">複製</button></div>
+		<button onclick="leaveRoom()">中斷連線</button>
+	</div>
+	<div id="netStat"></div>
+	<div style="font-size:11px;color:var(--muted);margin-top:6px">雙方各自選自己的牌組；盤面、回合、紀錄會即時同步。對手的手札與デッキ不會顯示。<br>連線靠 PeerJS 免費配對服務，少數公司／學校網路可能連不上。</div>
+	<div style="text-align:right"><button onclick="toggleNet()">關閉</button></div>
+</div>
+<div id="codeBox">
+	<div style="margin-bottom:4px;color:var(--muted)">デッキエディタのコード（ldeck / mdeck 各一行）</div>
+	<textarea id="codeText" placeholder="ldeck,ST01-001&#10;mdeck,ST01-002,..."></textarea>
+	<button onclick="loadFromText(0)">讀入 P1</button> <button onclick="loadFromText(1)">讀入 P2</button> <button onclick="toggleCode()">關閉</button>
+</div>
+<div id="main">
+	<div id="boardWrap"><div id="board"></div></div>
+	<div id="side">
+		<div id="panel"></div>
+		<div id="log"></div>
+	</div>
+	<div id="pvCol">
+		<div id="preview"><div style="color:var(--muted)">滑鼠移到卡片上顯示詳細資料</div></div>
+	</div>
+</div>
+<div id="ctx"></div>
+<div id="hoverZoom"><img alt=""></div>
+<div id="help" onclick="if(event.target===this)showHelp(false)"><div>
+	<h2>操作說明</h2>
+	<b>盤面：</b>P1＝藍、P2＝紅，兩邊面對面（ユニットゾーン左右對調，正對面的就是對向ユニット）。黃框＝目前回合玩家。本機時 P1 在下；連線時自己永遠在下。<br>
+	<b>讀牌組：</b>上方兩個選單分別給 P1／P2 選牌組編輯器存的牌組；也可「貼上コード」。<br>
+	<b>開局：</b>①準備（リーダーを Lv1 に置き、シャッフル、5枚ドロー）→ 需要的話按面板的「引き直し」→ ②ゲーム開始。<br>
+	<b>レベル：</b>レベルゾーン右上 ▲▼ 或面板按鈕調整；サイズ＝レベル＋ダメージ，面板自動計算。<br>
+	<b>ダメージ：</b>面板「ダメージ＋1」＝デッキ上 1 枚公開放到ダメージゾーン（トリガー請自行處理）。<br>
+	<b>拖曳：</b>左鍵拖曳卡片到任何區域（含對方區域）。拖到已有卡的ユニットゾーン會跳出選單：表向きで上に重ねる（アップグレード，之後請把舊ユニット送去トラッシュ）／表向きで下に置く（アイテム裝備，露出上緣）／裏向きで下に置く。<kbd>Shift</kbd>＋拖曳＝整疊移動。<br>
+	<b>右鍵：</b>横向き／縦向き、翻面、覚醒、パワー修正、移動、スタック操作；右鍵牌堆＝ドロー、シャッフル、查看、上からN枚…<br>
+	<b>空白鍵：</b>跳到下一個フェイズ（エンドの次はターン終了・交代）。<br>
+	<b>雙擊：</b>場上卡片＝横向き／縦向き；デッキ＝ドロー；トラッシュ＝查看。<br>
+	<b>快捷鍵（指著卡片）：</b><kbd>D</kbd> 横向き　<kbd>F</kbd> 翻面　<kbd>A</kbd> 覚醒　<kbd>Ctrl+Z</kbd> 元に戻す<br>
+	<b>連線對戰：</b>「🌐 連線對戰」→ 一方建立房間，把 6 碼代碼給對方加入。Ctrl+Z 會復原最後一個動作（不論是誰做的）。<br>
+	不含自動效果，所有處理請手動操作。<br>
+	<div style="text-align:right;margin-top:8px"><button onclick="showHelp(false)">關閉</button></div>
+</div></div>
+
+<script>
+/* ==== text icon helpers (copied from js/function.js) ==== */
+var JP_ICON_MAP = {
+	"アタッカー": "ico_atc.png", "エントリー": "ico_ent.png", "アクティブ：メイン": "ico_atv_main.png",
+	"アクティブ：アタック": "ico_atv_atc.gif", "アクティブ": "ico_active.png", "パッシブ": "ico_psv.png",
+	"エグジット": "ico_exit.png", "ミックス": "ico_mix.gif", "エスケープ": "ico_escape.gif",
+	"クレジット1": "ico_credit_1.gif", "クレジット2": "ico_credit_2.gif", "トリガー": "ico_trigger.png",
+	"戦線構築": "ico_line.png", "誓約": "ico_vow.jpg", "覚醒": "ico_awk.jpg", "アームド": "ico_amd.png",
+	"アームド：ユニーク": "ico_amd_uq.png", "ガーディアン": "ico_gud.png", "ディフェンダー": "ico_dfd.png"
+};
+
+var JP_LV_ICON = { "4": "gif", "6": "png", "7": "gif", "8": "gif", "9": "gif", "10": "png" };
+
+function jp_icon_tag(file)
+{
+	return "<img class='icon_img' src='img/" + file + "'></img>";
+}
+
+function jp_eq_icon(cond)
+{
+	var m;
+	if(cond == "なし") return "ico_eq_none.png";
+	if(cond == "エグジット") return "ico_eq_exit.png";
+	if(m = cond.match(/^コスト(\d+)以上/))
+	{
+		if(m[1] == "3") return "ico_eq_3cost_more.png";
+		if(m[1] == "4") return "ico_eq_4cost.png";
+		if(m[1] == "5") return "ico_eq_5cost_more.png";
+	}
+	if(m = cond.match(/^コスト(\d+)以下/))
+	{
+		if(m[1] == "3") return "ico_eq_3cost.png";
+		if(m[1] == "4") return "ico_eq_4cost_dw.png";
+		if(m[1] == "6") return "ico_eq_6cost_dw.png";
+	}
+	if(/^ベース/.test(cond)) return "ico_eq_base.png";
+	if(/^ガーディアン/.test(cond)) return "ico_eq_gud.png";
+	if(/^ディフェンダー/.test(cond)) return "ico_eq_dfd.png";
+	if(/^アームド/.test(cond)) return "ico_eq_amd.png";
+	if(/^アタッカー/.test(cond)) return "ico_eq_att.png";
+	if(/^ナタロン学園/.test(cond)) return "ico_eq_natal.png";
+	if(/^夏スペシャル/.test(cond)) return "ico_eq_spsum.png";
+	if(/아이템/.test(cond) || /^アイテム/.test(cond)) return "ico_eq_item.png";
+	return "";
+}
+
+function jp_str_to_img(x)
+{
+	x = x.replace(/【装備条件：([^】]*)】(<br><br>)?/g, function(all, cond, br){
+		var f = jp_eq_icon(cond);
+		return f ? jp_icon_tag(f) + "<br><br>" : all;
+	});
+	x = x.replace(/【レベルリンク：(\d+)】/g, function(all, n){
+		return JP_LV_ICON[n] ? jp_icon_tag("ico_lv" + n + "_link." + JP_LV_ICON[n]) : all;
+	});
+	x = x.replace(/【([^】]+)】/g, function(all, k){
+		return JP_ICON_MAP[k] ? jp_icon_tag(JP_ICON_MAP[k]) : all;
+	});
+	return x;
+}
+
+function str_to_img(x)
+{
+	x = jp_str_to_img(x);
+	x = x.replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+	x = x.replace(/장착조건 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
+	x = x.replace(/장착 조건: 없음/g, "<img class='icon_img' src='img/ico_eq_none.png'></img>");
+	x = x.replace(/장착조건 엑시트/g, "<img class='icon_img' src='img/ico_eq_exit.png'></img>");
+	x = x.replace(/장착조건 4코스트이상/g, "<img class='icon_img' src='img/ico_eq_4cost.png'></img>");
+	x = x.replace(/장착 조건: 4코스트 이상인 유닛/g, "<img class='icon_img' src='img/ico_eq_4cost.png'></img>");
+	x = x.replace(/장착조건 4코스트이하/g, "<img class='icon_img' src='img/ico_eq_4cost_dw.png'></img>");
+	x = x.replace(/장착 조건: 3코스트 이하인 유닛/g, "<img class='icon_img' src='img/ico_eq_3cost.png'></img>");
+	x = x.replace(/장착 조건: 베이스를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_base.png'></img>");
+	x = x.replace(/장착 조건: 가디언을 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_gud.png'></img>");
+	x = x.replace(/암드: 유니크/g, "<img class='icon_img' src='img/ico_amd_uq.png'></img>");
+
+	x = x.replace(/장착 조건: 디펜더를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_dfd.png'></img>");
+	x = x.replace(/장착 조건: 암드를 가진 유닛/g, "<img class='icon_img' src='img/ico_eq_amd.png'></img>");
+
+	x = x.replace(/화염/g, "<img class='icon_img' src='img/ico_red_m.jpg'></img>");
+	x = x.replace(/대지/g, "<img class='icon_img' src='img/ico_green_m.jpg'></img>");
+	x = x.replace(/폭풍/g, "<img class='icon_img' src='img/ico_violet_m.jpg'></img>");
+	x = x.replace(/파도/g, "<img class='icon_img' src='img/ico_blue.jpg'></img>");
+	x = x.replace(/번개/g, "<img class='icon_img' src='img/ico_yellow.jpg'></img>");
+
+	x = x.replace(/炎/g, "<img class='icon_img' src='img/ico_red_m.jpg'></img>");
+	x = x.replace(/大地/g, "<img class='icon_img' src='img/ico_green_m.jpg'></img>");
+	x = x.replace(/嵐/g, "<img class='icon_img' src='img/ico_violet_m.jpg'></img>");
+	x = x.replace(/波濤/g, "<img class='icon_img' src='img/ico_blue.jpg'></img>");
+	x = x.replace(/稲妻/g, "<img class='icon_img' src='img/ico_yellow.jpg'></img>");
+
+	x = x.replace(/서약/g, "<img class='icon_img' src='img/ico_vow.jpg'></img>");
+	x = x.replace(/각성/g, "<img class='icon_img' src='img/ico_awk.jpg'></img>");
+	x = x.replace(/엑시트/g, "<img class='icon_img' src='img/ico_exit.png'></img>");
+	x = x.replace(/패시브/g, "<img class='icon_img' src='img/ico_psv.png'></img>");
+	x = x.replace(/엔트리/g, "<img class='icon_img' src='img/ico_ent.png'></img>");
+	x = x.replace(/액티브메인/g, "<img class='icon_img' src='img/ico_atv_main.png'></img>");
+	x = x.replace(/액티브: 메인/g, "<img class='icon_img' src='img/ico_atv_main.png'></img>");
+	x = x.replace(/어태커/g, "<img class='icon_img' src='img/ico_atc.png'></img>");
+	x = x.replace(/디펜더/g, "<img class='icon_img' src='img/ico_dfd.png'></img>");
+	x = x.replace(/가디언/g, "<img class='icon_img' src='img/ico_gud.png'></img>");
+	x = x.replace(/암드/g, "<img class='icon_img' src='img/ico_amd.png'></img>");
+
+	// 以關鍵字圖示起頭的效果,與前一句空一行
+	x = x.replace(/([。！!」）)])(?:\s*<br>)*\s*(<img class='icon_img' src='img\/ico_(?:atc|ent|atv_main|atv_atc|active|psv|exit|mix|escape|credit_\d|line|vow|awk|amd|amd_uq|gud|dfd|lv\d+_link)\.[a-z]+'><\/img>)/g, "$1<br><br>$2");
+
+	x = x.replace(/<br><br>覚醒面<br><br>/g, "</tr><tr><td colspan=2>覚醒面<br><br>");
+	x = x.replace(/<br><br>覺醒面<br><br>/g, "</tr><tr><td colspan=2>覺醒面<br><br>");
+
+	return x;
+}
+</script>
+<script>
+"use strict";
+/* ============ card database ============ */
+var DB = {};
+if (typeof cardData === "undefined") {
+	document.body.innerHTML = '<div style="padding:40px;font-size:16px;line-height:1.8;color:#dcefec">讀不到卡片資料（js/card_info.js）。<br>請從 <b>NIVEL_ARENA_deckeditor 資料夾</b> 直接開啟 simulator.html（需和 js/ 資料夾放在同一層），不要從聊天室的檔案預覽開啟。</div>';
+	throw new Error("card_info.js not loaded: open simulator.html from the NIVEL_ARENA_deckeditor folder");
+}
+cardData.forEach(function(r){ if (r && r[0] && !DB[r[0]]) DB[r[0]] = r; });
+var BACK = "img/card_back.jpg";
+function row(c){ return DB[c.id] || []; }
+function cname(c){ return row(c)[NAME] || c.id; }
+function ctype(c){ return row(c)[TYPE] || ""; }
+function imgOf(c){ return row(c)[SRC] || ("img/card/" + c.id + ".png"); }
+function richText(x){
+	x = String(x || "");
+	try { if (typeof str_to_img === "function") x = str_to_img(x); } catch(e) {}
+	return x.replace(/<\/tr><tr><td colspan=2>/g, "<hr style='border-color:#24504c'>");
+}
+
+/* ============ zones (two players) ============ */
+var CW = 80, CH = 112, BW = 1240, HALF = 465, BH = 940;
+var PN = ["P1", "P2"];
+// unit zones and damage zone are centred, so the mirrored opponent's lanes line up with ours
+var BASE = {
+	level:  {name:"レベルゾーン",   kind:"level", face:true,  x:10,   y:5,   w:190, h:320},
+	unit1:  {name:"ユニットゾーン", kind:"stack", face:true,  x:210,  y:5,   w:268, h:185, field:true},
+	unit2:  {name:"ユニットゾーン", kind:"stack", face:true,  x:486,  y:5,   w:268, h:185, field:true},
+	unit3:  {name:"ユニットゾーン", kind:"stack", face:true,  x:762,  y:5,   w:268, h:185, field:true},
+	damage: {name:"ダメージゾーン", kind:"dmg",   face:true,  x:210,  y:195, w:820, h:130},
+	deck:   {name:"デッキ",         kind:"pile",  face:false, x:1040, y:5,   w:92,  h:155},
+	trash:  {name:"トラッシュ",     kind:"pile",  face:true,  x:1138, y:5,   w:92,  h:155},
+	skill:  {name:"スキルゾーン",   kind:"row",   face:true,  x:1040, y:165, w:190, h:160, field:true},
+	hand:   {name:"手札",           kind:"row",   face:true,  x:10,   y:330, w:1074,h:130},
+	free:   {name:"除外／その他",   kind:"pile",  face:true,  x:1090, y:330, w:140, h:130}
+};
+var Z = {};
+[0, 1].forEach(function(p){
+	for (var b in BASE) { var z = Object.assign({}, BASE[b]); z.p = p; z.base = b; z.name = PN[p] + " " + BASE[b].name; Z[p + ":" + b] = z; }
+});
+function zk(p, b){ return p + ":" + b; }
+var PHASES = ["レベルアップ","ドロー","メイン","アタック","エンド"];
+var LV_ROW = 20, LV_TOP = function(lv){ return 22 + (10 - lv) * LV_ROW; };
+
+/* ============ state ============ */
+var st = null, undoStack = [], SCALE = 1, hoverUid = null, viewers = [], viewerSeq = 1;
+function newPlayer(){ return {deckName:"", leader:[], mainCards:[], level:1, mull:false}; }
+function newState(){
+	var s = {v:1, game:"NA", cards:{}, zones:{}, seq:1, turn:1, phase:0, tp:0, players:[newPlayer(), newPlayer()]};
+	for (var k in Z) s.zones[k] = [];
+	return s;
+}
+st = newState();
+function snapshot(){ undoStack.push(JSON.stringify(st)); if (undoStack.length > 300) undoStack.shift(); }
+function undo(){ if (!undoStack.length) return; st = JSON.parse(undoStack.pop()); addLog("（元に戻す）" + (NET.seat != null ? " by " + PN[NET.seat] : "")); render(); broadcast(); }
+
+function findCard(uid){
+	for (var k in Z) { var j = st.zones[k].indexOf(uid); if (j >= 0) return {zone:k, arr:st.zones[k], idx:j}; }
+	return null;
+}
+function removeCard(uid){ var L = findCard(uid); if (!L) return null; L.arr.splice(L.idx, 1); return L; }
+function placeCard(uid, t){
+	var z = Z[t.zone], arr = st.zones[t.zone], c = st.cards[uid];
+	if (z.kind === "row" || z.kind === "dmg") {
+		if (t.index == null || t.index > arr.length) arr.push(uid); else arr.splice(t.index, 0, uid);
+	} else {
+		var bottom = t.bottom || (z.base.indexOf("unit") === 0 && ctype(c) === "アイテム" && arr.length && !t.top);
+		if (bottom) arr.unshift(uid); else arr.push(uid);
+	}
+}
+function moveCard(uid, t, opt){
+	opt = opt || {};
+	var c = st.cards[uid], wasUp = c.up, L = removeCard(uid); if (!L) return;
+	placeCard(uid, t);
+	if (L.zone !== t.zone) {
+		c.down = false; c.mod = 0;
+		c.up = opt.face != null ? opt.face : Z[t.zone].face;
+	}
+	if (opt.forceFace != null) c.up = opt.forceFace;
+	if (!opt.silent) {
+		var shown = (wasUp && publicBase(Z[L.zone].base)) || (c.up && publicBase(Z[t.zone].base)) ? cname(c) : "カード";
+		addLog(Z[L.zone].name + " → " + Z[t.zone].name + (t.bottom ? "（下）" : "") + "：" + shown, c.owner);
+	}
+}
+function moveMany(uids, t, label, opt){
+	var tt = Object.assign({top:!t.bottom}, t);
+	uids.forEach(function(u){ moveCard(u, tt, Object.assign({silent:true}, opt || {})); if (tt.index != null) tt.index++; });
+	addLog((label || "まとめて移動") + " → " + Z[t.zone].name + "（" + uids.length + "枚）", Z[t.zone].p);
+}
+function topOf(zone){ var a = st.zones[zone]; return a.length ? a[a.length - 1] : null; }
+function shuffle(zone){ var a = st.zones[zone]; for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } }
+
+/* ============ actions ============ */
+function act(fn){ snapshot(); fn(); render(); broadcast(); }
+function draw(p, n){ act(function(){ for (var i = 0; i < n; i++) { var u = topOf(zk(p, "deck")); if (u == null) { addLog(PN[p] + "：デッキが0枚です（デッキ切れ）", p); break; } moveCard(u, {zone:zk(p, "hand")}, {silent:true}); } addLog(PN[p] + "：ドロー " + n + "枚", p); }); }
+function topTo(p, base, n){ act(function(){ var k = 0, names = []; for (var i = 0; i < n; i++) { var u = topOf(zk(p, "deck")); if (u == null) break; moveCard(u, {zone:zk(p, base)}, {silent:true}); k++; if (st.cards[u].up) names.push(cname(st.cards[u])); } addLog(PN[p] + "：デッキの上 " + k + "枚 → " + BASE[base].name + (names.length ? "（" + names.join("、") + "）" : ""), p); }); }
+function damage(p){ act(function(){
+	var u = topOf(zk(p, "deck")); if (u == null) { addLog(PN[p] + "：デッキが0枚です", p); return; }
+	moveCard(u, {zone:zk(p, "damage")}, {silent:true});
+	var c = st.cards[u], trg = row(c)[JP_TRIGGER];
+	addLog(PN[p] + "：ダメージ → " + st.zones[zk(p, "damage")].length + "（公開：" + cname(c) + (trg ? "　★トリガー" : "") + "）", p);
+	if (st.zones[zk(p, "damage")].length >= 10) addLog("★ " + PN[p] + " が10ダメージに到達", p);
+}); }
+function doShuffle(zone){ act(function(){ shuffle(zone); addLog(Z[zone].name + "をシャッフル", Z[zone].p); }); }
+function standAll(p){ act(function(){ for (var k in Z) if (Z[k].p === p) st.zones[k].forEach(function(u){ st.cards[u].down = false; }); addLog(PN[p] + "：全て縦向きに", p); }); }
+function skillsToTrash(p){ act(function(){ var a = st.zones[zk(p, "skill")].slice(); a.forEach(function(u){ moveCard(u, {zone:zk(st.cards[u].owner, "trash")}, {silent:true}); }); addLog(PN[p] + "：スキルゾーンを全てトラッシュ（" + a.length + "枚）", p); }); }
+function setLevel(p, d){ act(function(){ var P = st.players[p]; P.level = Math.max(1, Math.min(10, P.level + d)); addLog(PN[p] + "：リーダーレベル " + P.level, p); }); }
+function mulligan(p){
+	if (st.players[p].mull && !confirm(PN[p] + " はすでに引き直しています。もう一度行いますか？")) return;
+	act(function(){
+		var h = st.zones[zk(p, "hand")].slice(), n = h.length || 5;
+		h.forEach(function(u){ moveCard(u, {zone:zk(p, "deck")}, {silent:true}); });
+		shuffle(zk(p, "deck"));
+		for (var i = 0; i < n; i++) { var t = topOf(zk(p, "deck")); if (t != null) moveCard(t, {zone:zk(p, "hand")}, {silent:true}); }
+		st.players[p].mull = true; addLog(PN[p] + "：引き直し（手札" + n + "枚をデッキに戻してシャッフル、" + n + "枚ドロー）", p);
+	});
+}
+function setPhase(i){ act(function(){ st.phase = i; addLog("▶ " + PN[st.tp] + " " + PHASES[i] + "フェイズ", st.tp); }); }
+function nextPhase(){ if (st.phase < PHASES.length - 1) setPhase(st.phase + 1); else endTurn(); }
+function endTurn(){ act(function(){ st.turn++; st.phase = 0; st.tp = 1 - st.tp; addLog("──── ターン " + st.turn + "（" + PN[st.tp] + "）────", st.tp); }); }
+function setTP(p){ act(function(){ st.tp = p; addLog("ターンプレイヤー：" + PN[p], p); }); }
+function toggleProp(uid, prop){ act(function(){ var c = st.cards[uid]; c[prop] = !c[prop]; addLog(cname(c) + "：" + ({down: c.down ? "横向き" : "縦向き", up: c.up ? "表向き" : "裏向き", awake: c.awake ? "覚醒" : "通常面"})[prop], c.owner); }); }
+function setMod(uid){
+	var c = st.cards[uid], v = prompt("パワー修正（例：+1000、-2000、0で解除）", c.mod ? (c.mod > 0 ? "+" : "") + c.mod : "+1000");
+	if (v == null) return; var n = parseInt(String(v).replace(/[^\d\-+]/g, ""), 10) || 0;
+	act(function(){ c.mod = n; var base = parseInt(row(c)[POWER], 10); addLog(cname(c) + "：パワー修正 " + (n > 0 ? "+" : "") + n + (base ? "（" + (base + n) + "）" : ""), c.owner); });
+}
+function wholeStackOf(uid){ var L = findCard(uid); if (!L) return [uid]; if (Z[L.zone].kind === "stack") return L.arr.slice(); return [uid]; }
+
+/* ============ deck loading ============ */
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+function readStore(){
+	var list = [], raw = null;
+	try { raw = localStorage.getItem("NADeckNameList"); } catch(e) {}
+	if (raw) { try { list = JSON.parse(raw); } catch(e) { list = String(raw).split(","); } }
+	if (!Array.isArray(list)) list = [];
+	return list.filter(function(n){ try { return n && localStorage.getItem(n) != null; } catch(e) { return false; } });
+}
+function fillDeckSelects(){
+	var h = '<option value="">── 選擇牌組 ──</option>';
+	readStore().forEach(function(n){ h += '<option value="' + esc(n) + '">' + esc(n) + '</option>'; });
+	[0, 1].forEach(function(p){
+		var sel = document.getElementById("deckSelect" + p); sel.innerHTML = h;
+		sel.addEventListener("change", function(){ var v = this.value; if (!v) return; var code = null; try { code = localStorage.getItem(v); } catch(e) {} if (code) loadCode(p, code, v); });
+	});
+}
+function toggleCode(){ var b = document.getElementById("codeBox"); b.style.display = b.style.display === "block" ? "none" : "block"; }
+function loadFromText(p){ if (NET.seat != null && p !== NET.seat) { alert("連線中只能讀入自己的牌組（" + PN[NET.seat] + "）"); return; } var t = document.getElementById("codeText").value.trim(); if (t) { loadCode(p, t, "貼上的牌組"); toggleCode(); } }
+function loadCode(p, code, name){
+	var ld = [], mn = [], missing = [];
+	String(code).split(/\r?\n/).forEach(function(line){
+		var q = line.split(","), key = (q[0] || "").trim().toLowerCase();
+		var ids = q.slice(1).map(function(x){ return x.trim(); }).filter(Boolean);
+		if (key === "ldeck") ld = ld.concat(ids); else if (key === "mdeck") mn = mn.concat(ids);
+	});
+	ld = ld.filter(function(id){ if (DB[id]) return true; missing.push(id); return false; });
+	mn = mn.filter(function(id){ if (DB[id]) return true; missing.push(id); return false; });
+	if (!ld.length && !mn.length) { alert("讀不到任何卡片，請確認デッキコード格式（ldeck / mdeck）。"); return; }
+	act(function(){
+		var P = st.players[p]; P.deckName = name; P.leader = ld; P.mainCards = mn;
+		resetPlayer(p);
+		addLog(PN[p] + " 讀取牌組「" + name + "」：リーダー " + ld.length + "枚／デッキ " + mn.length + "枚", p);
+		if (missing.length) addLog("⚠ 找不到的卡號：" + missing.join(", "), p);
+	});
+}
+function mkCard(id, owner){ var u = st.seq++; st.cards[u] = {uid:u, id:id, owner:owner, up:true, down:false, awake:false, mod:0}; return u; }
+function resetPlayer(p){
+	for (var k in Z) st.zones[k] = st.zones[k].filter(function(u){ return st.cards[u].owner !== p; });
+	for (var u in st.cards) if (st.cards[u].owner === p) delete st.cards[u];
+	var P = st.players[p]; P.level = 1; P.mull = false;
+	P.leader.forEach(function(id){ st.zones[zk(p, "level")].push(mkCard(id, p)); });
+	P.mainCards.forEach(function(id){ var u = mkCard(id, p); st.cards[u].up = false; st.zones[zk(p, "deck")].push(u); });
+}
+function prepareGame(){
+	if (!st.players[0].mainCards.length && !st.players[1].mainCards.length) { alert("請先選擇牌組"); return; }
+	act(function(){
+		[0, 1].forEach(function(p){
+			if (!st.players[p].mainCards.length && !st.players[p].leader.length) return;
+			resetPlayer(p); shuffle(zk(p, "deck"));
+			for (var i = 0; i < 5; i++) { var t = topOf(zk(p, "deck")); if (t != null) moveCard(t, {zone:zk(p, "hand")}, {silent:true}); }
+			addLog(PN[p] + " 準備完了：リーダーをレベル1に配置、シャッフル、5枚ドロー", p);
+		});
+		st.turn = 1; st.phase = 0;
+		addLog("必要なら各自「引き直し」（1回）→ ②ゲーム開始。");
+	});
+}
+function startGame(){ act(function(){ st.turn = 1; st.phase = 0; addLog("ゲーム開始！先攻：" + PN[st.tp] + "（先攻1ターン目はドローなし）", st.tp); }); }
+
+/* ============ rendering ============ */
+var board = document.getElementById("board"), zoneEls = {}, halfEls = [], pool = new Map(), VIEW = 0;
+(function buildBoard(){
+	[1, 0].forEach(function(p){ var h = document.createElement("div"); h.className = "half p" + p; board.appendChild(h); halfEls[p] = h; });
+	for (var k in Z) {
+		var z = Z[k], el = document.createElement("div");
+		el.className = "zone p" + z.p + (z.w < 150 ? " narrow" : ""); el.dataset.zone = k;
+		el.style.cssText = "width:" + z.w + "px;height:" + z.h + "px";
+		el.innerHTML = '<span class="zlabel">' + z.name + '</span><span class="zcount"></span>';
+		if (z.kind === "level") {
+			for (var lv = 10; lv >= 1; lv--) { var r = document.createElement("div"); r.className = "lvrow"; r.dataset.lv = lv; r.style.top = LV_TOP(lv) + "px"; r.textContent = lv === 10 ? "Max 10" : lv; el.appendChild(r); }
+			el.querySelector(".zcount").style.display = "none";
+			var up = document.createElement("button"); up.className = "zbtn"; up.textContent = "▲"; up.style.right = "30px"; up.onclick = (function(p){ return function(){ setLevel(p, 1); }; })(z.p);
+			var dn = document.createElement("button"); dn.className = "zbtn"; dn.textContent = "▼"; dn.style.right = "4px"; dn.onclick = (function(p){ return function(){ setLevel(p, -1); }; })(z.p);
+			el.appendChild(up); el.appendChild(dn);
+		}
+		if (z.kind === "dmg") {
+			for (var i = 0; i < 10; i++) { var s = document.createElement("span"); s.className = "dmgnum"; s.textContent = i + 1; s.style.left = (6 + i * dmgSp(z) + CW / 2 - 4) + "px"; el.appendChild(s); }
+		}
+		board.appendChild(el); zoneEls[k] = el;
+	}
+})();
+function dmgSp(z){ return (z.w - 12 - CW) / 9; }
+function applyLayout(){
+	for (var k in Z) {
+		var z = Z[k], d = BASE[z.base];
+		if (z.p === VIEW) { z.ax = d.x; z.ay = HALF + 10 + d.y; } else { z.ax = BW - d.x - d.w; z.ay = HALF - d.y - d.h; }
+		zoneEls[k].style.left = z.ax + "px"; zoneEls[k].style.top = z.ay + "px";
+	}
+	halfEls.forEach(function(h, p){ h.style.top = (p === VIEW ? HALF + 10 : 0) + "px"; });
+}
+applyLayout();
+
+function cardEl(uid){
+	var el = pool.get(uid);
+	if (!el) {
+		el = document.createElement("div"); el.className = "card"; el.dataset.uid = uid;
+		var img = document.createElement("img"); img.draggable = false;
+		img.onerror = function(){ el.classList.add("noimg"); };
+		img.onload = function(){ el.classList.remove("noimg"); };
+		el.appendChild(img); pool.set(uid, el);
+	}
+	return el;
+}
+function decorate(el, c, showFace){
+	var src = showFace ? imgOf(c) : BACK, img = el.firstChild;
+	if (img.dataset.src !== src) { img.dataset.src = src; el.classList.remove("noimg"); img.src = src; }
+	el.dataset.name = cname(c);
+	el.classList.toggle("down", !!c.down);
+	el.classList.toggle("awake", !!c.awake && showFace);
+	el.classList.toggle("back", !showFace);
+	var m = el.querySelector(".mod");
+	if (c.mod && showFace) { if (!m) { m = document.createElement("span"); m.className = "mod"; el.appendChild(m); } m.textContent = (c.mod > 0 ? "+" : "") + c.mod; m.classList.toggle("plus", c.mod > 0); }
+	else if (m) m.remove();
+}
+function isSecretFor(zone){
+	var z = Z[zone];
+	if (NET.seat == null) return false;
+	return z.p !== NET.seat && z.base === "hand";
+}
+function canSee(c, zone){
+	if (isSecretFor(zone)) return false;
+	if (c.up) return true;
+	if (Z[zone].base === "deck") return false;
+	return NET.seat == null || c.owner === NET.seat;
+}
+function publicBase(b){ return ["hand","deck"].indexOf(b) < 0; }
+
+function render(){
+	var used = new Set();
+	function put(uid, zone, x, y, zi){
+		var el = cardEl(uid), c = st.cards[uid]; used.add(uid);
+		decorate(el, c, c.up && !isSecretFor(zone));
+		el.classList.toggle("foreign", c.owner !== Z[zone].p);
+		el.style.left = x + "px"; el.style.top = y + "px"; el.style.zIndex = zi;
+		if (el.parentNode !== zoneEls[zone]) zoneEls[zone].appendChild(el);
+	}
+	document.querySelectorAll("#board .sbadge").forEach(function(b){ b.remove(); });
+	function badge(zone, x, y, n){ var b = document.createElement("span"); b.className = "sbadge"; b.textContent = n; b.style.left = x + "px"; b.style.top = y + "px"; zoneEls[zone].appendChild(b); }
+	for (var k in Z) {
+		var z = Z[k], arr = st.zones[k], n = arr.length;
+		if (z.kind === "pile") {
+			if (n) put(arr[n - 1], k, (z.w - CW) / 2, Math.max(4, Math.min(20 + (z.h - 20 - CH) / 2, z.h - CH - 4)), 10);
+		} else if (z.kind === "level") {
+			var lv = st.players[z.p].level;
+			arr.forEach(function(u, i){ put(u, k, 10 + i * 8, LV_TOP(lv) + i * 6, 10 + i); });
+			zoneEls[k].querySelectorAll(".lvrow").forEach(function(r){ r.classList.toggle("on", +r.dataset.lv === lv); });
+		} else if (z.kind === "stack") {
+			var area = z.h - 26, off = n > 1 ? Math.max(4, Math.min(20, (area - CH) / (n - 1))) : 0;
+			var by = 20 + Math.max(0, (area - CH - (n - 1) * off) / 2);
+			arr.forEach(function(u, i){ put(u, k, (z.w - CW) / 2, by + i * off, 10 + i); });
+			if (n > 1) badge(k, (z.w - CW) / 2 + CW - 6, by + (n - 1) * off - 6, n);
+		} else if (z.kind === "dmg") {
+			var sp = dmgSp(z);
+			arr.forEach(function(u, i){ put(u, k, 6 + Math.min(i, 9) * sp + (i > 9 ? (i - 9) * 6 : 0), z.h - CH - 4, 10 + i); });
+		} else {
+			// position by visual box (a 横向き card is rotated 90°); 手札は中央寄せ
+			var vis = function(u){ return st.cards[u].down ? [CH, CW] : [CW, CH]; };
+			var maxW = 0; arr.forEach(function(u){ maxW = Math.max(maxW, vis(u)[0]); });
+			var len = z.w - 12, lastW = n ? vis(arr[n - 1])[0] : CW, sp2 = n > 1 ? Math.min(maxW + 4, (len - lastW) / (n - 1)) : 0;
+			var rowOff = (z.base === "hand" && n) ? Math.max(0, (len - ((n - 1) * sp2 + lastW)) / 2) : 0;
+			arr.forEach(function(u, i){ var v = vis(u), vx = 6 + rowOff + i * sp2, vy = Math.max(4, (z.h - v[1]) / 2) + (z.h >= v[1] + 22 ? 9 : 0); put(u, k, vx + (v[0] - CW) / 2, vy + (v[1] - CH) / 2, 10 + i); });
+		}
+		var cnt = zoneEls[k].querySelector(".zcount"); cnt.textContent = z.kind === "dmg" ? n + " / 10" : n;
+	}
+	pool.forEach(function(el, uid){ if (!used.has(uid)) el.remove(); });
+	halfEls.forEach(function(h, p){ h.classList.toggle("turn", st.tp === p); });
+	renderPanel(); renderViewers(); save();
+}
+
+function renderPanel(){
+	var h = '<h3>ターン ' + st.turn + '　<span class="ptag p' + st.tp + '">' + PN[st.tp] + ' のターン</span></h3><div class="phases">';
+	PHASES.forEach(function(ph, i){ h += '<span class="phase' + (i === st.phase ? ' on' : '') + '" onclick="setPhase(' + i + ')">' + ph + '</span>'; });
+	h += '</div><div style="display:flex;gap:4px;flex-wrap:wrap"><button onclick="nextPhase()">次へ ▶</button><button onclick="endTurn()">ターン終了（交代）</button><button onclick="setTP(1-st.tp)">先攻／ターンプレイヤー切替</button></div>';
+	[1 - VIEW, VIEW].forEach(function(p){
+		var P = st.players[p], c = function(b){ return st.zones[zk(p, b)].length; }, dmg = c("damage");
+		h += '<div class="prow p' + p + '"><span class="ptag p' + p + '">' + PN[p] + (NET.seat != null ? (p === NET.seat ? ' 自分' : ' 相手') : (p === VIEW ? ' 下' : ' 上')) + '</span><span style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px">' + esc(P.deckName || "（未選擇）") + '</span>'
+			+ '<div style="width:100%;display:flex;gap:6px;align-items:center;flex-wrap:wrap">Lv<span class="big">' + P.level + '</span><button onclick="setLevel(' + p + ',-1)">－</button><button onclick="setLevel(' + p + ',1)">＋</button>'
+			+ '　ダメージ<span class="big"' + (dmg >= 10 ? ' style="color:#ff6b6b"' : '') + '>' + dmg + '</span>　サイズ<span class="big">' + (P.level + dmg) + '</span></div>'
+			+ '<button onclick="draw(' + p + ',1)">ドロー</button><button onclick="damage(' + p + ')">ダメージ＋1</button><button onclick="skillsToTrash(' + p + ')">スキル全トラッシュ</button><button onclick="standAll(' + p + ')">全て縦向き</button><button onclick="doShuffle(\'' + zk(p, "deck") + '\')">シャッフル</button><button onclick="mulligan(' + p + ')">引き直し' + (P.mull ? '（済）' : '') + '</button>'
+			+ '<span class="cnt">デッキ ' + c("deck") + '　手札 ' + c("hand") + '　トラッシュ ' + c("trash") + '　スキル ' + c("skill") + '</span></div>';
+	});
+	document.getElementById("panel").innerHTML = h;
+}
+
+/* ============ preview & log ============ */
+function showPreview(uid, fromViewer){
+	var c = st.cards[uid]; if (!c) return;
+	var L = findCard(uid), pv = document.getElementById("preview");
+	if (L && !fromViewer && !canSee(c, L.zone)) { pv.innerHTML = '<img src="' + BACK + '"><div id="pvName">（非公開のカード）</div>'; return; }
+	var r = row(c), meta = [];
+	[[TYPE,""],[ELEMENT,"属性:"],[COST,"コスト"],[POWER,"パワー"],[HIT,"ヒット"],[BELONG,""],[KEYWORD,""]].forEach(function(m){ if (r[m[0]]) meta.push(m[1] + r[m[0]]); });
+	var pw = parseInt(r[POWER], 10), modTxt = c.mod ? '　<b style="color:' + (c.mod > 0 ? '#5fd38a' : '#ff7b7b') + '">パワー修正 ' + (c.mod > 0 ? "+" : "") + c.mod + (pw ? '（' + (pw + c.mod) + '）' : '') + '</b>' : '';
+	var jp = (r[JP_TRIGGER] ? '<div style="color:#ffd75e">' + richText("【トリガー】" + r[JP_TRIGGER]) + '</div>' : '') + richText(r[JP_TEXT]);
+	var tw = (r[TW_TRIGGER] ? '<div style="color:#ffd75e">' + richText("【トリガー】" + r[TW_TRIGGER]) + '</div>' : '') + richText(r[TW_TEXT]);
+	pv.innerHTML = '<img src="' + imgOf(c) + '" onerror="this.style.display=\'none\'"><div id="pvName">' + (r[NAME] || c.id) + (c.awake ? '（覚醒）' : '') + '</div><div id="pvMeta"><span class="ptag p' + c.owner + '">' + PN[c.owner] + '</span> ' + c.id + '　' + meta.join(' / ') + modTxt + (c.up ? '' : '　（裏向き）') + '</div><div id="pvText">' + jp + (r[TW_TEXT] || r[TW_TRIGGER] ? '<hr style="border-color:#24504c">' + tw : '') + '</div>';
+}
+function addLog(msg, p){ if (!NET.applying) pendingLogs.push({m:msg, p:p}); var l = document.getElementById("log"), d = document.createElement("div"); d.textContent = msg; if (p === 0 || p === 1) d.className = "l" + p; l.appendChild(d); l.scrollTop = l.scrollHeight; }
+
+/* ============ viewers ============ */
+function openViewer(zone, limit){
+	if (NET.seat != null && Z[zone].p !== NET.seat && ["hand","deck"].indexOf(Z[zone].base) >= 0) { addLog("相手の非公開領域は見られません"); pendingLogs.pop(); return; }
+	var v = {id: viewerSeq++, zone:zone, limit:limit};
+	var el = document.createElement("div"); el.className = "viewer p" + Z[zone].p; v.el = el;
+	el.style.left = (120 + (viewers.length % 5) * 30) + "px"; el.style.top = (90 + (viewers.length % 5) * 30) + "px";
+	el.innerHTML = '<div class="vh"><span class="vt"></span><span><button class="vs">シャッフル</button> <button class="vc">✕</button></span></div><div class="vnote"></div><div class="vb"></div>';
+	el.querySelector(".vc").onclick = function(){ closeViewer(v); };
+	var sb = el.querySelector(".vs");
+	if (Z[zone].kind === "pile") sb.onclick = function(){ doShuffle(zone); }; else sb.style.display = "none";
+	el.querySelector(".vh").addEventListener("pointerdown", function(e){
+		if (e.target.tagName === "BUTTON") return;
+		var sx = e.clientX - el.offsetLeft, sy = e.clientY - el.offsetTop;
+		function mv(ev){ el.style.left = (ev.clientX - sx) + "px"; el.style.top = (ev.clientY - sy) + "px"; }
+		function up(){ window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", up); }
+		window.addEventListener("pointermove", mv); window.addEventListener("pointerup", up);
+	});
+	document.body.appendChild(el); viewers.push(v); renderViewers();
+}
+function closeViewer(v){ v.el.remove(); viewers = viewers.filter(function(x){ return x !== v; }); }
+function closeAllViewers(){ viewers.slice().forEach(closeViewer); }
+function viewerCards(v){
+	var z = Z[v.zone], list = (z.kind === "pile" || z.kind === "stack") ? st.zones[v.zone].slice().reverse() : st.zones[v.zone].slice();
+	return v.limit ? list.slice(0, v.limit) : list;
+}
+function renderViewers(){
+	viewers.forEach(function(v){
+		var list = viewerCards(v), z = Z[v.zone];
+		v.el.querySelector(".vt").textContent = z.name + (v.limit ? "：上から" + v.limit + "枚" : "") + "　" + list.length + "枚";
+		v.el.querySelector(".vnote").textContent = ((z.kind === "pile" || z.kind === "stack") ? "左が一番上。" : "") + "卡片可直接拖到盤面。" + (z.base === "deck" ? "（裏向きも表示中・橘色虛線＝裏向き）" : "");
+		var b = v.el.querySelector(".vb"); b.innerHTML = "";
+		if (!list.length) b.innerHTML = '<span style="color:var(--muted)">（空）</span>';
+		list.forEach(function(u){
+			var el = document.createElement("div"); el.className = "card"; el.dataset.uid = u; el.dataset.viewer = "1";
+			var img = document.createElement("img"); img.draggable = false; el.appendChild(img);
+			img.onerror = function(){ el.classList.add("noimg"); };
+			decorate(el, st.cards[u], true); el.classList.toggle("back", !st.cards[u].up); el.classList.remove("down");
+			b.appendChild(el);
+		});
+	});
+}
+
+/* ============ drag & drop ============ */
+var drag = null, ctx = document.getElementById("ctx"), ctxFns = [];
+document.addEventListener("pointerdown", function(e){
+	if (e.button !== 0) return;
+	if (ctx.contains(e.target)) return;
+	hideCtx();
+	var el = e.target.closest(".card"); if (!el) return;
+	var r = el.getBoundingClientRect();
+	drag = {uid:+el.dataset.uid, el:el, sx:e.clientX, sy:e.clientY, offX:e.clientX - r.left, offY:e.clientY - r.top, whole:e.shiftKey, started:false, fromViewer:!!el.dataset.viewer};
+	e.preventDefault();
+});
+function zoneAt(x, y){ var t = document.elementFromPoint(x, y); if (!t || t.closest(".viewer")) return null; return t.closest(".zone"); }
+window.addEventListener("pointermove", function(e){
+	if (!drag) return;
+	if (!drag.started) {
+		if (Math.abs(e.clientX - drag.sx) + Math.abs(e.clientY - drag.sy) < 6) return;
+		drag.started = true;
+		var g = document.createElement("div"); g.id = "ghost";
+		var clone = drag.el.cloneNode(true); clone.classList.remove("down"); clone.style.zIndex = ""; g.appendChild(clone);
+		if (drag.whole) { var n = wholeStackOf(drag.uid).length; if (n > 1) { var b = document.createElement("span"); b.className = "sbadge"; b.style.cssText = "right:-6px;top:-6px"; b.textContent = n; g.appendChild(b); } }
+		var sc = drag.fromViewer ? 1 : SCALE;
+		g.style.transform = "scale(" + sc + ")"; document.body.appendChild(g); drag.ghost = g;
+		drag.el.classList.add("dragsrc");
+		drag.offX = Math.min(drag.offX, 60 * sc); drag.offY = Math.min(drag.offY, 60 * sc);
+	}
+	drag.ghost.style.left = (e.clientX - drag.offX) + "px"; drag.ghost.style.top = (e.clientY - drag.offY) + "px";
+	document.querySelectorAll(".zone.hl").forEach(function(z){ z.classList.remove("hl"); });
+	var zEl = zoneAt(e.clientX, e.clientY); if (zEl) zEl.classList.add("hl");
+});
+window.addEventListener("pointerup", function(e){
+	if (!drag) return;
+	var d = drag; drag = null;
+	document.querySelectorAll(".zone.hl").forEach(function(z){ z.classList.remove("hl"); });
+	if (!d.started) return;
+	d.ghost.remove(); d.el.classList.remove("dragsrc");
+	var zEl = zoneAt(e.clientX, e.clientY); if (!zEl) return;
+	var zone = zEl.dataset.zone, z = Z[zone], t = {zone:zone};
+	var moving = d.whole ? wholeStackOf(d.uid) : [d.uid];
+	var src = findCard(d.uid); if (!src) return;
+	if (z.kind === "row" || z.kind === "dmg") {
+		var idx = 0;
+		st.zones[zone].forEach(function(u){
+			if (moving.indexOf(u) >= 0) return;
+			var el = pool.get(u); if (!el) return;
+			var r = el.getBoundingClientRect(); if (r.left + r.width / 2 < e.clientX) idx++;
+		});
+		t.index = idx;
+	} else if (src.zone === zone) return;
+	if (z.kind === "stack" && st.zones[zone].length) { showDropMenu(e.clientX, e.clientY, moving, t); return; }
+	act(function(){ if (moving.length > 1) moveMany(moving, t, "スタックごと移動"); else moveCard(d.uid, t); });
+});
+
+document.addEventListener("dblclick", function(e){
+	var el = e.target.closest(".card"), zEl = e.target.closest(".zone");
+	if (el && !el.dataset.viewer) {
+		var uid = +el.dataset.uid, L = findCard(uid); if (!L) return;
+		if (Z[L.zone].base === "deck") { draw(Z[L.zone].p, 1); return; }
+		if (Z[L.zone].kind === "pile") { openViewer(L.zone); return; }
+		toggleProp(uid, "down"); return;
+	}
+	if (zEl && Z[zEl.dataset.zone].kind === "pile") openViewer(zEl.dataset.zone);
+});
+document.addEventListener("mouseover", function(e){
+	var el = e.target.closest && e.target.closest(".card");
+	if (el && !drag) { hoverUid = +el.dataset.uid; showPreview(hoverUid, !!el.dataset.viewer); showZoom(el); }
+	else if (!el) { hoverUid = null; hideZoom(); }
+});
+/* ---- hover zoom: a large image beside the hovered card (never covers it) ---- */
+var zoomBox = document.getElementById("hoverZoom");
+zoomBox.firstChild.onerror = function(){ hideZoom(); };
+(function(){ try { if (localStorage.getItem("NA_SIM_ZOOM") === "0") document.getElementById("zoomToggle").checked = false; } catch(e) {} })();
+document.getElementById("zoomToggle").addEventListener("change", function(){ try { localStorage.setItem("NA_SIM_ZOOM", this.checked ? "1" : "0"); } catch(e) {} if (!this.checked) hideZoom(); });
+function hideZoom(){ zoomBox.style.display = "none"; }
+function showZoom(el){
+	if (!document.getElementById("zoomToggle").checked) return;
+	var uid = +el.dataset.uid, c = st.cards[uid]; if (!c) return hideZoom();
+	var L = findCard(uid);
+	if (!el.dataset.viewer && L && !canSee(c, L.zone)) return hideZoom();
+	var W = 250, H = 349, img = zoomBox.firstChild, src = imgOf(c);
+	if (img.getAttribute("src") !== src) img.src = src;
+	var r = el.getBoundingClientRect(), gap = 12;
+	var x = r.right + gap; if (x + W > innerWidth - 4) x = r.left - gap - W; if (x < 4) x = 4;
+	var y = r.top + r.height / 2 - H / 2; y = Math.max(44, Math.min(innerHeight - H - 4, y));
+	zoomBox.style.left = x + "px"; zoomBox.style.top = y + "px"; zoomBox.style.display = "block";
+}
+window.addEventListener("pointerdown", hideZoom, true);
+document.addEventListener("keydown", function(e){
+	if (e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+	if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") { e.preventDefault(); undo(); return; }
+	if (e.code === "Space" || e.key === " ") { e.preventDefault(); if (document.activeElement && document.activeElement.tagName === "BUTTON") document.activeElement.blur(); if (!e.repeat) nextPhase(); return; }
+	if (e.key === "Escape") { hideCtx(); showHelp(false); return; }
+	if (hoverUid == null || !st.cards[hoverUid]) return;
+	var k = e.key.toLowerCase();
+	if (k === "d") toggleProp(hoverUid, "down"); else if (k === "f") toggleProp(hoverUid, "up"); else if (k === "a") toggleProp(hoverUid, "awake");
+});
+
+/* ============ context menu ============ */
+function hideCtx(){ ctx.style.display = "none"; }
+function menuHTML(items){
+	var h = "";
+	items.forEach(function(it){
+		if (it === "-") { h += '<div class="s"></div>'; return; }
+		if (it.head) { h += '<div class="h">' + it.head + '</div>'; return; }
+		if (it.sub) { h += '<div class="i sub">' + it.label + '<div class="menu">' + menuHTML(it.sub) + '</div></div>'; return; }
+		ctxFns.push(it.fn); h += '<div class="i" data-f="' + (ctxFns.length - 1) + '">' + it.label + '</div>';
+	});
+	return h;
+}
+function showCtx(x, y, items){
+	ctxFns = []; ctx.innerHTML = menuHTML(items); ctx.style.display = "block";
+	var w = ctx.offsetWidth, h = ctx.offsetHeight;
+	ctx.style.left = Math.max(0, Math.min(x, innerWidth - w - 170)) + "px"; ctx.style.top = Math.max(0, Math.min(y, innerHeight - h - 4)) + "px";
+}
+ctx.addEventListener("click", function(e){ var i = e.target.closest("[data-f]"); if (!i) return; hideCtx(); ctxFns[+i.dataset.f](); });
+var ctxOpenedAt = 0;
+document.addEventListener("click", function(e){ if (Date.now() - ctxOpenedAt < 350) return; if (!ctx.contains(e.target)) hideCtx(); });
+/* ---- dropping onto an occupied ユニットゾーン: ask how to place it ---- */
+function doStackDrop(moving, t, bottom, face){
+	act(function(){
+		var tt = Object.assign({}, t, {bottom:bottom, top:!bottom});
+		var list = bottom ? moving.slice().reverse() : moving.slice();
+		if (list.length > 1) moveMany(list, tt, "スタックごと移動" + (bottom ? "（下に" + (face ? "表向き" : "裏向き") + "）" : "（上に重ねる）"), {forceFace:face});
+		else moveCard(list[0], tt, {forceFace:face});
+	});
+}
+function showDropMenu(x, y, moving, t){
+	ctxOpenedAt = Date.now();
+	var arr = st.zones[t.zone], topC = arr.length ? st.cards[arr[arr.length - 1]] : null;
+	var isItem = moving.length === 1 && ctype(st.cards[moving[0]]) === "アイテム";
+	var items = [{head: Z[t.zone].name + (topC ? "：" + (topC.up ? cname(topC) : "（裏向き）") : "") + (moving.length > 1 ? "（" + moving.length + "枚）" : "")}];
+	var up = {label:"⬆ 表向きで上に重ねる" + (isItem ? "" : "（アップグレード）"), fn:function(){ doStackDrop(moving, t, false, true); }};
+	var dn = {label:"⬇ 表向きで下に置く" + (isItem ? "（装備）" : ""), fn:function(){ doStackDrop(moving, t, true, true); }};
+	if (isItem) items.push(dn, up); else items.push(up, dn);
+	items.push({label:"⬇ 裏向きで下に置く", fn:function(){ doStackDrop(moving, t, true, false); }}, "-", {label:"キャンセル", fn:function(){}});
+	showCtx(x, y, items);
+}
+
+function moveTargets(uid, p){
+	function mv(base, bottom, pp){ return function(){ act(function(){ moveCard(uid, {zone:zk(pp == null ? p : pp, base), bottom:bottom, top:!bottom}); }); }; }
+	var q = 1 - p;
+	return [
+		{label:"手札へ", fn:mv("hand")},
+		{label:"トラッシュへ", fn:mv("trash")},
+		{label:"デッキの一番上へ", fn:mv("deck")},
+		{label:"デッキの一番下へ", fn:mv("deck", true)},
+		{label:"ダメージゾーンへ", fn:mv("damage")},
+		{label:"スキルゾーンへ", fn:mv("skill")},
+		{label:"ユニットゾーンへ", sub:[{label:"左", fn:mv("unit1")},{label:"中央", fn:mv("unit2")},{label:"右", fn:mv("unit3")}]},
+		{label:"レベルゾーンへ", fn:mv("level")},
+		{label:"除外／その他へ", fn:mv("free")},
+		{label:"相手（" + PN[q] + "）の…", sub:[
+			{label:"ユニットゾーン 左", fn:mv("unit1", false, q)},{label:"ユニットゾーン 中央", fn:mv("unit2", false, q)},{label:"ユニットゾーン 右", fn:mv("unit3", false, q)},
+			{label:"手札", fn:mv("hand", false, q)},{label:"トラッシュ", fn:mv("trash", false, q)},{label:"ダメージゾーン", fn:mv("damage", false, q)}
+		]}
+	];
+}
+function pileMenu(zone){
+	var z = Z[zone], p = z.p, b = z.base, it = [{head: z.name + "（" + st.zones[zone].length + "枚）"}];
+	if (b === "deck") {
+		it.push({label:"ドロー 1枚", fn:function(){ draw(p, 1); }});
+		it.push({label:"ドロー N枚…", fn:function(){ var n = parseInt(prompt("ドロー枚数", "2"), 10); if (n > 0) draw(p, n); }});
+		it.push({label:"ダメージ（上1枚公開→ダメージゾーン）", fn:function(){ damage(p); }});
+		it.push({label:"ダメージ N…", fn:function(){ var n = parseInt(prompt("ダメージ数（1枚ずつ処理、トリガーで止める場合は1ずつ押してください）", "1"), 10); for (var i = 0; i < n; i++) damage(p); }});
+		it.push({label:"上1枚をトラッシュへ", fn:function(){ topTo(p, "trash", 1); }});
+		it.push({label:"上N枚をトラッシュへ…", fn:function(){ var n = parseInt(prompt("枚数", "1"), 10); if (n > 0) topTo(p, "trash", n); }});
+		it.push({label:"上からN枚を見る…", fn:function(){ var n = parseInt(prompt("見る枚数", "3"), 10); if (n > 0) openViewer(zone, n); }});
+		it.push({label:"デッキの中身を見る", fn:function(){ openViewer(zone); }});
+		it.push({label:"シャッフル", fn:function(){ doShuffle(zone); }});
+	} else {
+		it.push({label:"中身を見る", fn:function(){ openViewer(zone); }});
+		if (b === "skill") it.push({label:"スキルを全てトラッシュ", fn:function(){ skillsToTrash(p); }});
+		if (b === "hand") { it.push({label:"引き直し（手札を全て戻してシャッフル→同じ枚数ドロー）", fn:function(){ mulligan(p); }}); it.push({label:"手札をシャッフル", fn:function(){ doShuffle(zone); }}); }
+		if (b === "level") { it.push({label:"レベル ＋1", fn:function(){ setLevel(p, 1); }}); it.push({label:"レベル －1", fn:function(){ setLevel(p, -1); }}); }
+	}
+	return it;
+}
+document.addEventListener("contextmenu", function(e){
+	if (e.target.closest("#codeBox") || e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT") return;
+	e.preventDefault();
+	var el = e.target.closest(".card"), zEl = e.target.closest(".zone");
+	if (el) {
+		var uid = +el.dataset.uid, c = st.cards[uid], L = findCard(uid); if (!L) return;
+		var zb = Z[L.zone].base;
+		if (!el.dataset.viewer && zb === "deck") { showCtx(e.clientX, e.clientY, pileMenu(L.zone)); return; }
+		var it = [{head: '<span class="ptag p' + c.owner + '">' + PN[c.owner] + '</span> ' + (canSee(c, L.zone) ? cname(c) : "（非公開）")}];
+		it.push({label: c.down ? "縦向きに戻す" : "横向きにする", fn:function(){ toggleProp(uid, "down"); }});
+		it.push({label: c.up ? "裏向きにする" : "表向きにする", fn:function(){ toggleProp(uid, "up"); }});
+		if (ctype(c) === "リーダー") it.push({label: c.awake ? "通常面に戻す" : "覚醒する", fn:function(){ toggleProp(uid, "awake"); }});
+		if (ctype(c) === "ユニット" || c.mod) it.push({label:"パワー修正…" + (c.mod ? "（現在 " + (c.mod > 0 ? "+" : "") + c.mod + "）" : ""), fn:function(){ setMod(uid); }});
+		it.push("-");
+		it.push({label:"移動（" + PN[c.owner] + " の領域）", sub: moveTargets(uid, c.owner)});
+		if (Z[L.zone].kind === "stack" && L.arr.length > 1) {
+			it.push("-");
+			it.push({label:"このスタックの一番下へ", fn:function(){ act(function(){ var a = findCard(uid).arr; a.splice(a.indexOf(uid), 1); a.unshift(uid); addLog(cname(c) + "：スタックの一番下へ", c.owner); }); }});
+			it.push({label:"このスタックの一番上へ", fn:function(){ act(function(){ var a = findCard(uid).arr; a.splice(a.indexOf(uid), 1); a.push(uid); addLog(cname(c) + "：スタックの一番上へ", c.owner); }); }});
+			it.push({label:"重なっているカードを見る（" + L.arr.length + "枚）", fn:function(){ openViewer(L.zone); }});
+			it.push({label:"スタックごとトラッシュ（ユニット＋アイテム、各持ち主へ）", fn:function(){ act(function(){ var us = wholeStackOf(uid); us.forEach(function(u){ moveCard(u, {zone:zk(st.cards[u].owner, "trash")}, {silent:true}); }); addLog("スタックごとトラッシュ（" + us.length + "枚）", c.owner); }); }});
+		}
+		if (Z[L.zone].kind === "pile" || zb === "skill" || zb === "level") { it.push("-"); it = it.concat(pileMenu(L.zone).slice(1)); }
+		showCtx(e.clientX, e.clientY, it); return;
+	}
+	if (zEl) showCtx(e.clientX, e.clientY, pileMenu(zEl.dataset.zone));
+});
+
+/* ============ online (PeerJS / WebRTC) ============ */
+var NET = {peer:null, conn:null, seat:null, applying:false, code:""}, pendingLogs = [];
+function online(){ return !!(NET.conn && NET.conn.open); }
+function broadcast(){ if (online()) { try { NET.conn.send({t:"state", s:st, logs:pendingLogs}); } catch(e) {} } pendingLogs = []; }
+function toggleNet(){ var b = document.getElementById("netBox"); b.style.display = b.style.display === "block" ? "none" : "block"; }
+function netStatus(msg, cls){ var e = document.getElementById("netStat"); e.textContent = msg; e.className = cls || ""; document.getElementById("netBadge").textContent = NET.seat != null ? "🌐 " + PN[NET.seat] + "：" + msg : ""; }
+function peerOpts(){
+	var q = new URLSearchParams(location.search), o = {debug:1};
+	if (q.get("peerhost")) { o.host = q.get("peerhost"); o.port = +(q.get("peerport") || 9000); o.path = q.get("peerpath") || "/"; o.secure = q.get("peersecure") === "1"; }
+	return o;
+}
+function peerReady(){ if (typeof Peer === "undefined") { alert("連線元件（PeerJS）載入失敗，請確認網路連線後重新整理。"); return false; } return true; }
+function setSeat(seat){
+	NET.seat = seat; VIEW = seat; applyLayout();
+	[0, 1].forEach(function(p){ document.getElementById("deckSelect" + p).disabled = p !== seat; });
+	document.getElementById("netIdle").style.display = "none"; document.getElementById("netActive").style.display = "";
+}
+function hostRoom(){
+	if (!peerReady() || NET.peer) return;
+	var A = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", code = ""; for (var i = 0; i < 6; i++) code += A[Math.floor(Math.random() * A.length)];
+	NET.code = code; netStatus("建立房間中…");
+	var peer = NET.peer = new Peer("nasim-" + code, peerOpts());
+	peer.on("open", function(){ setSeat(0); document.getElementById("netCode").textContent = code; netStatus("等待對手加入…（把代碼給對方）"); render(); });
+	peer.on("connection", function(c){
+		if (online()) { c.on("open", function(){ c.send({t:"full"}); setTimeout(function(){ c.close(); }, 500); }); return; }
+		setupConn(c, true);
+	});
+	peer.on("error", function(e){ netStatus("錯誤：" + (e.type || e), "ng"); if (e.type === "unavailable-id") { leaveRoom(); hostRoom(); } });
+	peer.on("disconnected", function(){ if (NET.peer === peer && !peer.destroyed) { try { peer.reconnect(); } catch(x) {} } });
+}
+function joinRoom(){
+	if (!peerReady() || NET.peer) return;
+	var code = document.getElementById("joinCode").value.trim().toUpperCase();
+	if (code.length !== 6) { alert("請輸入 6 碼房間代碼"); return; }
+	NET.code = code; netStatus("連線中…");
+	var peer = NET.peer = new Peer(peerOpts());
+	peer.on("open", function(){ setupConn(peer.connect("nasim-" + code, {reliable:true}), false); });
+	peer.on("error", function(e){ netStatus(e.type === "peer-unavailable" ? "找不到房間 " + code + "（代碼錯誤或對方已關閉）" : "錯誤：" + (e.type || e), "ng"); if (e.type === "peer-unavailable") leaveRoom(true); });
+}
+function setupConn(c, isHost){
+	NET.conn = c;
+	c.on("open", function(){
+		if (isHost) { netStatus("已連線（對手：P2）", "ok"); c.send({t:"hello", seat:1, s:st}); addLog("🌐 P2 が入室しました"); pendingLogs = []; renderPanel(); }
+		else netStatus("已連線，等待房主資料…", "ok");
+	});
+	c.on("data", onData);
+	c.on("close", function(){ if (NET.conn === c) { NET.conn = null; netStatus("連線已中斷", "ng"); addLog("🌐 連線已中斷"); pendingLogs = []; } });
+	c.on("error", function(e){ netStatus("連線錯誤：" + (e.type || e), "ng"); });
+}
+function onData(m){
+	if (!m || !m.t) return;
+	if (m.t === "full") { netStatus("房間已滿", "ng"); leaveRoom(true); return; }
+	if (m.t === "hello") {
+		setSeat(m.seat); document.getElementById("netCode").textContent = NET.code;
+		snapshot(); st = m.s; closeAllViewers(); netStatus("已連線（我是 " + PN[m.seat] + "）", "ok");
+		addLog("🌐 已加入房間 " + NET.code + "。請在上方選擇自己的牌組。"); pendingLogs = []; render(); return;
+	}
+	if (m.t === "state") {
+		snapshot(); st = m.s;
+		NET.applying = true; (m.logs || []).forEach(function(l){ addLog(l.m, l.p); }); NET.applying = false;
+		render();
+	}
+}
+function leaveRoom(keepStatus){
+	try { if (NET.conn) NET.conn.close(); } catch(e) {}
+	try { if (NET.peer) NET.peer.destroy(); } catch(e) {}
+	NET.conn = null; NET.peer = null; NET.seat = null; VIEW = 0; applyLayout();
+	[0, 1].forEach(function(p){ document.getElementById("deckSelect" + p).disabled = false; });
+	document.getElementById("netIdle").style.display = ""; document.getElementById("netActive").style.display = "none";
+	if (!keepStatus) netStatus(""); document.getElementById("netBadge").textContent = "";
+	render();
+}
+function copyCode(){ try { navigator.clipboard.writeText(NET.code); } catch(e) {} }
+window.addEventListener("beforeunload", function(){ try { if (NET.peer) NET.peer.destroy(); } catch(e) {} });
+
+/* ============ misc ============ */
+function showHelp(on){ document.getElementById("help").style.display = on ? "flex" : "none"; }
+function fit(){
+	var wrap = document.getElementById("boardWrap"), side = 300 + 6 + 266;
+	var aw = innerWidth - side - 24, ah = innerHeight - 40 - 14;
+	SCALE = Math.max(0.35, Math.min(aw / BW, ah / BH, 1.4));
+	board.style.transform = "scale(" + SCALE + ")";
+	wrap.style.width = (BW * SCALE) + "px"; wrap.style.height = (BH * SCALE) + "px";
+}
+window.addEventListener("resize", fit);
+var SAVE_KEY = "NA_SIM_STATE";
+function save(){ if (!Object.keys(st.cards).length) return; try { localStorage.setItem(SAVE_KEY, JSON.stringify(st)); } catch(e) {} }
+function restoreSaved(){
+	try { var s = JSON.parse(localStorage.getItem(SAVE_KEY)); if (s && s.game === "NA") { snapshot(); st = s; closeAllViewers(); addLog("前回の盤面を復元しました"); render(); broadcast(); } } catch(e) {}
+	document.getElementById("restoreBtn").style.display = "none";
+}
+var hadSave = false; try { hadSave = !!localStorage.getItem(SAVE_KEY); } catch(e) {}
+fit(); fillDeckSelects();
+if (hadSave) document.getElementById("restoreBtn").style.display = "";
+render();
+addLog("上方分別為 P1／P2 選擇牌組，然後按①準備。");
+</script>
+</body>
+</html>
